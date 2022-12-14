@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ISP Packages</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+
+
+</head>
+  <body>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        ISP Packages
+      </h1>
+      <div class="dropdown">
+        <div class="dropdown-trigger">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>Select Operator</span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-item is-active">
+              Omantel
+            </a>
+            <a class="dropdown-item">
+              Awaser
+            </a>
+            <a href="#" class="dropdown-item ">
+              Oordedo
+            </a>
+            <a href="#" class="dropdown-item">
+              Vodafone
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+
+        {% for  cat in categories %}
+        <div class=" title is-3 " onclick="show()">
+                <div>{% ifchanged cat %}{{cat}}{% endifchanged %}</div>
+        </div>
+
+                {%if forloop.counter0 == 0%}
+                <table class="table is-bordered" id="one" width="100%">
+                        <thead>
+                          <tr>
+                                <th class="has-text-left is-primary">Price</th>  
+                                {% for price in  prices%}
+                                <div class="title is-3">
+                                        <td>{% ifchanged  price%}{{price}}{% endifchanged %}</td>
+                                </div>
+                                {% endfor %}
+                          </tr>
+                        </thead>
+                   
+                        <tbody>
+                          <tr>
+                                <th class="has-text-left is-primary">Data Allownce</th>  
+                                {% for item in  data_allowance%}
+                                <div class="title is-3">
+                                        <td>{{item}}</td>
+                                </div>
+                                {% endfor %}
+                        
+                        
+                          </tr>
+                          <tr>
+                                <th class="has-text-left is-primary">Social Media Data</th>  
+                                {% for item in  social_media_data%}
+                                <div class="title is-3">
+                                        <td>{{item}}</td>
+                                </div>
+                                {% endfor %}               
+                           </tr>
+                          <tr>
+                                <th class="has-text-left is-primary">Flexi Minutes</th>  
+        
+                                {% for item in  flexi_minutes%}
+                                <div class="title is-3">
+                                        <td>{{item}}</td>
+                                </div>
+                                {% endfor %}      
+                          </tr>
+                         
+                          <tr>
+                        </tbody>
+                      </table>
+        
+
+                {%else%}
+                <table class="table is-bordered" id="two" width="100%">
+                        <thead>
+                          <tr>
+                                <th class="has-text-left is-primary">Title</th> 
+                                        {% for title in  titles%}
+                                                <div class="title is-3">
+                                                        <td>{% ifchanged  title%}{{title}}{% endifchanged %}</td>
+                                                </div>
+                                        {% endfor %}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                                <th class="has-text-left is-primary">Prices</th>  
+                                {% for price in  prices2%}
+                                <div class="title is-3">
+                                        <td>{% ifchanged  price%}{{price}}{% endifchanged %}</td>
+                                </div>
+                                {% endfor %}
+                        
+                        
+                          </tr>
+
+                          <tr>
+                                <th class="has-text-left is-primary">Flexi Minutes</th>  
+        
+                                {% for min in  flexi_minutes2%}
+                                <div class="title is-3">
+                                        <td>{% ifchanged  min%}{{min}}{% endifchanged %}</td>
+                                </div>
+                                {% endfor %}      
+                          </tr>
+                         
+                          <tr>
+                        </tbody>
+                      </table>
+                {%endif%}
+                <br>
+                <br>
+        {% endfor %}
+
+  </div>
+  <section>
+
+  </section>
+ 
+
+
+  <script >
+
+
+
+          let box = document.getElementById('one')
+
+          
+
+          function show(){
+            console.log("Hello")
+           
+           
+            if (box.classList.contains('hidden')) {
+              box.classList.remove('hidden');
+              setTimeout(function () {
+                box.classList.remove('visuallyhidden');
+              }, 20);
+            } else {
+              box.classList.add('visuallyhidden');    
+              box.addEventListener('transitionend', function(e) {
+                box.classList.add('hidden');
+              }, {
+                capture: false,
+                once: true,
+                passive: false
+              });
+            }
+
+
+
+
+          }
+        
+        var dropdown = document.querySelector('.dropdown');
+
+        dropdown.addEventListener('click', function(event) {
+        event.stopPropagation();
+        dropdown.classList.toggle('is-active');
+        });
+
+        function show(){
+          var one = document.getElementById("one");
+          var two = document.getElementById("two");
+          
+          if (one.style.display === "none") { 
+            one.style.display = "block";
+          }else{
+            one.style.display = "none";
+          }
+          if (two.style.display === "none") { 
+            two.style.display = "block";
+          }else{
+            two.style.display = "none";
+          }
+        } 
+    </script>
+  </body>
+</html>
