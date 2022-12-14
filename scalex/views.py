@@ -30,7 +30,7 @@ def export_packages():
 # baqati.times[idx]
 # baqati.data_allowance[idx]
 def index(request):
-    export_packages()
+    # export_packages()
     data = {
         "data_allowance": prepaid.data_allowance ,
         "prices": prepaid.prices ,
