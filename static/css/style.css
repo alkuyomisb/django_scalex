@@ -166,7 +166,7 @@ input[type=number] {
 }
 
 .navbar-main {
-  position: fixed;
+  /* position: fixed; */
   font-weight: normal;
   padding: 0.75rem 1rem;
   background-color: transparent;
