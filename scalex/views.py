@@ -64,6 +64,23 @@ def filter(request):
 
 
 
-# 
+def result(request):
+    # export_packages()
+    data2 = {
+        "data_allowance": prepaid.data_allowance ,
+        "prices": prepaid.prices ,
+        "times": prepaid.times ,
+        "social_media_data": prepaid.social_media_data ,
+        "flexi_minutes": prepaid.flexi_minutes ,
+        "categories": prepaid.categories ,
+        "titles": baqati.titles ,
+        "prices2": baqati.prices ,
+        "times2": baqati.times ,
+        "flexi_minutes2": baqati.flexi_minutes ,
+    }
+    return render(request, "bestplan/result.html" , data2)
 
+
+
+    
 
