@@ -80,7 +80,7 @@ def result(request):
     }
     return render(request, "bestplan/result.html" , data2)
 
-def plans(request):
+def tab(request):
     # export_packages()
     data2 = {
         "data_allowance": prepaid.data_allowance ,
@@ -94,7 +94,7 @@ def plans(request):
         "times2": baqati.times ,
         "flexi_minutes2": baqati.flexi_minutes ,
     }
-    return render(request, "arch/plans.html" , data2)
+    return render(request, "arch/tab.html" , data2)
 
 
 
