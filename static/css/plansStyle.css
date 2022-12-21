@@ -38,11 +38,12 @@ h1 {
     overflow: hidden; }
     .tabs [class^="tab"] label,
     .tabs [class*=" tab"] label {
+      border-top: 1px solid var(--bk-grade-150);
       color: #000000;
       cursor: pointer;
       display: block;
       font-size: 1.1em;
-      font-weight: 300;
+      font-weight: bold;
       line-height: 1em;
       padding: 2rem 0;
       text-align: center; }
@@ -90,3 +91,43 @@ h1 {
         margin-left: 100%; }
       .tabs .tab-2:last-child [type="radio"]:checked + div {
         margin-left: -100%; }
+
+
+   /* -----------------      */
+
+   /*  plans and Statistics tabs style  */
+   .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: var(--bk-grade-100);
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: var(--bk-grade-150);
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
