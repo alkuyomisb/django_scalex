@@ -3,411 +3,504 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>TRA</title>
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>TRA</title>
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+                            <!-- range side -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 
 <body>
-    <section id="tabs" >
-        <div class="buttons text-left inline-block">
-            
+  <section id="tabs">
+    <div class="buttons text-left inline-block">
 
 
-              <!-- plans and Promotions tabs -->
-            <div class="tab">
-              <button class="tablinks" onclick="openTab(event, 'plans')" id="defaultOpen">Plans</button>
-              <button class="tablinks" onclick="openTab(event, 'promotions')">Promotions</button>
+
+      <!-- plans and Promotions tabs -->
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'plans')" id="defaultOpen">Plans</button>
+        <button class="tablinks" onclick="openTab(event, 'promotions')">Promotions</button>
+      </div>
+
+
+      <!-- plans table -->
+      <div id="plans" class="tabcontent">
+
+        <!-- PRICE RANGE  DIALOG -->
+        <div>
+          <dialog id="DialogExample">
+            <div class="modal-header">
+              <h2 class="modal-title" id="exampleModalLabel">Choose Price Range</h2>
             </div>
-
-
-            <!-- plans table -->
-            <div id="plans" class="tabcontent" >
-              <p class='display-inline-block'>
-                <button class="btn btn-filters">
-                    <span class="fa fa-download mr-3"></span>
-                    DOWNLOAD
-                </button>
-
-                <select class="btn btn-filters">
-                    <option >Operator</option>
-                    <option value="Omantel">Omantel</option>
-                    <option value="Ooredoo">Ooredoo</option>
-                    <option value="Vodafone">Vodafone</option>
-                    <option value="RedBull">RedBull</option>
-                    <option value="Renna">Renna</option>
-                  </select>
-
-                  <select class="btn btn-filters">
-                    <option>Single or Bundle</option>
-                    <option value="Single">Single</option>
-                    <option value="bundle">Bundle</option>
-                  </select>
-
-                  <select class="btn btn-filters">
-                    <option >Service Type</option>
-                    <option value="Mobile">Mobile</option>
-                    <option value="Broadband">Fixed Broadband</option>
-                  </select>
-
-                  <button type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Price Range
-                </button>
-
-                <button type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">Date Range
-                </button>
+            <p>
+              <input type="text" id="amount" readonly style="border:0; color:#000000; font-weight:bold;">
             </p>
-              <div class="search-plan-table">
-                <div class="table-responsive">
-                <table class="table" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>
-                        Plan Details
-                      </th>
-                      <th>
-                        Price
-                      </th>
-                      <th>
-                        Data Volume
-                      </th>
-                      <th>
-                        Excess Data
-                      </th>
-                      <th>
-                        International Minutes
-                      </th>
-                      <th>
-                        Roaming Usage
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>
-                        Small output Choice
-                      </td>
-                      <td>
-                        $45.00
-                      </td>
-                      <td>
-                        <span >
-                          20 GB (20 + 0) <br /> Data Sharing : Yes
-                        </span>
-                      </td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>Medium output Choice</td>
-                      <td>$55.00</td>
-                      <td><span>80 GB (80 + 0) </span><br />
-                        <span> Data Sharing : Yes </span></td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>Medium output Choice</td>
-                      <td>$55.00</td>
-                      <td><span>80 GB (80 + 0) </span><br />
-                        <span> Data Sharing : Yes </span></td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>Medium output Choice</td>
-                      <td>$55.00</td>
-                      <td><span>80 GB (80 + 0) </span><br />
-                        <span> Data Sharing : Yes </span></td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div id="slider-range"></div>
+            <div class="modal-footer">
+              <button id="hide" class="btn btn-filters">Close</button>
+              <button type="button" class="btn btn-filters">Apply</button>
             </div>
+          </dialog>
+        </div>
+        <!-- PRICE RINGE DIALOG -->
+
+        <!-- DATE RINGE DIALOG -->
+        <div>
+          <dialog id="DialogDate">
+            <div class="modal-header">
+              <h2 class="modal-title" id="dateModalLabel">Choose Date Range</h2>
             </div>
-            
-
-            <!-- Promotions table -->
-            <div id="promotions" class="tabcontent">
-              <p class='display-inline-block'>
-                <button class="btn btn-filters">
-                    <span class="fa fa-download mr-3"></span>
-                    DOWNLOAD
-                </button>
-
-                <select class="btn btn-filters">
-                    <option >Operator</option>
-                    <option value="Omantel">Omantel</option>
-                    <option value="Ooredoo">Ooredoo</option>
-                    <option value="Vodafone">Vodafone</option>
-                    <option value="RedBull">RedBull</option>
-                    <option value="Renna">Renna</option>
-                  </select>
-
-                  <select class="btn btn-filters">
-                    <option>Single or Bundle</option>
-                    <option value="Single">Single</option>
-                    <option value="bundle">Bundle</option>
-                  </select>
-
-                  <select class="btn btn-filters">
-                    <option >Service Type</option>
-                    <option value="Mobile">Mobile</option>
-                    <option value="Broadband">Fixed Broadband</option>
-                  </select>
-
-                  <button type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Price Range
-                </button>
-
-                <button type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">Date Range
-                </button>
-            </p>
-              <div class="search-plan-table">
-                <div class="table-responsive">
-                <table class="table" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>
-                        Plan Details
-                      </th>
-                      <th>
-                        Price
-                      </th>
-                      <th>
-                        Data Volume
-                      </th>
-                      <th>
-                        Excess Data
-                      </th>
-                      <th>
-                        International Minutes
-                      </th>
-                      <th>
-                        Roaming Usage
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>
-                        Small output Choice
-                      </td>
-                      <td>
-                        $45.00
-                      </td>
-                      <td>
-                        <span >
-                          20 GB (20 + 0) <br /> Data Sharing : Yes
-                        </span>
-                      </td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>Medium output Choice</td>
-                      <td>$55.00</td>
-                      <td><span>80 GB (80 + 0) </span><br />
-                        <span> Data Sharing : Yes </span></td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>Medium output Choice</td>
-                      <td>$55.00</td>
-                      <td><span>80 GB (80 + 0) </span><br />
-                        <span> Data Sharing : Yes </span></td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2021-07-14</td>
-                      <td>Medium output Choice</td>
-                      <td>$55.00</td>
-                      <td><span>80 GB (80 + 0) </span><br />
-                        <span> Data Sharing : Yes </span></td>
-                      <td>
-                        <span> Data Type: UNL Shaped</span> <br />
-                        <span>Data Cost : NA </span><br />
-                        <span>Data Sharing : 1.5</span>
-                      </td>
-                      <td>
-                        <span>
-                          Zone One: PAYG
-                        </span><br />
-                        <span>
-                          Zone 2 : NA
-                        </span>
-                      </td>
-                      <td>
-                        <span>
-                          UNL/$10 Day Pass
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div> 
+              From :
+              <input type="date" name="party" min="2020-04-01" max="2025-04-30" />
+              To :
+              <input type="date" name="party"min="2020-04-01" max="2025-04-30" />
+            <div class="modal-footer">
+              <button id="dateHide" class="btn btn-filters">Close</button>
+              <button type="button" class="btn btn-filters">Apply</button>
             </div>
-            
-            
-    </section>
+          </dialog>
+        </div>
 
-    <script>
-      
-      function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
+        <!-- DATE RINGE DIALOG -->
+
+
+        <!-- filter -->
+        <p class='display-inline-block'>
+          <button class="btn btn-filters">
+            <span class="fa fa-download mr-3"></span>
+            DOWNLOAD
+          </button>
+
+          <select class="btn btn-filters">
+            <option>Operator</option>
+            <option value="Omantel">Omantel</option>
+            <option value="Ooredoo">Ooredoo</option>
+            <option value="Vodafone">Vodafone</option>
+            <option value="RedBull">RedBull</option>
+            <option value="Renna">Renna</option>
+          </select>
+
+          <select class="btn btn-filters">
+            <option>Single or Bundle</option>
+            <option value="Single">Single</option>
+            <option value="bundle">Bundle</option>
+          </select>
+
+          <select class="btn btn-filters">
+            <option>Service Type</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Broadband">Fixed Broadband</option>
+          </select>
+
+
+          <button id="show" type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal"
+            data-whatever="@mdo">Price Range
+          </button>
+
+          <button id="dateShow" type="button" class="btn btn-filters" data-toggle="modal" data-target="#dateModal"
+            data-whatever="@mdo">Date Range
+          </button>
+        </p>
+        <!-- filter -->
+
+
+
+        <div class="search-plan-table">
+          <div class="table-responsive">
+            <table class="table" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>
+                    Plan Details
+                  </th>
+                  <th>
+                    Price
+                  </th>
+                  <th>
+                    Data Volume
+                  </th>
+                  <th>
+                    Excess Data
+                  </th>
+                  <th>
+                    International Minutes
+                  </th>
+                  <th>
+                    Roaming Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>
+                    Small output Choice
+                  </td>
+                  <td>
+                    $45.00
+                  </td>
+                  <td>
+                    <span>
+                      20 GB (20 + 0) <br /> Data Sharing : Yes
+                    </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>Medium output Choice</td>
+                  <td>$55.00</td>
+                  <td><span>80 GB (80 + 0) </span><br />
+                    <span> Data Sharing : Yes </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>Medium output Choice</td>
+                  <td>$55.00</td>
+                  <td><span>80 GB (80 + 0) </span><br />
+                    <span> Data Sharing : Yes </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>Medium output Choice</td>
+                  <td>$55.00</td>
+                  <td><span>80 GB (80 + 0) </span><br />
+                    <span> Data Sharing : Yes </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Promotions table -->
+      <div id="promotions" class="tabcontent">
+        <p class='display-inline-block'>
+          <button class="btn btn-filters">
+            <span class="fa fa-download mr-3"></span>
+            DOWNLOAD
+          </button>
+
+          <select class="btn btn-filters">
+            <option>Operator</option>
+            <option value="Omantel">Omantel</option>
+            <option value="Ooredoo">Ooredoo</option>
+            <option value="Vodafone">Vodafone</option>
+            <option value="RedBull">RedBull</option>
+            <option value="Renna">Renna</option>
+          </select>
+
+          <select class="btn btn-filters">
+            <option>Single or Bundle</option>
+            <option value="Single">Single</option>
+            <option value="bundle">Bundle</option>
+          </select>
+
+          <select class="btn btn-filters">
+            <option>Service Type</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Broadband">Fixed Broadband</option>
+          </select>
+
+          <button type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal11"
+            data-whatever="@mdo">Price Range
+          </button>
+
+          <button type="button" class="btn btn-filters" data-toggle="modal" data-target="#exampleModal2"
+            data-whatever="@mdo">Date Range
+          </button>
+        </p>
+        <div class="search-plan-table">
+          <div class="table-responsive">
+            <table class="table" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>
+                    Plan Details
+                  </th>
+                  <th>
+                    Price
+                  </th>
+                  <th>
+                    Data Volume
+                  </th>
+                  <th>
+                    Excess Data
+                  </th>
+                  <th>
+                    International Minutes
+                  </th>
+                  <th>
+                    Roaming Usage
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>
+                    Small output Choice
+                  </td>
+                  <td>
+                    $45.00
+                  </td>
+                  <td>
+                    <span>
+                      20 GB (20 + 0) <br /> Data Sharing : Yes
+                    </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>Medium output Choice</td>
+                  <td>$55.00</td>
+                  <td><span>80 GB (80 + 0) </span><br />
+                    <span> Data Sharing : Yes </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>Medium output Choice</td>
+                  <td>$55.00</td>
+                  <td><span>80 GB (80 + 0) </span><br />
+                    <span> Data Sharing : Yes </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2021-07-14</td>
+                  <td>Medium output Choice</td>
+                  <td>$55.00</td>
+                  <td><span>80 GB (80 + 0) </span><br />
+                    <span> Data Sharing : Yes </span>
+                  </td>
+                  <td>
+                    <span> Data Type: UNL Shaped</span> <br />
+                    <span>Data Cost : NA </span><br />
+                    <span>Data Sharing : 1.5</span>
+                  </td>
+                  <td>
+                    <span>
+                      Zone One: PAYG
+                    </span><br />
+                    <span>
+                      Zone 2 : NA
+                    </span>
+                  </td>
+                  <td>
+                    <span>
+                      UNL/$10 Day Pass
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+  </section>
+
+  <script>
+
+    // tab function start
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
       }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
 
-      document.getElementById("defaultOpen").click();
-      </script>
+    document.getElementById("defaultOpen").click();
+     // tab function end
+
+    // dialog function
+    (function () { var dialog = document.getElementById('DialogExample'); document.getElementById('show').onclick = function () { dialog.show(); }; document.getElementById('hide').onclick = function () { dialog.close(); }; })();
+
+    (function () { var dateDialog = document.getElementById('DialogDate'); document.getElementById('dateShow').onclick = function () { dateDialog.show(); }; document.getElementById('dateHide').onclick = function () { dateDialog.close(); }; })();
+
+    // price range function
+    $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 100,
+      values: [ 30, 85 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "OMR " + ui.values[ 0 ] + " - OMR " + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "OMR " + $( "#slider-range" ).slider( "values", 0 ) +
+      " - OMR " + $( "#slider-range" ).slider( "values", 1 ) );
+  } );
+
+  // date range function
+  $(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+
+  </script>
 
 </body>
 
