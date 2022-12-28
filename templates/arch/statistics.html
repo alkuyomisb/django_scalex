@@ -1,12 +1,142 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TRA</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/statistics.css' %}">
+
+
+    <!-- chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 <body>
-    
+    <div>
+        <dialog id="DialogChart">
+          <div class="modal-header">
+            <h2 class="modal-title" id="dateModalLabel">Add Chart</h2>
+          </div>
+            <!-- From :
+            <input type="date" name="party" min="2020-04-01" max="2025-04-30" />
+            To :
+            <input type="date" name="party"min="2020-04-01" max="2025-04-30" /> -->
+          <div class="modal-footer">
+            <button id="chartHide" class="btn btn-filters">Close</button>
+            <button type="button" class="btn btn-filters">Apply</button>
+          </div>
+        </dialog>
+      </div>
+    <div>
+        <div>
+            <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
+                data-target="#PromotionsModal11" data-whatever="@mdo">
+                <span class="fa fa-plus mr-3"></span>Add Chart
+            </button>
+        </div>
+        <div style="display:inline-flex ;height: 400px;">
+            <canvas id="barChart" style=" max-width:600px; max-height: 400px;"></canvas>
+        </div>
+        <div style="display:inline-flex ;height: 400px;">
+            <canvas id="lineChart" style=" max-width:600px; max-height: 400px;"></canvas>
+        </div>
+        <div style="display:inline-flex ;height: 400px;">
+            <canvas id="pieChart" style=" max-width:600px; max-height: 400px;"></canvas>
+        </div>
+
+
+    </div>
+
+
+
+
 </body>
+
+<script>
+    // bar chart
+    const barChart = document.getElementById('barChart');
+
+    new Chart(barChart, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // bar chart
+
+
+    // line chart
+    const lineChart = document.getElementById('lineChart');
+
+    new Chart(lineChart, {
+        type: 'line',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    // line chart
+
+    const pieChart = document.getElementById('pieChart');
+
+    new Chart(pieChart, {
+        type: 'pie',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    (function () { var dateDialog = document.getElementById('DialogChart'); document.getElementById('addChartShow').onclick = function () { dateDialog.show(); }; document.getElementById('chartHide').onclick = function () { dateDialog.close(); }; })();
+</script>
+
 </html>
