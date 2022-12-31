@@ -13,6 +13,12 @@
    max-height: 400px;
 }
 
+.chart {
+    width: 200px;
+    height: 200px;
+    filter: grayscale(100%);  /* apply grayscale effect to make images black and white */
+  }
+
 /* .statisticsDiv canvas{
     max-width:600px;
     max-height: 300px;

@@ -29,20 +29,63 @@
 <body>
     <div>
         <dialog id="DialogChart">
-          <div class="modal-header">
-            <h2 class="modal-title" id="dateModalLabel">Add Chart</h2>
-          </div>
-            <!-- From :
-            <input type="date" name="party" min="2020-04-01" max="2025-04-30" />
-            To :
-            <input type="date" name="party"min="2020-04-01" max="2025-04-30" /> -->
-          <div class="modal-footer">
-            <button id="chartHide" class="btn btn-filters">Close</button>
-            <button type="button" class="btn btn-filters">Apply</button>
-          </div>
+
+
+            <div class="form-group row">
+                <span class="col-sm-4 col-form-label">
+                    xValue :</span>
+                <div class="col-sm-8">
+                    <select class="form-control input-sm">
+                        <option>Choose xValue</option>
+                        <option value="Date">Date </option>
+                        <option value="Price">Price </option>
+                        <option value="DataVolume">Data Volume </option>
+                        <option value="ExcessData">Excess Data </option>
+                        <option value="InternationalMinutes">International Minutes </option>
+                        <option value="RoamingUsage">Roaming Usage </option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- xyVaues -->
+            <div class="form-group row">
+                <span class="col-sm-4 col-form-label">
+                    yValue :</span>
+                <div class="col-sm-8">
+                    <select class="form-control input-sm">
+                        <option>Choose yValue</option>
+                        <option value="Date">Date </option>
+                        <option value="Price">Price </option>
+                        <option value="DataVolume">Data Volume </option>
+                        <option value="ExcessData">Excess Data </option>
+                        <option value="InternationalMinutes">International Minutes </option>
+                        <option value="RoamingUsage">Roaming Usage </option>
+                    </select>
+                </div>
+            </div>
+            <!-- xyVaues -->
+
+            <!-- Choose Chart Type -->
+            <div class="form-group row">
+                <span class="col-sm-6 col-form-label">
+                    Chart Type :</span>
+                <div id="chartType">
+                    <img src="{% static 'images/lineChart1.png' %}" class="chart" onclick="enableImage(this)"
+                        style="width:270px ; height:240px ; padding: 40px;">
+                    <img src="{% static 'images/barChartpng.png' %}" class="chart" onclick="enableImage(this)"
+                        style="width:270px ; height:240px ;padding: 40px;">
+                    <img src="{% static 'images/pieChart.png' %}" class="chart" onclick="enableImage(this)"
+                        style="width:270px ; height:240px ;padding: 40px;">
+                </div>
+            </div>
+            <!-- Choose Chart Type -->
+            <div class="modal-footer">
+                <button id="chartHide" class="btn btn-filters">Close</button>
+                <button type="button" class="btn btn-filters">Apply</button>
+            </div>
         </dialog>
-      </div>
-    <div>
+    </div>
+    <div style="padding: 20px;">
         <div>
             <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
                 data-target="#PromotionsModal11" data-whatever="@mdo">
@@ -61,10 +104,6 @@
 
 
     </div>
-
-
-
-
 </body>
 
 <script>
@@ -137,6 +176,18 @@
     });
 
     (function () { var dateDialog = document.getElementById('DialogChart'); document.getElementById('addChartShow').onclick = function () { dateDialog.show(); }; document.getElementById('chartHide').onclick = function () { dateDialog.close(); }; })();
+
+    // Chart type function
+    function enableImage(imageElement) {
+        // get all chart images
+        var charts = document.querySelectorAll('.chart');
+        // loop through chart images and disable them
+        for (var i = 0; i < charts.length; i++) {
+            charts[i].style.filter = "grayscale(100%)";  // apply grayscale effect to make images black and white
+        }
+        // enable selected image by removing the grayscale effect
+        imageElement.style.filter = "none";
+    }
 </script>
 
 </html>
