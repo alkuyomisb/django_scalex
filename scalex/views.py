@@ -2,10 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from scalex.isp.omantel.prepaid import OmantelPrepaid
 from scalex.isp.omantel.baqati import OmantelBaqati
+from scalex.isp.ooredoo.shahry import OoredooShahry
 import csv
 
 prepaid = OmantelPrepaid()
 baqati = OmantelBaqati()
+shahry = OoredooShahry()
 
 def export_packages():
     with open('packages.csv', 'w', newline='') as file:
