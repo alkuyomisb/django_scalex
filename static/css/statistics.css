@@ -1,16 +1,12 @@
 .statisticsDiv{
-    padding: 15px;
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    background: #ce8888;
+    padding: 20px;
 }
 
-/* style=" max-width:600px; max-height: 400px;" */
 
-.canvas{
+.canvas div{
    max-width: 600px;
    max-height: 400px;
+   display:inline-flex ;
 }
 
 .chart {
@@ -18,6 +14,12 @@
     height: 200px;
     filter: grayscale(100%);  /* apply grayscale effect to make images black and white */
   }
+
+.chartType img{
+    width:  150px;
+    height:180px ;
+    padding: 40px;
+}
 
 /* .statisticsDiv canvas{
     max-width:600px;

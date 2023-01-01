@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/statistics.css' %}">
 
-
     <!-- chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -29,8 +27,6 @@
 <body>
     <div>
         <dialog id="DialogChart">
-
-
             <div class="form-group row">
                 <span class="col-sm-4 col-form-label">
                     xValue :</span>
@@ -69,30 +65,28 @@
             <div class="form-group row">
                 <span class="col-sm-6 col-form-label">
                     Chart Type :</span>
-                <div id="chartType">
-                    <img src="{% static 'images/lineChart1.png' %}" class="chart" onclick="enableImage(this)"
-                        style="width:270px ; height:240px ; padding: 40px;">
-                    <img src="{% static 'images/barChartpng.png' %}" class="chart" onclick="enableImage(this)"
-                        style="width:270px ; height:240px ;padding: 40px;">
-                    <img src="{% static 'images/pieChart.png' %}" class="chart" onclick="enableImage(this)"
-                        style="width:270px ; height:240px ;padding: 40px;">
+                <div class="chartType" id="chartType">
+                    <img src="{% static 'images/lineChart1.png' %}" class="chart" onclick="enableImage(this)">
+                    <img src="{% static 'images/barChartpng.png' %}" class="chart" onclick="enableImage(this)">
+                    <img src="{% static 'images/pieChart.png' %}" class="chart" onclick="enableImage(this)">
                 </div>
             </div>
             <!-- Choose Chart Type -->
             <div class="modal-footer">
-                <button id="chartHide" class="btn btn-filters">Close</button>
-                <button type="button" class="btn btn-filters">Apply</button>
+                <button class="btn btn-filters" id="chartHide" >Close</button>
+                <button class="btn btn-filters" type="button" >Apply</button>
             </div>
         </dialog>
     </div>
-    <div style="padding: 20px;">
+    <div class="statisticsDiv">
         <div>
             <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
                 data-target="#PromotionsModal11" data-whatever="@mdo">
                 <span class="fa fa-plus mr-3"></span>Add Chart
             </button>
         </div>
-        <div style="display:inline-flex ;height: 400px;">
+        <div class="canvas"
+         style="display:inline-flex ;height: 400px;">
             <canvas id="barChart" style=" max-width:600px; max-height: 400px;"></canvas>
         </div>
         <div style="display:inline-flex ;height: 400px;">
@@ -101,8 +95,6 @@
         <div style="display:inline-flex ;height: 400px;">
             <canvas id="pieChart" style=" max-width:600px; max-height: 400px;"></canvas>
         </div>
-
-
     </div>
 </body>
 
