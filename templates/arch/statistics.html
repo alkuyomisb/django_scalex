@@ -78,22 +78,28 @@
             </div>
         </dialog>
     </div>
-    <div class="statisticsDiv">
-        <div>
+     <!-- <div>
             <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
                 data-target="#PromotionsModal11" data-whatever="@mdo">
                 <span class="fa fa-plus mr-3"></span>Add Chart
             </button>
+        </div> -->
+    <div class="statisticsDiv">
+        <div class="canvasDiv">
+            <canvas class="canvas" id="barChart" ></canvas>
         </div>
-        <div class="canvas"
-         style="display:inline-flex ;height: 400px;">
-            <canvas id="barChart" style=" max-width:600px; max-height: 400px;"></canvas>
+        <div class="canvasDiv">
+            <canvas class="canvas" id="lineChart" ></canvas>
         </div>
-        <div style="display:inline-flex ;height: 400px;">
-            <canvas id="lineChart" style=" max-width:600px; max-height: 400px;"></canvas>
+        <div class="canvasDiv">
+            <canvas class="canvas" id="pieChart" ></canvas>
         </div>
-        <div style="display:inline-flex ;height: 400px;">
-            <canvas id="pieChart" style=" max-width:600px; max-height: 400px;"></canvas>
+
+        <div class="canvasDiv">
+            <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
+                data-target="#PromotionsModal11" data-whatever="@mdo">
+                <span class="fa fa-plus mr-3"></span>Add Chart
+            </button>
         </div>
     </div>
 </body>
