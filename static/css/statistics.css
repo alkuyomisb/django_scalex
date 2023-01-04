@@ -48,20 +48,25 @@
     padding: 40px;
 }
 
-
-.btn-add-chart {
-    height: 100px;
-    width: 120px;
-    color: var(--black);
-    font-size: 14px;
+.modal-footer {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .modal-footer .btn-chart {
+    border: none;
+    text-align: left;
+    color: var(--white);
+    font-size: 0.875rem;
     font-weight: 600;
-    padding: 0.5rem 2rem;
-    margin: 0;
-}
-
-.btn-submit:hover {
-    background-color: var(--color-300);
-}
+    background-color: var(--color-100);
+    padding: 0.65rem 1.5rem;
+    border-radius: 0.25rem;
+    margin: 5;
+  }
+  .modal-footer .btn-chart:hover {
+    background-color: var(--color-200);
+  }
 
 .icon-btn {
     z-index: 1;
