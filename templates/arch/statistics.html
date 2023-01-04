@@ -26,6 +26,8 @@
 </head>
 
 <body>
+
+    <!-- Choose Chart Dialog -->
     <div>
         <dialog class="chartDialog" id="DialogChart">
             <div class="form-group row">
@@ -79,23 +81,41 @@
             </div>
         </dialog>
     </div>
-    <!-- <div>
-            <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
-                data-target="#PromotionsModal11" data-whatever="@mdo">
-                <span class="fa fa-plus mr-3"></span>Add Chart
-            </button>
-        </div> -->
+    <!-- Choose Chart Dialog -->
+
+    <div>
+        <dialog class="removeChartDialog" id="removeChartDialog">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button id="removeHide" class="btn btn-filters">Close</button>
+                <button type="button" class="btn btn-filters" onclick="deleteDiv()">Delete</button>
+            </div>
+        </dialog>
+    </div>
+
+
     <div class="row">
         <div>
-            <canvas id="barChart" style="height: 350px;
+            <button class="delete" id="removeChartShow">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="barChart" style="height: 350px;padding: 15px;
             width: 350px;"></canvas>
         </div>
         <div>
-            <canvas id="lineChart" style="height: 350px;
+            <button class="delete" id="removeChartShow">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="lineChart" style="height: 350px; padding: 15px;
             width: 350px;"></canvas>
         </div>
         <div>
-            <canvas id="pieChart" style=" width: 350px;"></canvas>
+            <button class="delete" id="removeChartShow">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="pieChart" style=" width: 350px; padding: 15px;"></canvas>
         </div>
         <div>
             <!-- <button id="addChartShow" type="button" class="btn btn-add-chart" data-toggle="modal"
@@ -103,7 +123,7 @@
             <i class="fa fa-duotone fa-plus"></i>
             <span>Add Chart</span>
         </button> -->
-            <button class="icon-btn add-btn" id="addChartShow">
+            <button class="icon-btn add-btn" id="addChartShow" style="margin-left: 140px;">
                 <div class="add-icon"></div>
                 <div class="btn-txt">Add Chart</div>
             </button>
@@ -183,6 +203,10 @@
 
     (function () { var dateDialog = document.getElementById('DialogChart'); document.getElementById('addChartShow').onclick = function () { dateDialog.show(); }; document.getElementById('chartHide').onclick = function () { dateDialog.close(); }; })();
 
+
+    // remove chart dialog
+    (function () { var removeDialog = document.getElementById('removeChartDialog'); document.getElementById('removeChartShow').onclick = function () { removeDialog.show(); }; document.getElementById('removeHide').onclick = function () { removeDialog.close(); }; })();
+
     // Chart type function
     function enableImage(imageElement) {
         // get all chart images
@@ -194,6 +218,8 @@
         // enable selected image by removing the grayscale effect
         imageElement.style.filter = "none";
     }
+
+
 </script>
 
 </html>
