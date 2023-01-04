@@ -26,7 +26,7 @@
 
 <body>
     <div>
-        <dialog id="DialogChart">
+        <dialog class="chartDialog" id="DialogChart">
             <div class="form-group row">
                 <span class="col-sm-4 col-form-label">
                     xValue :</span>
@@ -84,23 +84,32 @@
                 <span class="fa fa-plus mr-3"></span>Add Chart
             </button>
         </div> -->
-    <div class="statisticsDiv">
-        <div class="canvasDiv">
-            <canvas class="canvas" id="barChart" ></canvas>
+    <div class="row">
+        <div>
+            <canvas id="barChart" style="height: 350px;
+            width: 350px;" ></canvas>
         </div>
-        <div class="canvasDiv">
-            <canvas class="canvas" id="lineChart" ></canvas>
+        <div>
+            <canvas id="lineChart" style="height: 350px;
+            width: 350px;" ></canvas>
         </div>
-        <div class="canvasDiv">
-            <canvas class="canvas" id="pieChart" ></canvas>
+        <div>
+            <canvas  id="pieChart" style=" width: 350px;" ></canvas>
         </div>
-
-        <div class="canvasDiv">
-            <button id="addChartShow" type="button" class="btn btn-filters" data-toggle="modal"
-                data-target="#PromotionsModal11" data-whatever="@mdo">
-                <span class="fa fa-plus mr-3"></span>Add Chart
-            </button>
+        <div >
+            <div class="btn-add-chart" >
+            <!-- <button id="addChartShow" type="button" class="btn btn-add-chart" data-toggle="modal"
+            data-target="#PromotionsModal11" data-whatever="@mdo">
+            <i class="fa fa-duotone fa-plus"></i>
+            <span>Add Chart</span>
+        </button> -->
+        <button class="icon-btn add-btn" id="addChartShow">
+    <div class="add-icon"></div>
+    <div class="btn-txt">Add Chart</div>
+</button>
+    </div>
         </div>
+           
     </div>
 </body>
 
