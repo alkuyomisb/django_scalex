@@ -40,7 +40,8 @@
     font-weight: 600;
     transition: .3s;
 }
-.removeChartDialog{
+
+.removeChartDialog {
     position: absolute;
     z-index: 2;
 }
@@ -99,9 +100,9 @@
 .modal-footer {
     padding: 1rem;
     border-radius: 0.5rem;
-  }
-  
-  .modal-footer .btn-chart {
+}
+
+.modal-footer .btn-chart {
     border: none;
     text-align: left;
     color: var(--white);
@@ -111,10 +112,11 @@
     padding: 0.65rem 1.5rem;
     border-radius: 0.25rem;
     margin: 5;
-  }
-  .modal-footer .btn-chart:hover {
+}
+
+.modal-footer .btn-chart:hover {
     background-color: var(--color-200);
-  }
+}
 
 .icon-btn {
     z-index: 1;
