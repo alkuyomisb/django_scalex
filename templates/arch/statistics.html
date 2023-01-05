@@ -84,12 +84,36 @@
     <!-- Choose Chart Dialog -->
 
     <div>
-        <dialog class="removeChartDialog" id="removeChartDialog">
+        <dialog class="removeChartDialog" id="removeChartDialog1">
             <div class="modal-header">
                 <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
             </div>
             <div class="modal-footer">
-                <button id="removeHide" class="btn btn-filters">Close</button>
+                <button id="removeHide1" class="btn btn-filters">Close</button>
+                <button type="button" class="btn btn-filters" onclick="deleteDiv()">Delete</button>
+            </div>
+        </dialog>
+    </div>
+
+    <div>
+        <dialog class="removeChartDialog" id="removeChartDialog2">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button id="removeHide2" class="btn btn-filters">Close</button>
+                <button type="button" class="btn btn-filters" onclick="deleteDiv()">Delete</button>
+            </div>
+        </dialog>
+    </div>
+
+    <div>
+        <dialog class="removeChartDialog" id="removeChartDialog3">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button id="removeHide3" class="btn btn-filters">Close</button>
                 <button type="button" class="btn btn-filters" onclick="deleteDiv()">Delete</button>
             </div>
         </dialog>
@@ -98,21 +122,21 @@
 
     <div class="row">
         <div>
-            <button class="delete" id="removeChartShow">
+            <button class="delete" id="removeChartShow1">
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
             </button>
             <canvas id="barChart" style="height: 350px;padding: 15px;
             width: 350px;"></canvas>
         </div>
         <div>
-            <button class="delete" id="removeChartShow">
+            <button class="delete" id="removeChartShow2">
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
             </button>
             <canvas id="lineChart" style="height: 350px; padding: 15px;
             width: 350px;"></canvas>
         </div>
         <div>
-            <button class="delete" id="removeChartShow">
+            <button class="delete" id="removeChartShow3">
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
             </button>
             <canvas id="pieChart" style=" width: 350px; padding: 15px;"></canvas>
@@ -201,7 +225,11 @@
 
 
     // remove chart dialog
-    (function () { var removeDialog = document.getElementById('removeChartDialog'); document.getElementById('removeChartShow').onclick = function () { removeDialog.show(); }; document.getElementById('removeHide').onclick = function () { removeDialog.close(); }; })();
+    (function () { var removeDialog1 = document.getElementById('removeChartDialog1'); document.getElementById('removeChartShow1').onclick = function () { removeDialog1.show(); }; document.getElementById('removeHide1').onclick = function () { removeDialog1.close(); }; })();
+
+    (function () { var removeDialog2 = document.getElementById('removeChartDialog2'); document.getElementById('removeChartShow2').onclick = function () { removeDialog2.show(); }; document.getElementById('removeHide2').onclick = function () { removeDialog2.close(); }; })();
+
+    (function () { var removeDialog3 = document.getElementById('removeChartDialog3'); document.getElementById('removeChartShow3').onclick = function () { removeDialog3.show(); }; document.getElementById('removeHide3').onclick = function () { removeDialog3.close(); }; })();
 
     // Chart type function
     function enableImage(imageElement) {
@@ -214,8 +242,5 @@
         // enable selected image by removing the grayscale effect
         imageElement.style.filter = "none";
     }
-
-
 </script>
-
 </html>
