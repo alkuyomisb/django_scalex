@@ -4,8 +4,11 @@ from scalex.isp.omantel.prepaid import OmantelPrepaid
 from scalex.isp.omantel.baqati import OmantelBaqati
 import csv
 
+from scalex.isp.ooredoo.hala import OoredooHala
+
 prepaid = OmantelPrepaid()
 baqati = OmantelBaqati()
+hala = OoredooHala()
 
 def export_packages():
     with open('packages.csv', 'w', newline='') as file:
