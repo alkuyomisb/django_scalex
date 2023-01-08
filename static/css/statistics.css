@@ -223,3 +223,24 @@
     }
 
 }
+
+.editButtons {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+
+.editButtons .btn-edit {
+    text-align: left;
+    color: var(--white);
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-color: var(--color-100);
+    padding: 0.65rem 1.5rem;
+    border-radius: 0.25rem;
+    margin: 5;
+  }
+  
+ .editButtons .btn-edit:hover {
+    background-color: var(--color-200);
+  }

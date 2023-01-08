@@ -1,255 +1,185 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRA</title>
     <link rel="icon" href="{% static 'images/favicon.ico' %}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/font-awesome.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/bootstrap.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/owl.carousel.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/owl.theme.default.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/jquery.fancybox.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/hover.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/animate.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/style.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/statistics.css' %}"
-    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/statistics.css' %}" />
 
     <!-- chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- Choose Chart Dialog -->
     <div>
-      <dialog class="chartDialog" id="DialogChart">
-        <div class="form-group row">
-          <span class="col-sm-4 col-form-label"> xValue :</span>
-          <div class="col-sm-8">
-            <select class="form-control input-sm">
-              <option>Choose xValue</option>
-              <option value="Date">Date</option>
-              <option value="Price">Price</option>
-              <option value="DataVolume">Data Volume</option>
-              <option value="ExcessData">Excess Data</option>
-              <option value="InternationalMinutes">
-                International Minutes
-              </option>
-              <option value="RoamingUsage">Roaming Usage</option>
-            </select>
-          </div>
-        </div>
+        <dialog class="chartDialog" id="DialogChart">
+            <div class="form-group row">
+                <span class="col-sm-4 col-form-label"> xValue :</span>
+                <div class="col-sm-8">
+                    <select class="form-control input-sm">
+                        <option>Choose xValue</option>
+                        <option value="Date">Date</option>
+                        <option value="Price">Price</option>
+                        <option value="DataVolume">Data Volume</option>
+                        <option value="ExcessData">Excess Data</option>
+                        <option value="InternationalMinutes">
+                            International Minutes
+                        </option>
+                        <option value="RoamingUsage">Roaming Usage</option>
+                    </select>
+                </div>
+            </div>
 
-        <!-- xyVaues -->
-        <div class="form-group row">
-          <span class="col-sm-4 col-form-label"> yValue :</span>
-          <div class="col-sm-8">
-            <select class="form-control input-sm">
-              <option>Choose yValue</option>
-              <option value="Date">Date</option>
-              <option value="Price">Price</option>
-              <option value="DataVolume">Data Volume</option>
-              <option value="ExcessData">Excess Data</option>
-              <option value="InternationalMinutes">
-                International Minutes
-              </option>
-              <option value="RoamingUsage">Roaming Usage</option>
-            </select>
-          </div>
-        </div>
-        <!-- xyVaues -->
+            <!-- xyVaues -->
+            <div class="form-group row">
+                <span class="col-sm-4 col-form-label"> yValue :</span>
+                <div class="col-sm-8">
+                    <select class="form-control input-sm">
+                        <option>Choose yValue</option>
+                        <option value="Date">Date</option>
+                        <option value="Price">Price</option>
+                        <option value="DataVolume">Data Volume</option>
+                        <option value="ExcessData">Excess Data</option>
+                        <option value="InternationalMinutes">
+                            International Minutes
+                        </option>
+                        <option value="RoamingUsage">Roaming Usage</option>
+                    </select>
+                </div>
+            </div>
+            <!-- xyVaues -->
 
-        <!-- Choose Chart Type -->
-        <div class="form-group row">
-          <span class="col-sm-6 col-form-label"> Chart Type :</span>
-          <div class="chartType" id="chartType">
-            <img
-              src="{% static 'images/lineChart1.png' %}"
-              class="chart"
-              onclick="enableImage(this)"
-            />
-            <img
-              src="{% static 'images/barChartpng.png' %}"
-              class="chart"
-              onclick="enableImage(this)"
-            />
-            <img
-              src="{% static 'images/pieChart.png' %}"
-              class="chart"
-              onclick="enableImage(this)"
-            />
-          </div>
-        </div>
-        <!-- Choose Chart Type -->
-        <div class="modal-footer">
-          <button class="btn btn-chart" id="chartHide">Close</button>
-          <button class="btn btn-chart" type="button">Apply</button>
-        </div>
-      </dialog>
+            <!-- Choose Chart Type -->
+            <div class="form-group row">
+                <span class="col-sm-6 col-form-label"> Chart Type :</span>
+                <div class="chartType" id="chartType">
+                    <img src="{% static 'images/lineChart1.png' %}" class="chart" onclick="enableImage(this)" />
+                    <img src="{% static 'images/barChartpng.png' %}" class="chart" onclick="enableImage(this)" />
+                    <img src="{% static 'images/pieChart.png' %}" class="chart" onclick="enableImage(this)" />
+                </div>
+            </div>
+            <!-- Choose Chart Type -->
+            <div class="modal-footer">
+                <button class="btn btn-chart" id="chartHide">Close</button>
+                <button class="btn btn-chart" type="button">Apply</button>
+            </div>
+        </dialog>
     </div>
     <!-- Choose Chart Dialog -->
 
     <div>
-      <dialog class="removeChartDialog" id="removeChartDialog1">
-        <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
-        </div>
-        <div class="modal-footer">
-          <button id="removeHide1" class="btn btn-chart">Close</button>
-          <button type="button" class="btn btn-chart" onclick="deleteDiv()">
-            Delete
-          </button>
-        </div>
-      </dialog>
+        <dialog class="removeChartDialog" id="removeChartDialog1">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button id="removeHide1" class="btn btn-chart">Close</button>
+                <button type="button" class="btn btn-chart" onclick="deleteDiv()">
+                    Delete
+                </button>
+            </div>
+        </dialog>
     </div>
 
     <div>
-      <dialog class="removeChartDialog" id="removeChartDialog2">
-        <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
-        </div>
-        <div class="modal-footer">
-          <button id="removeHide2" class="btn btn-chart">Close</button>
-          <button type="button" class="btn btn-chart" onclick="deleteDiv()">
-            Delete
-          </button>
-        </div>
-      </dialog>
+        <dialog class="removeChartDialog" id="removeChartDialog2">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button id="removeHide2" class="btn btn-chart">Close</button>
+                <button type="button" class="btn btn-chart" onclick="deleteDiv()">
+                    Delete
+                </button>
+            </div>
+        </dialog>
     </div>
 
     <div>
-      <dialog class="removeChartDialog" id="removeChartDialog3">
-        <div class="modal-header">
-          <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
-        </div>
-        <div class="modal-footer">
-          <button id="removeHide3" class="btn btn-chart">Close</button>
-          <button type="button" class="btn btn-chart" onclick="deleteDiv()">
-            Delete
-          </button>
-        </div>
-      </dialog>
+        <dialog class="removeChartDialog" id="removeChartDialog3">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
+            </div>
+            <div class="modal-footer">
+                <button id="removeHide3" class="btn btn-chart">Close</button>
+                <button type="button" class="btn btn-chart" onclick="deleteDiv()">
+                    Delete
+                </button>
+            </div>
+        </dialog>
     </div>
 
     <div class="row">
-      <div>
-        <button class="delete" id="removeChartShow1">
-          <span
-            class="svg fa fa-minus"
-            width="25"
-            height="25"
-            fill="none"
-            viewBox="0 0 24 24"
-          ></span>
-        </button>
-        <canvas
-          id="barChart"
-          style="height: 350px; padding: 15px; width: 350px"
-        ></canvas>
-      </div>
-      <div>
-        <button class="delete" id="removeChartShow2">
-          <span
-            class="svg fa fa-minus"
-            width="25"
-            height="25"
-            fill="none"
-            viewBox="0 0 24 24"
-          ></span>
-        </button>
-        <canvas
-          id="lineChart"
-          style="height: 350px; padding: 15px; width: 350px"
-        ></canvas>
-      </div>
-      <div>
-        <button class="delete" id="removeChartShow3">
-          <span
-            class="svg fa fa-minus"
-            width="25"
-            height="25"
-            fill="none"
-            viewBox="0 0 24 24"
-          ></span>
-        </button>
-        <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas>
-      </div>
-      <div>
-        <button
-          class="icon-btn add-btn"
-          id="addChartShow"
-          style="margin-left: 140px"
-        >
-          <div class="add-icon"></div>
-          <div class="btn-txt">Add Chart</div>
-        </button>
-      </div>
+        <div>
+            <button class="delete" id="removeChartShow1" style="display:none;">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="barChart" style="height: 350px; padding: 15px; width: 350px"></canvas>
+        </div>
+        <div>
+            <button class="delete" id="removeChartShow2" style="display:none;">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="lineChart" style="height: 350px; padding: 15px; width: 350px"></canvas>
+        </div>
+        <div>
+            <button class="delete" id="removeChartShow3" style="display:none;">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas>
+        </div>
+        <div>
+            <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Add Chart</div>
+            </button>
+        </div>
+        <div>
+            <button onclick="return showHide() ,showHide0(), showHide1() ,showHide2();" class="btn-outline-primary"
+                style="margin-left:50px;">Edit
+            </button>
+        </div>
     </div>
-  </body>
+</body>
 
-  <script>
+<script>
     // bar chart
     const barChart = document.getElementById("barChart");
 
     new Chart(barChart, {
-      type: "bar",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
+        type: "bar",
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [
+                {
+                    label: "# of Votes",
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1,
+                },
+            ],
         },
-      },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
     });
     // bar chart
 
@@ -257,101 +187,143 @@
     const lineChart = document.getElementById("lineChart");
 
     new Chart(lineChart, {
-      type: "line",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
+        type: "line",
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [
+                {
+                    label: "# of Votes",
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1,
+                },
+            ],
         },
-      },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
     });
     // line chart
 
     const pieChart = document.getElementById("pieChart");
 
     new Chart(pieChart, {
-      type: "pie",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
+        type: "pie",
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [
+                {
+                    label: "# of Votes",
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1,
+                },
+            ],
         },
-      },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
     });
 
     (function () {
-      var dateDialog = document.getElementById("DialogChart");
-      document.getElementById("addChartShow").onclick = function () {
-        dateDialog.show();
-      };
-      document.getElementById("chartHide").onclick = function () {
-        dateDialog.close();
-      };
+        var dateDialog = document.getElementById("DialogChart");
+        document.getElementById("addChartShow").onclick = function () {
+            dateDialog.show();
+        };
+        document.getElementById("chartHide").onclick = function () {
+            dateDialog.close();
+        };
     })();
 
     // remove chart dialog
     (function () {
-      var removeDialog1 = document.getElementById("removeChartDialog1");
-      document.getElementById("removeChartShow1").onclick = function () {
-        removeDialog1.show();
-      };
-      document.getElementById("removeHide1").onclick = function () {
-        removeDialog1.close();
-      };
+        var removeDialog1 = document.getElementById("removeChartDialog1");
+        document.getElementById("removeChartShow1").onclick = function () {
+            removeDialog1.show();
+        };
+        document.getElementById("removeHide1").onclick = function () {
+            removeDialog1.close();
+        };
     })();
 
     (function () {
-      var removeDialog2 = document.getElementById("removeChartDialog2");
-      document.getElementById("removeChartShow2").onclick = function () {
-        removeDialog2.show();
-      };
-      document.getElementById("removeHide2").onclick = function () {
-        removeDialog2.close();
-      };
+        var removeDialog2 = document.getElementById("removeChartDialog2");
+        document.getElementById("removeChartShow2").onclick = function () {
+            removeDialog2.show();
+        };
+        document.getElementById("removeHide2").onclick = function () {
+            removeDialog2.close();
+        };
     })();
 
     (function () {
-      var removeDialog3 = document.getElementById("removeChartDialog3");
-      document.getElementById("removeChartShow3").onclick = function () {
-        removeDialog3.show();
-      };
-      document.getElementById("removeHide3").onclick = function () {
-        removeDialog3.close();
-      };
+        var removeDialog3 = document.getElementById("removeChartDialog3");
+        document.getElementById("removeChartShow3").onclick = function () {
+            removeDialog3.show();
+        };
+        document.getElementById("removeHide3").onclick = function () {
+            removeDialog3.close();
+        };
     })();
 
     // Chart type function
     function enableImage(imageElement) {
-      // get all chart images
-      var charts = document.querySelectorAll(".chart");
-      // loop through chart images and disable them
-      for (var i = 0; i < charts.length; i++) {
-        charts[i].style.filter = "grayscale(100%)"; // apply grayscale effect to make images black and white
-      }
-      // enable selected image by removing the grayscale effect
-      imageElement.style.filter = "none";
+        // get all chart images
+        var charts = document.querySelectorAll(".chart");
+        // loop through chart images and disable them
+        for (var i = 0; i < charts.length; i++) {
+            charts[i].style.filter = "grayscale(100%)"; // apply grayscale effect to make images black and white
+        }
+        // enable selected image by removing the grayscale effect
+        imageElement.style.filter = "none";
     }
-  </script>
+
+
+    // Edit Mode Functions
+    function showHide() {
+        var elm = document.getElementById("removeChartShow1");
+        if (elm.style.display == "block") {
+            elm.style.display = "none";
+        }
+        else {
+            elm.style.display = "block";
+        }
+    }
+    function showHide0() {
+        var elm = document.getElementById("removeChartShow2");
+        if (elm.style.display == "block") {
+            elm.style.display = "none";
+        }
+        else {
+            elm.style.display = "block";
+        }
+    }
+
+    function showHide1() {
+        var elm = document.getElementById("removeChartShow3");
+        if (elm.style.display == "block") {
+            elm.style.display = "none";
+        }
+        else {
+            elm.style.display = "block";
+        }
+    }
+
+    function showHide2() {
+        var elm = document.getElementById("addChartShow");
+        if (elm.style.display == "block") {
+            elm.style.display = "none";
+        }
+        else {
+            elm.style.display = "block";
+        }
+    }
+</script>
+
 </html>
