@@ -3,11 +3,13 @@ from django.shortcuts import render
 from scalex.isp.omantel.prepaid import OmantelPrepaid
 from scalex.isp.omantel.baqati import OmantelBaqati
 from scalex.isp.ooredoo.shahry import OoredooShahry
+from scalex.isp.vodafone.mobilePlans import vodafonePlans
 import csv
 
 prepaid = OmantelPrepaid()
 baqati = OmantelBaqati()
 shahry = OoredooShahry()
+plans = vodafonePlans()
 
 def export_packages():
     with open('packages.csv', 'w', newline='') as file:
