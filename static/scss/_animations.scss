@@ -1,0 +1,117 @@
+// Navbar Down
+@keyframes navDown {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+// Page up
+@keyframes upBounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+// Dropdown animation
+@keyframes drop-anim {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Icon animation
+@keyframes iconMoveRight {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(5px);
+  }
+}
+
+// Button animation
+@keyframes btnGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// BG Slide
+@keyframes serviceBgSlide {
+  from {
+    background-position: top 1000px right 0;
+  }
+  to {
+    background-position: top 0 right 0;
+  }
+}
+
+// BG top Slide
+@keyframes sectorBgTop {
+  from {
+    background-position: left 1920px top 0;
+  }
+  to {
+    background-position: left 0 top 0;
+  }
+}
+
+// BG  btm Slide
+@keyframes sectorBgBtm {
+  from {
+    background-position: left -1920px top 0;
+  }
+  to {
+    background-position: left 0 top 0;
+  }
+}
+
+// icon pulse
+@keyframes iconPulse {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    box-shadow: 0 0 0 2px rgba(30, 184, 186, 0.4);
+  }
+  25% {
+    box-shadow: 0 0 0 4px rgba(30, 184, 186, 0.4),
+      0 0 0 8px rgba(30, 184, 186, 0.2);
+  }
+  25% {
+    box-shadow: 0 0 0 6px rgba(30, 184, 186, 0.4),
+      0 0 0 12px rgba(30, 184, 186, 0.2);
+  }
+}

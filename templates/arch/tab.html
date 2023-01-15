@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRA</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/plansStyle.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
+        <div class="container-xl container-nav">
+          <div class="logo">
+            <a href="index.html">
+              <img src="{% static 'images/tra-logo.png' %}" alt="TRA">
+            </a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav tool-nav">
+              <li class="nav-item">
+                <a class="nav-link nav-lng" href="javaScript:;"><span class="nav-label">Arabic</span>
+                  <span class="nav-icon">
+                    <img src="{% static 'images/top-nav-01.png' %}" alt="My image">
+                  </span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      
+    <div class="tabs">
+        <div class="tab-2">
+            <label for="tab2-1">Plans</label>
+            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+            <div>
+                {% include 'arch/plans.html' %}
+            </div>
+        </div>
+        <div class="tab-2">
+            <label for="tab2-2">Statistics</label>
+            <input id="tab2-2" name="tabs-two" type="radio">
+            <div>
+                <h4>Tab Two</h4>
+                <p>Quisque sit amet turpis leo. Maecenas sed dolor mi. Pellentesque varius elit in neque ornare commodo
+                    ac non tellus. Mauris id iaculis quam. Donec eu felis quam. Morbi tristique lorem eget iaculis
+                    consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                    himenaeos. Aenean at tellus eget risus tempus ultrices. Nam condimentum nisi enim, scelerisque
+                    faucibus lectus sodales at.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
