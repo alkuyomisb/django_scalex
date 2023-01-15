@@ -33,15 +33,15 @@
 
 
 
-      <!-- plans and Promotions tabs -->
+      <!-- plan and Promotions tabs -->
       <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'plans')">Plans</button>
+        <button class="tablinks" onclick="openTab(event, 'plan')">plans</button>
         <button class="tablinks active" onclick="openTab(event, 'promotions')"  id="defaultOpen">Promotions</button>
       </div>
 
 
-      <!-- plans table -->
-      <div id="plans" class="tabcontent">
+      <!-- plan table -->
+      <div id="plan" class="tabcontent">
 
         <!-- PRICE RANGE  DIALOG -->
         <div>
@@ -508,10 +508,10 @@
   document.getElementById("defaultOpen").click();
   // tab function end
 
-  //plans price range dialog function
+  //plan price range dialog function
   (function () { var dialog = document.getElementById('DialogExample'); document.getElementById('show').onclick = function () { dialog.show(); }; document.getElementById('hide').onclick = function () { dialog.close(); }; })();
 
-  //plans date range dialog
+  //plan date range dialog
   (function () { var dateDialog = document.getElementById('DialogDate'); document.getElementById('dateShow').onclick = function () { dateDialog.show(); }; document.getElementById('dateHide').onclick = function () { dateDialog.close(); }; })();
 
   //Promotions price range dialog
