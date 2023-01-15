@@ -98,6 +98,38 @@ def tab(request):
     }
     return render(request, "arch/tab.html" , data2)
 
+def plans(request):
+    # export_packages()
+    data3 = {
+        "data_allowance": prepaid.data_allowance ,
+        "prices": prepaid.prices ,
+        "times": prepaid.times ,
+        "social_media_data": prepaid.social_media_data ,
+        "flexi_minutes": prepaid.flexi_minutes ,
+        "categories": prepaid.categories ,
+        "titles": baqati.titles ,
+        "prices2": baqati.prices ,
+        "times2": baqati.times ,
+        "flexi_minutes2": baqati.flexi_minutes ,
+    }
+    return render(request, "arch/plans.html" , data3)
+
+def statistics(request):
+    # export_packages()
+    data4 = {
+        "data_allowance": prepaid.data_allowance ,
+        "prices": prepaid.prices ,
+        "times": prepaid.times ,
+        "social_media_data": prepaid.social_media_data ,
+        "flexi_minutes": prepaid.flexi_minutes ,
+        "categories": prepaid.categories ,
+        "titles": baqati.titles ,
+        "prices2": baqati.prices ,
+        "times2": baqati.times ,
+        "flexi_minutes2": baqati.flexi_minutes ,
+    }
+    return render(request, "arch/statistics.html" , data4)
+
 
 
     
