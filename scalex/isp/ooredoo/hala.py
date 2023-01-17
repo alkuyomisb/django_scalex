@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 
 
 class OoredooHala:
-    hala_SIM_blocks=[]
-    hala_add_ons_internet_blocks=[]
-    hala_add_ons_digital_blocks=[]
+    hala_SIM_blocks = []
+    hala_add_ons_internet_blocks = []
+    hala_add_ons_digital_blocks = {}
     url = "https://www.ooredoo.om/Personal/Mobile/NewShababiah/tabid/5370/Agg11142_SelectTab/1/Default.aspx"
     res = requests.get(url,verify=False)
     txt = res.text
@@ -169,19 +169,30 @@ class OoredooHala:
         # for voice 
         for div in divs:
             try:
+                
                 if div["class"][0]=="table-wrapper":
                     hala_add_ons_voice={}
+                # Hala Voice Add-ons
                     voice_title=[]
                     voice_price=[]
                     voice_days=[]
                     voice_contact=[]
+                # International Add-Ons
+                    international_add_ons_title = []
+                    international_add_ons_india = []
+                    international_add_ons_bangladesh = []
+                    international_add_ons_pakistan = []
+
                     th_voice_tags = div.find_all("th")
                     td_voice_tags = div.find_all("td")
+                    table_voice_tags = div.find_all("table")
                 for th in th_voice_tags:
+                    # Hala Voice Add-ons title
                     if "Unlimited" in th.text or "40" in th.text or "100" in th.text or "200" in th.text:
-                        # hala_add_ons_voice["title"] =th.text.strip()
-                        # print(hala_add_ons_voice)
                         voice_title.append(th.text.strip())
+                    for table in table_voice_tags:
+                        if table['class'][0] == "ooredoo-table" and table['class'][1] == "ooredoo-table--table-bordered":
+                           print(th.text)
                 for td_voice in td_voice_tags:
                     if "RO" in td_voice.text:
                         # hala_add_ons_voice["price"] =td_voice.text.strip()
@@ -194,6 +205,8 @@ class OoredooHala:
                         # hala_add_ons_voice["contact"] = td_voice.text.strip()
                         voice_contact.append(td_voice.text.strip())
                         # print(voice_contact)
+
+               
 
 
             except:
@@ -219,21 +232,83 @@ class OoredooHala:
         # digital 
         for div in divs:
             try:
-                if div['class'][0]=="item" and div['class'][1]=="filter-Social":
-                    th_digital_tags=div.find_all("th")
-                    td_digital_tags=div.find_all("td")
-                    img_digital_tags= td_digital_tags.find_all("img")
+                # social data block 
+                if div['class'][0]=="item" and div['class'][1] == "filter-Social":
+                    th_social_tags=div.find_all("th")
+                    td_social_tags=div.find_all("td")
+                    img_social_tags= div.find_all("img")
                     social_data={}
-                    social_data["title"] = th_digital_tags[0].text.strip() 
-                    social_data["social"] = td_digital_tags[0].text.strip() 
-                    social_data["price"] = td_digital_tags[3].text.strip()
-                    social_data["GB"] = td_digital_tags[4].text.strip()
-                    social_data["valid"] = td_digital_tags[5].text.strip()
+                    social_icons =[]
+                    social_data["title"] = th_social_tags[0].text.strip() 
+                    social_data["social"] = td_social_tags[0].text.strip() 
+                    social_data["price"] = td_social_tags[3].text.strip()
+                    social_data["GB"] = td_social_tags[4].text.strip()
+                    social_data["valid"] = td_social_tags[5].text.strip()
+                    for td in td_social_tags:
+                        img_social_tags = td.find_all("img")
+                        for img in img_social_tags:
+                            social_icons.append(img['src'])
+                            social_data["img"] = social_icons
+
+                    self.hala_add_ons_digital_blocks["Social Data"] = social_data
+                # video blocks 
+                if div["class"][0] == "item" and div['class'][1] == "filter-Video":
+                    video ={}
+                    video_blocks ={}
+                    video1_icons = []
+                    th_video1_tags=div.find_all("th")
+                    for th in th_video1_tags:
+                        video["title"] = th.text
+                        
+                        
+                    td_video1_tags=div.find_all("td")
+                    for td in td_video1_tags:
+                        if "Stream" in td.text:
+                            video["stream_on"] = td.text
+                            
+                        if "Unlimited" in td.text:
+                            video["unlimited"] = td.text
+                     
+                       
+                        img_video_tags = td.find_all("img")
+                        for img in img_video_tags:
+                            video1_icons.append(img['src'])
+                            video["img"] = video1_icons
                    
+                        if "Bz" in  td.text:
+                            video["Bz"] = td.text
+                        if "RO" in td.text:
+                            video["RO"] = td.text
+                        if "validity" in td.text:
+                            video["validity"] = td.text
+                    # video_blocks["video"]=video
+                    # print(video_blocks)
+                    # self.hala_add_ons_digital_blocks["Video"] = video_blocks
+
+
+                # music block
+                if div['class'][0] == "item" and div['class'][1] == "filter-Music" :
+                    th_music_tags=div.find_all("th")
+                    td_music_tags=div.find_all("td")
+                    img_music_tags= div.find_all("img")
+                    music={}
+                    music_icons =[]
+                    music["title"] = th_music_tags[0].text.strip()
+                    music["AL7ANI"] = td_music_tags[0].text.strip()
+                    music["unlimited"] = td_music_tags[2].text.strip()
+                    music["Bz"] = td_music_tags[3].text.strip()
+                    music["validity"] = td_music_tags[5].text.strip()
+                    for td in td_music_tags:
+                        img_music_tags = td.find_all("img")
+                        for img in img_music_tags:
+                            music_icons.append(img['src'])
+                            music["img"] = music_icons
+                    self.hala_add_ons_digital_blocks["Music"] = music
             except:
                 pass
-        self.hala_add_ons_digital_blocks["Social Data"] = social_data
-        print(self.hala_add_ons_digital_blocks)
+        
+            
+       
 
           
            
