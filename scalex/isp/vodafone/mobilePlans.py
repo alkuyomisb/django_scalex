@@ -16,6 +16,7 @@ class vodafonePlans:
         self.get_our_plans_block3()
         self.get_our_plans_block4()
         self.get_our_plans_block5()
+        self.get_our_plans_block6()
 
     def get_our_plans_block1(self):
         divs_tags = self.soup.find_all("div")
@@ -144,6 +145,36 @@ class vodafonePlans:
                 if div['class'][0] == "plan__subtitle":
                     if "Valid for 7 days" in div.text:
                         our_plan_block5["days_sub_title"] = div.text
+            except:
+                pass
+    
+
+    def get_our_plans_block6(self):
+        divs_tags = self.soup.find_all("div")
+        for div in divs_tags:
+            try:
+                if div['class'][0] == "plan__wrapper":
+                    span_tags = div.find_all("span")
+                    our_plan_block6 = {}
+                if div['class'][0] == "plan__data":
+                    for span in span_tags:
+                        # list
+                        # if "15GB" in span.text:
+                        #     print(span)
+                        if "8" in span.text and "OMR" in span.text:
+                            print(span.text)
+                if div['class'][0] == "plan__middle" :
+                    if "RED Premium" in div.text:
+                        our_plan_block6["title"] = div.text
+                if div['class'][0] == "plan__title":
+                    if "10 GB" in div.text and "Local Data" in div.text:
+                        our_plan_block6["local_data"] = div.text
+                    if "5 GB" in div.text and  "Social Pass" in div.text:
+                        our_plan_block6["social_pass"] = div.text
+                    if "300" in div.text:
+                        our_plan_block6["calling_minutes"] = div.text
+
+
             except:
                 pass
 
