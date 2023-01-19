@@ -4,12 +4,14 @@ from scalex.isp.omantel.prepaid import OmantelPrepaid
 from scalex.isp.omantel.baqati import OmantelBaqati
 from scalex.isp.ooredoo.shahry import OoredooShahry
 from scalex.isp.vodafone.mobilePlans import vodafonePlans
+from scalex.isp.vodafone.addOns import vodafoneAddOns
 import csv
 
 prepaid = OmantelPrepaid()
 baqati = OmantelBaqati()
 shahry = OoredooShahry()
 plans = vodafonePlans()
+add_ons = vodafoneAddOns()
 
 def export_packages():
     with open('packages.csv', 'w', newline='') as file:
