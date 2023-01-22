@@ -188,11 +188,13 @@ class OoredooHala:
                     table_voice_tags = div.find_all("table")
                 for th in th_voice_tags:
                     # Hala Voice Add-ons title
-                    if "Unlimited" in th.text or "40" in th.text or "100" in th.text or "200" in th.text:
-                        voice_title.append(th.text.strip())
                     for table in table_voice_tags:
                         if table['class'][0] == "ooredoo-table" and table['class'][1] == "ooredoo-table--table-bordered":
-                           print(th.text)
+                             if "minuets" in th.text or "minutes" in th.text:
+                                print(th.text)
+                                # voice_title.append(th.text.strip())
+                    
+                           
                 for td_voice in td_voice_tags:
                     if "RO" in td_voice.text:
                         # hala_add_ons_voice["price"] =td_voice.text.strip()
@@ -214,7 +216,7 @@ class OoredooHala:
         
 
         # for passport 
-        for table in table_tags:
+        for div in divs:
             try:
                 # for plans (GCC) and ooredoo password wold tables  
                 if table['class'][0]=="ooredoo-table" and table['class'][1]=="ooredoo-table--table-bordered":
@@ -222,8 +224,9 @@ class OoredooHala:
                     th_passport_tags= table.find_all("th")
                     for th in th_passport_tags:
                         if "Plans" in th.text or "Ooredoo" in th.text or "Roaming" in th.text or "Data" in th.text or "Price" in th.text:
-                            hala_add_ons_passport["title"] =th.text.strip() 
-                            # print(hala_add_ons_passport)
+                            # hala_add_ons_passport["title"] =th.text.strip() 
+                            print(th.text.strip())
+                            
             except:
                 pass
 
