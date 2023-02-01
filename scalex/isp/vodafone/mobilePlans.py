@@ -143,7 +143,7 @@ class vodafonePlans:
                             add_ons["great_value_sub"] = "-"
 
                     self.mobile_add_ons.append(add_ons)
-                    print(self.mobile_add_ons)
+                    # print(self.mobile_add_ons)
                         
 
                     
