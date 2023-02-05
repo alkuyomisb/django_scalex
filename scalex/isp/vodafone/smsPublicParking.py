@@ -33,7 +33,7 @@ class vodafoneSmsPublicParking:
                         
                         self.public_parking = public_parking_time + public_parking_tariff
 
-                        print(self.public_parking)
+                        # print(self.public_parking)
                             
 
                 except:

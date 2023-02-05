@@ -7,6 +7,7 @@ from scalex.isp.vodafone.mobilePlans import vodafonePlans
 from scalex.isp.vodafone.ourAddOns import vodafoneOurAddOns
 from scalex.isp.vodafone.moreServices import vodafoneMoreServices
 from scalex.isp.vodafone.smsPublicParking import vodafoneSmsPublicParking
+from scalex.isp.vodafone.internationalRoaming import vodafoneInternationalRoaming
 
 
 import csv
@@ -18,6 +19,7 @@ plans = vodafonePlans()
 our_add_ons = vodafoneOurAddOns()
 more_services = vodafoneMoreServices()
 sms_public_parking = vodafoneSmsPublicParking()
+international_roaming = vodafoneInternationalRoaming()
 
 def export_packages():
     with open('packages.csv', 'w', newline='') as file:

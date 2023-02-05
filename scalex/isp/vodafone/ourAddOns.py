@@ -15,15 +15,15 @@ class vodafoneOurAddOns:
 
     def get_our_add_ons(self):
         divs_tags = self.soup.find_all("div")
-        # for div in divs_tags:
-            # try:
+        for div in divs_tags:
+            try:
+                if div['class'][0] == "slick-list draggable":
             #     if div['class'][0] == "carousel__item":
-            #     #     container container--carousel container--carousel-plans-addons
             #     # if div['class'][0] == "container" and div['class'][1] == "container--carousel" and div['class'][2] == "container--carousel-plans-addons":
-            #         print(div.text)
+                    print(div.text)
             
                 
 
 
-            # except:
-            #     pass
+            except:
+                pass
