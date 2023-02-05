@@ -65,6 +65,7 @@ class vodafonePlans:
                         if "Entertainment Pass" in titles.text:
                             our_plan_block_filed["entertainment_pass"] = True
                             our_plan_block["entertainment_pass"] = titles.text
+                            # sub title commented
                             # for sub_title in sub_titles_fileds:
                             #     if "Stream more" in sub_title.text:
                             #         our_plan_block["enter_sub"] = sub_title.text
