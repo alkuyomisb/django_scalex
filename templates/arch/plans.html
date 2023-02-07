@@ -136,7 +136,7 @@
                     Data Volume
                   </th>
                   <th>
-                    Excess Data
+                    Duration
                   </th>
                   <th>
                     International Minutes
@@ -147,117 +147,70 @@
                 </tr>
               </thead>
               <tbody>
+                {%for package in OoredooHalaPackages%}
                 <tr>
                   <td>2021-07-14</td>
                   <td>
-                    Small output Choice
+                    {% ifchanged  package.package%}{{package.package}}{% endifchanged %}
                   </td>
                   <td>
-                    $45.00
-                  </td>
-                  <td>
-                    <span>
-                      20 GB (20 + 0) <br /> Data Sharing : Yes
-                    </span>
-                  </td>
-                  <td>
-                    <span> Data Type: UNL Shaped</span> <br />
-                    <span>Data Cost : NA </span><br />
-                    <span>Data Sharing : 1.5</span>
+                    {% ifchanged  package.price%}{{package.price}}{% endifchanged %}
 
                   </td>
                   <td>
                     <span>
+                      {% ifchanged  package.GB%}{{package.GB}}{% endifchanged %}
+
+                    </span>
+                  </td>
+                  <td> {% ifchanged  package.title%}{{package.title}}{% endifchanged %}
+
+
+                  </td>
+                  <td> -
+                    {% comment %} <span>
                       Zone One: PAYG
                     </span><br />
                     <span>
                       Zone 2 : NA
-                    </span>
+                    </span> {% endcomment %}
                   </td>
-                  <td>
-                    <span>
+                  <td> -
+                    {% comment %} <span>
                       UNL/$10 Day Pass
-                    </span>
+                    </span> {% endcomment %}
                   </td>
                 </tr>
+                {%endfor%}
+
+                {%for package in OoredooHalaSIMPackages%}
                 <tr>
                   <td>2021-07-14</td>
-                  <td>Medium output Choice</td>
-                  <td>$55.00</td>
-                  <td><span>80 GB (80 + 0) </span><br />
-                    <span> Data Sharing : Yes </span>
+                  <td>
+                    {% ifchanged  package.title%}{{package.title}}{% endifchanged %}
                   </td>
                   <td>
-                    <span> Data Type: UNL Shaped</span> <br />
-                    <span>Data Cost : NA </span><br />
-                    <span>Data Sharing : 1.5</span>
+                    {% ifchanged  package.price%}{{package.price}}{% endifchanged %}
+
                   </td>
                   <td>
                     <span>
-                      Zone One: PAYG
-                    </span><br />
-                    <span>
-                      Zone 2 : NA
+                      {% ifchanged  package.data%}{{package.data}}{% endifchanged %}
+
                     </span>
                   </td>
-                  <td>
-                    <span>
+                  <td>  {% ifchanged  package.data%}{{package.duration}}{% endifchanged %}
+                  </td>
+                  <td> {% ifchanged  package.IntlMins%}{{package.IntlMins}}{% endifchanged %}
+
+                  </td>
+                  <td> -
+                    {% comment %} <span>
                       UNL/$10 Day Pass
-                    </span>
+                    </span> {% endcomment %}
                   </td>
                 </tr>
-                <tr>
-                  <td>2021-07-14</td>
-                  <td>Medium output Choice</td>
-                  <td>$55.00</td>
-                  <td><span>80 GB (80 + 0) </span><br />
-                    <span> Data Sharing : Yes </span>
-                  </td>
-                  <td>
-                    <span> Data Type: UNL Shaped</span> <br />
-                    <span>Data Cost : NA </span><br />
-                    <span>Data Sharing : 1.5</span>
-                  </td>
-                  <td>
-                    <span>
-                      Zone One: PAYG
-                    </span><br />
-                    <span>
-                      Zone 2 : NA
-                    </span>
-                  </td>
-                  <td>
-                    <span>
-                      UNL/$10 Day Pass
-                    </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2021-07-14</td>
-                  <td>Medium output Choice</td>
-                  <td>$55.00</td>
-                  <td><span>80 GB (80 + 0) </span><br />
-                    <span> Data Sharing : Yes </span>
-                  </td>
-                  <td>
-                    <span> Data Type: UNL Shaped</span> <br />
-                    <span>Data Cost : NA </span><br />
-                    <span>Data Sharing : 1.5</span>
-                  </td>
-                  <td>
-                    <span>
-                      Zone One: PAYG
-                    </span><br />
-                    <span>
-                      Zone 2 : NA
-                    </span>
-                  </td>
-                  <td>
-                    <span>
-                      UNL/$10 Day Pass
-                    </span>
-                  </td>
-                </tr>
+                {%endfor%}
               </tbody>
             </table>
           </div>

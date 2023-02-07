@@ -1,16 +1,18 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
-from scalex.isp.omantel.prepaid import OmantelPrepaid
+from scalex.isp.omantel.heyyak_plus import OmantelHeyyakPlus
 from scalex.isp.omantel.baqati import OmantelBaqati
 from scalex.isp.ooredoo.shahry import OoredooShahry
+from scalex.isp.omantel.tourist_packs import TouristPacks
 import csv
 
 from scalex.isp.ooredoo.hala import OoredooHala
 
-prepaid = OmantelPrepaid()
+heyyak_plus = OmantelHeyyakPlus()
 baqati = OmantelBaqati()
 shahry = OoredooShahry()
 hala = OoredooHala()
+tourist_packs = TouristPacks()
 
 
 def export_packages():
@@ -19,9 +21,9 @@ def export_packages():
         writer.writerow(["Provider",	"Plan Name",	"Plan Type",	"Plan Validity (Days)",	"Total Plan Price",	"Included Data (GB)",	"Promotional Data (GB)",	"Social Media Data (GB)",	"Weekend Data (GB)",
                         "Night Data (GB)",	"Roaming Data (GB)",	"All-Net Minutes",	"On-Net Minutes",	"Weekend Minutes",	"International Minutes",	"All-Net SMS",	"On-Net SMS",	"Notes",	"Plan Web Address"])
 
-        for idx, package in enumerate(prepaid.prices):
-            writer.writerow(["Omantel",	"New Hayyak",	"Prepaid",  prepaid.times[idx],	prepaid.prices[idx],
-                            prepaid.data_allowance[idx],	"NA",	0,	0,	0,	0,		prepaid.flexi_minutes[idx],	0,	0,	0,	0,	0,	"NA",		prepaid.url])
+        for idx, package in enumerate(heyyak_plus.prices):
+            writer.writerow(["Omantel",	"New Hayyak",	"Prepaid",  heyyak_plus.times[idx],	heyyak_plus.prices[idx],
+                            heyyak_plus.data_allowance[idx],	"NA",	0,	0,	0,	0,		heyyak_plus.flexi_minutes[idx],	0,	0,	0,	0,	0,	"NA",		prepaid.url])
 
         for idx, package in enumerate(baqati.prices):
             writer.writerow(["Omantel", baqati.titles[idx],
@@ -33,17 +35,14 @@ def export_packages():
                             baqati.url])
 
 
-# baqati.times[idx]
-# baqati.data_allowance[idx]
 def index(request):
-    # export_packages()
     data = {
-        "data_allowance": prepaid.data_allowance,
-        "prices": prepaid.prices,
-        "times": prepaid.times,
-        "social_media_data": prepaid.social_media_data,
-        "flexi_minutes": prepaid.flexi_minutes,
-        "categories": prepaid.categories,
+        "data_allowance": heyyak_plus.data_allowance,
+        "prices": heyyak_plus.prices,
+        "times": heyyak_plus.times,
+        "social_media_data": heyyak_plus.social_media_data,
+        "flexi_minutes": heyyak_plus.flexi_minutes,
+        "categories": heyyak_plus.categories,
         "titles": baqati.titles,
         "prices2": baqati.prices,
         "times2": baqati.times,
@@ -53,85 +52,56 @@ def index(request):
 
 
 def filter(request):
-    # export_packages()
-    data1 = {
-        "data_allowance": prepaid.data_allowance,
-        "prices": prepaid.prices,
-        "times": prepaid.times,
-        "social_media_data": prepaid.social_media_data,
-        "flexi_minutes": prepaid.flexi_minutes,
-        "categories": prepaid.categories,
-        "titles": baqati.titles,
-        "prices2": baqati.prices,
-        "times2": baqati.times,
-        "flexi_minutes2": baqati.flexi_minutes,
-    }
-    return render(request, "bestplan/filter.html", data1)
+    return render(request, "bestplan/filter.html")
 
 
 def result(request):
-    # export_packages()
-    data2 = {
-        "data_allowance": prepaid.data_allowance,
-        "prices": prepaid.prices,
-        "times": prepaid.times,
-        "social_media_data": prepaid.social_media_data,
-        "flexi_minutes": prepaid.flexi_minutes,
-        "categories": prepaid.categories,
-        "titles": baqati.titles,
-        "prices2": baqati.prices,
-        "times2": baqati.times,
-        "flexi_minutes2": baqati.flexi_minutes,
-    }
-    return render(request, "bestplan/result.html", data2)
+    return render(request, "bestplan/result.html")
 
 
 def tab(request):
-    # export_packages()
-    data2 = {
-        "data_allowance": prepaid.data_allowance,
-        "prices": prepaid.prices,
-        "times": prepaid.times,
-        "social_media_data": prepaid.social_media_data,
-        "flexi_minutes": prepaid.flexi_minutes,
-        "categories": prepaid.categories,
-        "titles": baqati.titles,
-        "prices2": baqati.prices,
-        "times2": baqati.times,
-        "flexi_minutes2": baqati.flexi_minutes,
+    data = {
+        "OoredooHalaPackages": OoredooHala.hala_add_ons_internet_blocks,
+        "OoredooHalaSIMPackages": OoredooHala.hala_SIM_blocks
     }
-    return render(request, "arch/tab.html", data2)
+    return render(request, "arch/tab.html", data)
+
+
+def tab(request):
+    data = {
+        "OoredooHalaPackages": OoredooHala.hala_add_ons_internet_blocks,
+        "OoredooHalaSIMPackages": OoredooHala.hala_SIM_blocks
+    }
+    return render(request, "arch/tab.html", data)
+
+
+def data(request):
+    data = {
+        "Ooredoo": {
+            "OoredooHalaPackages": OoredooHala.hala_add_ons_internet_blocks,
+            "OoredooHalaSIMPackages": OoredooHala.hala_SIM_blocks
+        },
+        "Omantel": {
+            "data_allowance": prepaid.data_allowance,
+            "prices": prepaid.prices,
+            "times": prepaid.times,
+            "social_media_data": prepaid.social_media_data,
+            "flexi_minutes": prepaid.flexi_minutes,
+            "categories": prepaid.categories,
+            "titles": baqati.titles,
+            "prices2": baqati.prices,
+            "times2": baqati.times,
+            "flexi_minutes2": baqati.flexi_minutes,
+        }
+
+
+    }
+    return JsonResponse(data)
 
 
 def plans(request):
-    # export_packages()
-    data3 = {
-        "data_allowance": prepaid.data_allowance,
-        "prices": prepaid.prices,
-        "times": prepaid.times,
-        "social_media_data": prepaid.social_media_data,
-        "flexi_minutes": prepaid.flexi_minutes,
-        "categories": prepaid.categories,
-        "titles": baqati.titles,
-        "prices2": baqati.prices,
-        "times2": baqati.times,
-        "flexi_minutes2": baqati.flexi_minutes,
-    }
-    return render(request, "arch/plans.html", data3)
+    return render(request, "arch/plans.html")
 
 
 def statistics(request):
-    # export_packages()
-    data4 = {
-        "data_allowance": prepaid.data_allowance,
-        "prices": prepaid.prices,
-        "times": prepaid.times,
-        "social_media_data": prepaid.social_media_data,
-        "flexi_minutes": prepaid.flexi_minutes,
-        "categories": prepaid.categories,
-        "titles": baqati.titles,
-        "prices2": baqati.prices,
-        "times2": baqati.times,
-        "flexi_minutes2": baqati.flexi_minutes,
-    }
-    return render(request, "arch/statistics.html", data4)
+    return render(request, "arch/statistics.html")
