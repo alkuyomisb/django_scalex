@@ -226,4 +226,3 @@ class OoredooHala:
 
             except:
                 pass
-        print(self.hala_add_ons_digital_blocks)

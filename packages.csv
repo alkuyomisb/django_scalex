@@ -1,24 +1,34 @@
 Provider,Plan Name,Plan Type,Plan Validity (Days),Total Plan Price,Included Data (GB),Promotional Data (GB),Social Media Data (GB),Weekend Data (GB),Night Data (GB),Roaming Data (GB),All-Net Minutes,On-Net Minutes,Weekend Minutes,International Minutes,All-Net SMS,On-Net SMS,Notes,Plan Web Address
-Omantel,New Hayyak,Prepaid,4 Weeks,18 RO,30 GB,NA,0,0,0,0,600,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,12 Weeks,15 OMR,9 GB,NA,0,0,0,0,300,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,4 Weeks,12 RO,15 GB,NA,0,0,0,0,300,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,4 Weeks,9 RO,8 GB,NA,0,0,0,0,250,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,4 Weeks,7 OR,-,NA,0,0,0,0,,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,4 Weeks,6 OMR,3 GB,NA,0,0,0,0,100,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,Weekly,5 RO,7 GB,NA,0,0,0,0,50,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,4 Weeks,4 OMR,2 GB,NA,0,0,0,0,50,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,New Hayyak,Prepaid,Weekly,2 RO,1 GB,NA,0,0,0,0,35,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
-Omantel,Bronze,Pospaid,,15 OMR,-,NA,0,0,0,0,50 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Silver,Pospaid,,20 OMR,-,NA,0,0,0,0,100 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Gold,Pospaid,,25 OMR,-,NA,0,0,0,0,200 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Platinum,Pospaid,,35 OMR,-,NA,0,0,0,0,300 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Al Ufuq,Pospaid,,99 OMR,-,NA,0,0,0,0,500 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Basic,Pospaid,,3 OMR,-,NA,0,0,0,0,-,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Blue,Pospaid,,9 OMR,-,NA,0,0,0,0,-,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Blue Plus,Pospaid,,10 OMR,-,NA,0,0,0,0,-,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Bronze,Pospaid,,17 OMR,-,NA,0,0,0,0,-,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Silver,Pospaid,,24 OMR,-,NA,0,0,0,0,-,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Gold,Pospaid,,29 OMR,-,NA,0,0,0,0,-,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,Platinum,Pospaid,,40 OMR,-,NA,0,0,0,0,100 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
-Omantel,"Al Ufuq
-",Pospaid,,120 OMR,-,NA,0,0,0,0,300 Min,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/New-Baqati
+Omantel,New Heyyak,Prepaid,4 Weeks,18 RO,30 GB,NA, ,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid,12 Weeks,15 OMR,9 GB,NA,4 GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid,4 Weeks,9 RO,8 GB,NA,2 GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid,4 Weeks,7 OR, -,NA, ,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid,4 Weeks,6 OMR,3 GB,NA,15 . GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid, weekly,5 RO,7 GB,NA,1 GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid,4 Weeks,4 OMR,2 GB,NA,500 MB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,New Heyyak,Prepaid, weekly,2 RO,1 GB,NA,500 MB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Tourist Packs,Prepaid,10 Days,5 OMR,6 GB,NA,Social Media Data,0,0,0,Prom data,0,0,0,0,0,NA,https://portal.omantel.om/!ut/p/z1/04_iUlDgggP9CCAXKIBMDAhHPyovsSwzPbEkMz8vMUc_Qj8yyizewN3A0cPJwsjH39TN0cDMwMvX1zTI3CnY1ETfSz8Kv4Lg1Dz9guxARQDHGEso/
+Omantel,Tourist Packs,Prepaid,10 Days,10 OMR,15 GB,NA,Social Media Data,0,0,0,Prom data,0,0,0,0,0,NA,https://portal.omantel.om/!ut/p/z1/04_iUlDgggP9CCAXKIBMDAhHPyovsSwzPbEkMz8vMUc_Qj8yyizewN3A0cPJwsjH39TN0cDMwMvX1zTI3CnY1ETfSz8Kv4Lg1Dz9guxARQDHGEso/
+Omantel,Tourist Packs,Prepaid,10 Days,20 OMR,unlimited,NA,Social Media Data,0,0,0,Prom data,0,0,0,0,0,NA,https://portal.omantel.om/!ut/p/z1/04_iUlDgggP9CCAXKIBMDAhHPyovsSwzPbEkMz8vMUc_Qj8yyizewN3A0cPJwsjH39TN0cDMwMvX1zTI3CnY1ETfSz8Kv4Lg1Dz9guxARQDHGEso/
+Omantel,Baqati,Prepaid,4 Weeks,18 RO,30 GB,NA, ,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid,12 Weeks,15 OMR,9 GB,NA,4 GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid,4 Weeks,9 RO,8 GB,NA,2 GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid,4 Weeks,7 OR, -,NA, ,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid,4 Weeks,6 OMR,3 GB,NA,15 . GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid, weekly,5 RO,7 GB,NA,1 GB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid,4 Weeks,4 OMR,2 GB,NA,500 MB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Omantel,Baqati,Prepaid, weekly,2 RO,1 GB,NA,500 MB,0,0,0,Prom data,0,0,0,0,0,NA,https://www.omantel.om/Personal/mobile/hayyak/Hayyak-Plus
+Redbull,Mobile Plan,Prepaid,1 Week,2 RO,15 . GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,1 Week,5 RO,8 GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,4 Weeks,9 RO,10 GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,1 Month,4 RO,25 . GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,1 Month,6 RO,6 GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,1 Month,10 RO,14 GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,1 Month,15 RO,24 GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Redbull,Mobile Plan,Prepaid,1 Month,20 RO,30 GB,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://www.redbullmobile.om/en/plans/
+Awaser,Fiber Home,Postpaid,duration,24 OMR,Unlimited,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://awasr.om/en/package/journey/ZVANH
+Awaser,Fiber Home,Postpaid,duration,32 OMR,Unlimited,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://awasr.om/en/package/journey/ZVANH
+Awaser,Fiber Home,Postpaid,duration,35 OMR,Unlimited,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://awasr.om/en/package/journey/ZVANH
+Awaser,Fiber Home,Postpaid,duration,38 OMR,Unlimited,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://awasr.om/en/package/journey/ZVANH
+Awaser,Fiber Home,Postpaid,duration,73 OMR,Unlimited,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://awasr.om/en/package/journey/ZVANH
+Awaser,Fiber Home,Postpaid,duration,102 OMR,Unlimited,NA,0,0,0,0,Prom data,0,0,0,0,0,NA,https://awasr.om/en/package/journey/ZVANH
