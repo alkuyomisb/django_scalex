@@ -321,6 +321,64 @@
                               alt="Logo"
                           /></a>
                         </th>
+
+                        {% for plan in plans %} {%if "omantel" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-02.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        {% elif "rennah" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-01.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        {% elif "redbull" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-06.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        {% elif "vodafone" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-05.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        {% elif "ooredoo" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-04.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        {% elif "friendly" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-03.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+
+                        {% endif %} {% endfor %} {% comment %}
+                        <th>
+                          <a class="mobile-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-mobile.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
                         <th>
                           <a class="provider-logo" href="javascript:;"
                             ><img
@@ -363,6 +421,7 @@
                               alt="Logo"
                           /></a>
                         </th>
+                        {% endcomment %}
                       </tr>
                     </thead>
                     <tbody>
@@ -402,33 +461,19 @@
                       </tr>
                       <tr>
                         <td>Total Plan Price (OMR)</td>
+                        {%for plan in plans%}
                         <td>
-                          <span class="price-plan">{{ rennah.price }}</span>
+                          <span class="price-plan">{{ plan.price }}</span>
                         </td>
-                        <td>
-                          <span class="price-plan">{{ omantel.price }}</span>
-                        </td>
-                        <td>
-                          <span class="price-plan">{{ friendly.price }}</span>
-                        </td>
-                        <td>
-                          <span class="price-plan">{{ooredoo.price}}</span>
-                        </td>
-                        <td>
-                          <span class="price-plan">{{ vodafone.price }}</span>
-                        </td>
-                        <td>
-                          <span class="price-plan">{{ redbull.price }}</span>
-                        </td>
+
+                        {%endfor%}
                       </tr>
                       <tr>
                         <td>Base Plan Price (OMR)</td>
-                        <td>{{ rennah.price }}</td>
-                        <td>{{ omantel.price }}</td>
-                        <td>{{ friendly.price }}</td>
-                        <td>{{ooredoo.price}}</td>
-                        <td>{{ vodafone.price }}</td>
-                        <td>{{ redbull.price }}</td>
+                        {%for plan in plans%}
+                        <td>{{ plan.price }}</td>
+
+                        {%endfor%}
                       </tr>
                       <tr>
                         <td>Pay As You Go Fees (OMR)</td>
@@ -441,12 +486,10 @@
                       </tr>
                       <tr>
                         <td>Term Length</td>
-                        <td>{{ rennah.duration }}</td>
-                        <td>{{ omantel.duration }}</td>
-                        <td>{{ friendly.duration }}</td>
-                        <td>{{ ooredoo.duration}}</td>
-                        <td>{{vodafone.duration}}</td>
-                        <td>{{ redbull.duration }}</td>
+                        {%for plan in plans%}
+                        <td>{{ plan.duration }}</td>
+
+                        {%endfor%}
                       </tr>
                       <tr>
                         <td>Contract (Yes, No)</td>
@@ -459,20 +502,18 @@
                       </tr>
                       <tr>
                         <td>Plan Data</td>
-                        <td>{{ rennah.data_allowance }}</td>
-                        <td>{{omantel.data_allowance}}</td>
-                        <td>{{ friendly.data_allowance }}</td>
-                        <td>{{ooredoo.data_allowance}}</td>
-                        <td>{{vodafone.data_allowance}}</td>
-                        <td>{{redbull.data_allowance}}</td>
+                        {%for plan in plans%}
+                        <td>{{ plan.data_allowance }}</td>
+
+                        {%endfor%}
                       </tr>
                       <tr>
                         <td>Local Minutes</td>
                         <td>-</td>
-                        <td>{{omantel.flexi_minutes}}</td>
                         <td>-</td>
                         <td>-</td>
-                        <td>{{vodafone.local_minutes}}</td>
+                        <td>-</td>
+                        <td>-</td>
                         <td>-</td>
                       </tr>
                       <tr>
@@ -513,37 +554,14 @@
                       </tr>
                       <tr>
                         <td>Add-Ons</td>
+                        {%for plan in plans%}
                         <td>
-                          <a class="btn-link" href="{{rennah.link}}"
-                            >Add-On Link 1</a
-                          >
-                        </td>
-                        <td>
-                          <a class="btn-link" href="{{omantel.link}}"
-                            >Add-On Link 1</a
-                          >
-                        </td>
-                        <td>
-                          <a class="btn-link" href="{{friendly.link}}"
+                          <a class="btn-link" href="{{plan.link}}"
                             >Add-On Link 1</a
                           >
                         </td>
 
-                        <td>
-                          <a class="btn-link" href="{{ooredo.link}}"
-                            >Add-On Link 1</a
-                          >
-                        </td>
-                        <td>
-                          <a class="btn-link" href="{{vodafone.link}}"
-                            >Add-On Link 1</a
-                          >
-                        </td>
-                        <td>
-                          <a class="btn-link" href="{{redbull.link}}"
-                            >Add-On Link 1</a
-                          >
-                        </td>
+                        {%endfor%}
                       </tr>
                     </tbody>
                   </table>
