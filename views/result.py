@@ -22,6 +22,16 @@ def result(request):
     price = request.GET["price"]
     data_allowance = request.GET["data_allowance"]
     rank = request.GET["rank"]
+    operator = request.GET["operator"]
+    service_type = request.GET["service_type"]
+    min_value = request.GET["slider_min_label"]
+    max_value = request.GET["slider_max_label"]
+    minutes_per_month =request.GET["minutes_per_month"]
+    plan_type =request.GET["plan_type"]
+    
+
+    
+    
 
     plans_dic = {
         "omantel": heyyak_plus.packages,
@@ -31,7 +41,17 @@ def result(request):
         "ooredoo": ooredoo_shahry_plans.packages,
         "friendly": friendly_plans.packages,
     }
-    filters = {"price": float(price), "data_allowance": float(data_allowance)}
+    filters = {"price": float(price), 
+               "data_allowance": float(data_allowance),
+               "minutes_per_month":minutes_per_month , 
+               "operator" : operator ,
+               "min_value":int(min_value),
+               "max_value" :int(max_value), 
+               "service_type":service_type,
+               "plan_type" :plan_type
+              
+
+               }
 
     link = ""
     res = {}
