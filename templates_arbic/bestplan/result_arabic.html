@@ -1,0 +1,580 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRA</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+    <!-- Font Awesome 5 -->
+    <link
+      href="{$ static 'css/font-awesome.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'css/bootstrap.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.css' %}" type="text/css" rel="stylesheet" />
+    <link
+      href="{% static 'css/owl.carousel.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/owl.theme.default.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/dataTables.bootstrap4.min.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/jquery.fancybox.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/hover.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/animate.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/aos.css' %}" type="text/css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link
+      href="{% static 'css/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
+      <div class="container-xl container-nav">
+        <div class="logo">
+          <a href="index.html">
+            <img src="{% static 'images/tra-logo.png' %}" alt="TRA" />
+          </a>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav tool-nav">
+            <li class="nav-item">
+              <a class="nav-link nav-lng" href="javaScript:;"
+                ><span class="nav-label">English</span>
+                <span class="nav-icon">
+                  <img
+                    src="{% static 'images/top-nav-01.png' %}"
+                    alt="My image"
+                  /> </span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="banner-sec">
+      <div class="banner-cover">
+        <div class="container-xl">
+          <div class="banner-plan-cover">
+            <div class="banner-plan-img">
+              <img
+                src="{% static 'images/slider-mobile-plan.png' %}"
+                alt="Image"
+              />
+            </div>
+            <div class="banner-plan-hd">
+              <h1><span class="hd-small">أبحث عن </span> <br />Mobile Plan</h1>
+              <p>
+                العثور على خطة الهاتف المحمول التي تلبي احتياجاتك ولديها ميزانية
+                لم يكن أسهل. استخدم أداة البحث عن خطة الهاتف المتحرك من هيئة تنظيم الاتصالات 
+              </p> 
+              <a class="btn btn-start" href="#" lng-tag="get_started">البدء</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="content-sec">
+      <section class="search-plan-sec">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-3 col-search-form">
+              <div class="search-form-tb">
+                <ul class="nav search-form-nav" id="searchTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a
+                      class="nav-link active"
+                      id="search-plan-tab-01"
+                      data-toggle="tab"
+                      data-target="#search-plan-nav-01"
+                      type="button"
+                      role="tab"
+                      aria-controls="search-plan-nav-02"
+                      aria-selected="true"
+                    >
+                      <span class="nav-block"
+                        ><i class="fa fa-search" aria-hidden="true"></i>
+                        البحث</span
+                      >
+                    </a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a
+                      class="nav-link"
+                      id="search-plan-tab-02"
+                      data-toggle="tab"
+                      data-target="#search-plan-nav-02"
+                      type="button"
+                      role="tab"
+                      aria-controls="search-plan-nav-02"
+                      aria-selected="false"
+                    >
+                      <span class="nav-block"
+                        ><i class="fa fa-download" aria-hidden="true"></i>
+                        تصدير البيانات </span
+                      >
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="nav-tabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="search-plan-nav-01"
+                    role="tabpanel"
+                    aria-labelledby="search-plan-tab-01"
+                  >
+                    <div class="form-search-plan">
+                      <div class="form-group">
+                        <label>أختر نوع الخطة </label>
+                        <select class="form-control">
+                          <option>الجميع</option>
+                          <option>الخطة الاولى /option>
+                          <option>الخطة الثانية </option>
+                          <option>الخطة الثالثة </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label> :أختر طول المدة </label>
+                        <select class="form-control">
+                            <option>الجميع</option>
+                            <option>الخطة الاولى </option>
+                            <option>الخطة الثانية </option>
+                            <option>الخطة الثالثة </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>:بيانات جيجابايت شهريا</label>
+                        <select class="form-control">
+                          <option>أي واحده</option>
+                          <option>الخطة الاولى </option>
+                          <option>الخطة الثانية </option>
+                          <option>الخطة الثالثة </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>  :عدد الدقائق  شهريا </label>
+                        <select class="form-control">
+                            <option>أي واحده</option>
+                            <option>الخطة الاولى </option>
+                            <option>الخطة الثانية </option>
+                            <option>الخطة الثالثة </option>
+                        </select>
+                      </div>
+                      <button class="btn btn-find">أبحث عن خطة</button>
+                    </div>
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="search-plan-nav-02"
+                    role="tabpanel"
+                    aria-labelledby="search-plan-tab-02"
+                  >
+                    <div class="form-search-plan">
+                      <div class="form-group">
+                        <label>نوع الخطة </label>
+                        <div class="radio-group">
+                          <label class="checkbox">
+                            <input type="radio" /> كل الشروط
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> يوم واحد
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> اسبوع واحد
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> ثلاثين يوم
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> ١٢شهر 
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> غير محدود
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label>:بيانات جيجابايت شهريا</label>
+                        <select class="form-control">
+                            <option>أي واحده</option>
+                            <option>الخطة الاولى </option>
+                            <option>الخطة الثانية </option>
+                            <option>الخطة الثالثة </option>
+                        </select>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label>  عدد الدقائق  شهريا </label>
+                        <select class="form-control">
+                            <option>أي واحده</option>
+                            <option>الخطة الاولى </option>
+                            <option>الخطة الثانية </option>
+                            <option>الخطة الثالثة </option>
+                        </select>
+                      </div>
+                      <hr />
+                      <div class="form-group">
+                        <label>الحد الأقصى للإنفاق الشهري</label>
+                        <div class="radio-group">
+                          <label class="checkbox">
+                            <input type="radio" /> الجميع
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" />  ٣ ر.ع
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" />  ٥ ر.ع
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" />  ١٠ ر.ع
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> ١٥ ر.ع
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> ٢٠ ر.ع
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> ٤٠ ر.ع 
+                            <span class="checkmark"></span>
+                          </label>
+                          <label class="checkbox">
+                            <input type="radio" /> ٦٠ ر.ع
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <button class="btn btn-find">تطبيق و تصدير </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg">
+              <div class="search-plan-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <a class="mobile-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-mobile.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-01.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-02.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-03.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{%static 'images/plan-logo-04.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-05.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-06.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>أسم الخطة </td>
+                        <td>
+                          <a class="btn-link" href="javascript:;">-</a>
+                        </td>
+                        <td>
+                          <a class="btn-link" href="javascript:;">-</a>
+                        </td>
+                        <td>
+                          <a class="btn-link" href="javascript:;">-</a>
+                        </td>
+                        <td>
+                          <a class="btn-link" href="javascript:;"
+                            >{{ooredoo.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="javascript:;"
+                            >{{vodafone.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="javascript:;">-</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>أسم الخطة </td>
+                        <td>مسبق الدفع </td>
+                        <td>مسبق الدفع </td>
+                        <td>مسبق الدفع </td>
+                        <td>مسبق الدفع </td>
+                        <td>مسبق الدفع </td>
+                        <td>مسبق الدفع </td>
+                       
+                      </tr>
+                      <tr>
+                        <td>  (ر.ع)السعر الإجمالي للخطة </td>
+                        <td>
+                          <span class="price-plan">{{ rennah.price }}</span>
+                        </td>
+                        <td>
+                          <span class="price-plan">{{ omantel.price }}</span>
+                        </td>
+                        <td>
+                          <span class="price-plan">{{ friendly.price }}</span>
+                        </td>
+                        <td>
+                          <span class="price-plan">{{ooredoo.price}}</span>
+                        </td>
+                        <td>
+                          <span class="price-plan">{{ vodafone.price }}</span>
+                        </td>
+                        <td>
+                          <span class="price-plan">{{ redbull.price }}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>سعر الخطة الأساسية ( ر.ع)</td>
+                        <td>{{ rennah.price }}</td>
+                        <td>{{ omantel.price }}</td>
+                        <td>{{ friendly.price }}</td>
+                        <td>{{ooredoo.price}}</td>
+                        <td>{{ vodafone.price }}</td>
+                        <td>{{ redbull.price }}</td>
+                      </tr>
+                      <tr>
+                        <td>رسوم الدفع الفوري (ر.ع)</td>
+                        <td>-</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>طول المدة</td>
+                        <td>{{ rennah.duration }}</td>
+                        <td>{{ omantel.duration }}</td>
+                        <td>{{ friendly.duration }}</td>
+                        <td>{{ ooredoo.duration}}</td>
+                        <td>{{vodafone.duration}}</td>
+                        <td>{{ redbull.duration }}</td>
+                      </tr>
+                      <tr>
+                        <td>عقد (نعم ، لا)</td>
+                        <td>-</td>
+                        <td>No</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>بيانات الخطة</td>
+                        <td>{{ rennah.data_allowance }}</td>
+                        <td>{{omantel.data_allowance}}</td>
+                        <td>{{ friendly.data_allowance }}</td>
+                        <td>{{ooredoo.data_allowance}}</td>
+                        <td>{{vodafone.data_allowance}}</td>
+                        <td>{{redbull.data_allowance}}</td>
+                      </tr>
+                      <tr>
+                        <td>دقائق محلية</td>
+                        <td>-</td>
+                        <td>{{omantel.flexi_minutes}}</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>{{vodafone.local_minutes}}</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>دقائق في الشبكة</td>
+                        <td>-</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>{{redbull.all_net_minutes}}</td>
+                      </tr>
+                      <tr>
+                        <td>دقائق دولية</td>
+                        <td>-</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>{{vodafone.international_minutes}}</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>بيانات التجوال</td>
+                        <td>-</td>
+                        <td>0 MB</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>فوائد إضافية</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      <tr>
+                        <td>الإضافات</td>
+                        <td>
+                          <a class="btn-link" href="{{rennah.link}}"
+                            >رابط الاضافة ١</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{omantel.link}}"
+                            >رابط الاضافة ١</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{friendly.link}}"
+                            >رابط الاضافة ١</a
+                          >
+                        </td>
+
+                        <td>
+                          <a class="btn-link" href="{{ooredo.link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{vodafone.link}}"
+                            >رابط الاضافة ١</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{redbull.link}}"
+                            >رابط الاضافة ١</a
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-sec">
+      <div class="container-xl">
+        <div class="row">
+          <div class="col-12">
+            <div class="powered-cover">
+              Powered by
+              <img
+                src="{% static 'images/SBlogo.png' %}"
+                alt="Logo"
+                style="width: 70px"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a href="javascript:;" id="return-top" class="return-top"
+      ><span><img src="images/up-icon.svg" alt="Up" /></span
+    ></a>
+  </body>
+</html>
