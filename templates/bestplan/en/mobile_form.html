@@ -1,0 +1,39 @@
+{% extends 'bestplan/base/filter_base.html' %} {%block script%}
+<script>
+  $(document).ready(function () {
+    $(".service_type")
+      .change(function () {
+        $(this)
+          .find("option:selected")
+          .each(function () {
+            var optionValue = $(this).attr("value");
+            if (optionValue) {
+              $(".box")
+                .not("." + optionValue)
+                .hide();
+              $("." + optionValue).show();
+
+              $("input")
+                .not("." + optionValue + "-required")
+                .prop("required", false);
+              $("." + optionValue + "-required").prop("required", true);
+            } else {
+              $(".box").hide();
+            }
+          });
+      })
+      .change();
+  });
+</script>
+
+{%endblock%} {% block operator%} {%if 1 == 1 %}
+<div class="form-group row">
+  <label class="col-sm-4 col-form-label"> ISP ( Operator ) :</label>
+  <div class="col-sm-8">
+    <select class="form-control input-sm" name="rank">
+      <option value="top">Best in Market</option>
+      <option value="each">Best from each operator</option>
+    </select>
+  </div>
+</div>
+{%endif%} {% endblock %}

@@ -2,10 +2,10 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from data.web_scrapping.isp.ooredoo.hala import OoredooHala
+# from data.web_scrapping.isp.ooredoo.hala import OoredooHala
 
 
-halao = OoredooHala()
+# halao = OoredooHala()
 
 
 def main():

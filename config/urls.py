@@ -19,11 +19,12 @@ import views.views as views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('filter', views.filter, name='filter'),
     path('result', views.result, name='result'),
     # path('plans', views.plans, name='plans'),
     # path('statistics', views.statistics, name='statistics'),
     # path('tab', views.tab, name='tab'),
-    path('data', views.data, name='data'),
+    # path('data', views.data, name='data'),
+    # path('export', views.export_data, name='export'),
+    path('export_filter_data', views.export_filter_data, name='export_filter_data'),
     # path('admin/', admin.site.urls),
 ]

@@ -1,0 +1,881 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRA</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+    <!-- Font Awesome 5 -->
+    <link
+      href="{$ static 'css/font-awesome.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'css/bootstrap.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.css' %}" type="text/css" rel="stylesheet" />
+    <link
+      href="{% static 'css/owl.carousel.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/owl.theme.default.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/dataTables.bootstrap4.min.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/jquery.fancybox.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/hover.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'css/animate.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/aos.css' %}" type="text/css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link
+      href="{% static 'css/style.css' %}"
+      type="text/css"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".export-button").on("click", function () {
+          console.log("Export");
+          $(".btn-submit").text("Export");
+          $("form").attr("action", "export");
+
+          $("#search-plan-tab-01").attr("aria-selected", false); //Search
+          $("#search-plan-tab-02").attr("aria-selected", true); //Export
+
+          $("#search-plan-tab-01").removeClass("active"); //Search
+          $("#search-plan-tab-02").addClass("active"); //Export
+        });
+
+        $(".search-button").on("click", function () {
+          console.log("Search");
+          $(".btn-submit").text("Find");
+          $("form").attr("action", "result");
+
+          $("#search-plan-tab-02").attr("aria-selected", false); //Export
+          $("#search-plan-tab-01").attr("aria-selected", true); //Search
+
+          $("#search-plan-tab-02").removeClass("active"); //Export
+          $("#search-plan-tab-01").addClass("active"); //Search
+        });
+
+        $(".service_type")
+          .change(function () {
+            $(this)
+              .find("option:selected")
+              .each(function () {
+                var optionValue = $(this).attr("value");
+                if (optionValue) {
+                  $(".box")
+                    .not("." + optionValue)
+                    .hide();
+                  $("." + optionValue).show();
+
+                  $("input")
+                    .not("." + optionValue + "-required")
+                    .prop("required", false);
+                  $("." + optionValue + "-required").prop("required", true);
+                } else {
+                  $(".box").hide();
+                }
+              });
+          })
+          .change();
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
+      <div class="container-xl container-nav">
+        <div class="logo">
+          <a href="index.html">
+            <img src="{% static 'images/tra-logo.png' %}" alt="TRA" />
+          </a>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav tool-nav">
+            <li class="nav-item">
+              <a class="nav-link nav-lng" href="javaScript:;"
+                ><span class="nav-label">Arabic</span>
+                <span class="nav-icon">
+                  <img
+                    src="{% static 'images/top-nav-01.png' %}"
+                    alt="My image"
+                  /> </span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="banner-sec">
+      <div class="banner-cover">
+        <div class="container-xl">
+          <div class="banner-plan-cover">
+            <div class="banner-plan-img">
+              <img
+                src="{% static 'images/slider-mobile-plan.png' %}"
+                alt="Image"
+              />
+            </div>
+            <div class="banner-plan-hd">
+              <h1><span class="hd-small">Find your</span> <br />Mobile Plan</h1>
+              <p>
+                Finding the mobile plan that meets your needs and budget has
+                never been easier. Use TRA's mobile plan finder to get started.
+              </p>
+              <a class="btn btn-start" href="#">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="content-sec">
+      <section class="search-plan-sec">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-3 col-search-form">
+              <div class="search-form-tb">
+                <ul class="nav search-form-nav" id="searchTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a
+                      class="nav-link active"
+                      id="search-plan-tab-01"
+                      data-toggle="tab"
+                      data-target="#search-plan-nav-01"
+                      type="button"
+                      role="tab"
+                      aria-controls="search-plan-nav-02"
+                      aria-selected="false"
+                    >
+                      <span class="nav-block search-button"
+                        ><i class="fa fa-search" aria-hidden="true"></i>
+                        Search</span
+                      >
+                    </a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a
+                      class="nav-link"
+                      id="search-plan-tab-02"
+                      data-toggle="tab"
+                      data-target="#search-plan-nav-02"
+                      type="button"
+                      role="tab"
+                      aria-controls="search-plan-nav-02"
+                      aria-selected="true"
+                    >
+                      <span class="nav-block export-button"
+                        ><i class="fa fa-download" aria-hidden="true"></i>
+                        Export Data
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="form-group row">
+                    {% comment %}
+                    <label class="col-sm-4 col-form-label">
+                      Service Type :</label
+                    >
+                    {% endcomment %}
+                    <div class="col-sm-12">
+                      <select
+                        class="form-control input-sm service_type"
+                        name="service_type"
+                      >
+                        <option>Choose Service Type</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="fixed">Fixed Broadband</option>
+                        <option value="both">Mobile & Fixed Broadband</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!--  Mobile Form -->
+                  <form action="result" method="GET">
+                    <!-- Mobile -->
+                    <div class="mobile box" style="display: none">
+                      <!-- Hidden Service Type -->
+                      <input
+                        class="form-control input-sm"
+                        name="service_type"
+                        value="mobile"
+                        type="text"
+                        hidden
+                        required
+                      />
+
+                      <!-- ISP  -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          ISP ( Operator ) :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select class="form-control input-sm" name="rank">
+                            <option value="top">Best in Market</option>
+                            <option value="each">
+                              Best from each operator
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <!-- Plan Type -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Plan Type :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select
+                            class="form-control input-sm"
+                            name="plan_type"
+                          >
+                            <option value="all">All Plans</option>
+                            <option value="prepaid">Prepaid</option>
+                            <option value="postpaid">Postpaid</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Term Length  -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Term Length :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select
+                            class="form-control input-sm"
+                            name="term_length"
+                          >
+                            <option value="1">1 day</option>
+                            <option value="7">1 Week</option>
+                            <option value="28">1 Month</option>
+                            <option value="360">+12 Months</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Data GB Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Data GB Per Month :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Data GB per month"
+                            class="form-control input-sm"
+                            id="data_allowance"
+                            name="data_allowance"
+                            value=""
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Data GB Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label"> Price :</label>
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Price"
+                            class="form-control input-sm"
+                            id="price"
+                            name="price"
+                            value=""
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Minutes Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Minutes Per Month :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Minutes Per Month"
+                            class="form-control input-sm"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-4 col-form-label"></label>
+                        <div class="col-sm-12">
+                          <button class="btn btn-submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <!-- Fixed -->
+                  <form action="result" method="GET">
+                    <!-- Fixedbroadband -->
+                    <div class="fixed box" style="display: none">
+                      <!-- Hidden Service Type -->
+                      <input
+                        class="form-control input-sm"
+                        name="service_type"
+                        value="fixed"
+                        type="text"
+                        hidden
+                        required
+                      />
+
+                      <!-- ISP -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          ISP ( Operator ) :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select class="form-control input-sm" name="rank">
+                            <option>Best in Market</option>
+                            <option>Best from each operator</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Max Monthly spend -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Max Monthly spend :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Max Monthly Spend"
+                            class="form-control input-sm"
+                            name="price"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Data GB Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Data GB Per Month :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Data GB Per Month"
+                            class="form-control input-sm"
+                            name="data_allowance"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Minutes Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Minutes Per Month :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Minutes Per Month"
+                            class="form-control input-sm"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-12 col-form-label"></label>
+                        <div class="col-sm-12">
+                          <button class="btn btn-submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <!-- Fixed and Mobile Form -->
+                  <form action="result" method="GET">
+                    <!-- Hidden Service Type -->
+                    <input
+                      class="form-control input-sm"
+                      name="service_type"
+                      value="all"
+                      type="text"
+                      hidden
+                      required
+                    />
+
+                    <!-- Mobile & Fixed Broadband -->
+                    <div class="both box" style="display: none">
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          ISP ( Operator ) :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select class="form-control input-sm" name="rank">
+                            <option>Best in Market</option>
+                            <option>Best from each operator</option>
+                          </select>
+                        </div>
+                      </div>
+                      <!-- Plan Type -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Plan Type :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select class="form-control input-sm">
+                            <option value="all">All Plans</option>
+                            <option value="prepaid">Prepaid</option>
+                            <option value="postpaid">Postpaid</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Term Length  -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Term Length :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <select class="form-control input-sm">
+                            <option value="1">1 day</option>
+                            <option value="7">1 Week</option>
+                            <option value="28">1 Month</option>
+                            <option value="360">+12 Months</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <!-- Data GB Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Data GB Per Month :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Data GB Per Month"
+                            class="form-control input-sm"
+                            name="data_allowance"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Minutes Per Month -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Minutes Per Month :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Minutes Per Month"
+                            class="form-control input-sm"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Max Monthly spend -->
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label">
+                          Max Monthly spend :</label
+                        >
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <input
+                            placeholder="Max Monthly Spend"
+                            class="form-control input-sm"
+                            name="price"
+                            type="text"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        {% comment %}
+                        <label class="col-sm-4 col-form-label"></label>
+                        {% endcomment %}
+                        <div class="col-sm-12">
+                          <button class="btn btn-submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg">
+              <div class="search-plan-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <a class="mobile-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-mobile.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-01.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-02.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-03.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{%static 'images/plan-logo-04.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-05.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/plan-logo-06.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Plan Name</td>
+                        <td>
+                          <a class="btn-link" href="{{rennah.link}}"
+                            >{{rennah.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{omantel.link}}"
+                            >{{omantel.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{friendly.link}}"
+                            >{{friendly.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{ooredoo.link}}"
+                            >{{ooredoo.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{vodafone.link}}"
+                            >{{vodafone.title}}</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{redbull.link}}"
+                            >{{redbull.title}}</a
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Plan Type</td>
+                        <td>{{ rennah.plan_type }}</td>
+                        <td>{{ omantel.plan_type }}</td>
+                        <td>{{ friendly.plan_type }}</td>
+                        <td>{{ ooredoo.plan_type }}</td>
+                        <td>{{ vodafone.plan_type }}</td>
+                        <td>{{ redbull.plan_type }}</td>
+                      </tr>
+                      <tr>
+                        <td>Total Plan Price (OMR)</td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ rennah.price_value }}</span
+                          >
+                        </td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ omantel.price_value }}</span
+                          >
+                        </td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ friendly.price_value }}</span
+                          >
+                        </td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ooredoo.price_value}}</span
+                          >
+                        </td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ vodafone.price_value }}</span
+                          >
+                        </td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ redbull.price_value }}</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Base Plan Price (OMR)</td>
+                        <td>{{ rennah.price_value }}</td>
+                        <td>{{ omantel.price_value }}</td>
+                        <td>{{ friendly.price_value }}</td>
+                        <td>{{ooredoo.price_value}}</td>
+                        <td>{{ vodafone.price_value }}</td>
+                        <td>{{ redbull.price_value }}</td>
+                      </tr>
+                      {% comment %}
+                      <tr>
+                        <td>Pay As You Go Fees (OMR)</td>
+                        <td>-</td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      {% endcomment %}
+                      <tr>
+                        <td>Term Length (Days)</td>
+                        <td>{{ rennah.duration_value }}</td>
+                        <td>{{ omantel.duration_value }}</td>
+                        <td>{{ friendly.duration_value }}</td>
+                        <td>{{ ooredoo.duration_value}}</td>
+                        <td>{{vodafone.duration_value}}</td>
+                        <td>{{ redbull.duration_value }}</td>
+                      </tr>
+                      {% comment %}
+                      <tr>
+                        <td>Contract (Yes, No)</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                      </tr>
+                      {% endcomment %}
+                      <tr>
+                        <td>Plan Data (GB)</td>
+                        <td>{{rennah.data_allowance_value }}</td>
+                        <td>{{omantel.data_allowance_value}}</td>
+                        <td>{{friendly.data_allowance_value }}</td>
+                        <td>{{ooredoo.data_allowance_value}}</td>
+                        <td>{{vodafone.data_allowance_value}}</td>
+                        <td>{{redbull.data_allowance_value}}</td>
+                      </tr>
+                      <tr>
+                        <td>Local Minutes</td>
+                        <td>{{renna.local_minutes}}</td>
+                        <td>{{omantel.local_minutes}}</td>
+                        <td>{{friendly.local_minutes}}</td>
+                        <td>{{ooredoo.local_minutes}}</td>
+                        <td>{{vodafone.local_minutes}}</td>
+                        <td>{{redbull.local_minutes}}</td>
+                      </tr>
+                      <tr>
+                        <td>On-net Minutes</td>
+                        <td>{{renna.flexi_minutes}}</td>
+                        <td>{{omantel.flexi_minutes}}</td>
+                        <td>{{friendly.flexi_minutes}}</td>
+                        <td>{{ooredoo.flexi_minutes}}</td>
+                        <td>{{vodafone.flexi_minutes}}</td>
+                        <td>{{redbull.flexi_minutes}}</td>
+                      </tr>
+                      <tr>
+                        <td>International Minutes</td>
+                        <td>{{renna.international_minutes}}</td>
+                        <td>{{omantel.international_minutes}}</td>
+                        <td>{{friendly.international_minutes}}</td>
+                        <td>{{ooredoo.international_minutes}}</td>
+                        <td>{{vodafone.international_minutes}}</td>
+                        <td>{{redbull.international_minutes}}</td>
+                      </tr>
+                      <tr>
+                        <td>Roaming Data (GB)</td>
+                        <td>{{renna.world_roaming_value}}</td>
+                        <td>{{omantel.world_roaming_value}}</td>
+                        <td>{{friendly.world_roaming_value}}</td>
+                        <td>{{ooredoo.world_roaming_value}}</td>
+                        <td>{{vodafone.world_roaming_value}}</td>
+                        <td>{{redbull.world_roaming_value}}</td>
+                      </tr>
+                      {% comment %}
+                      <tr>
+                        <td>Additional Benifits</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                      </tr>
+                      {% endcomment %}
+                      <tr>
+                        <td>Add-Ons</td>
+                        <td>
+                          <a class="btn-link" href="{{rennah.add_on_link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{omantel.add_on_link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{friendly.add_on_link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+
+                        <td>
+                          <a class="btn-link" href="{{ooredo.add_on_link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{vodafone.add_on_link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{redbull.add_on_link}}"
+                            >Add-On Link 1</a
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-sec">
+      <div class="container-xl">
+        <div class="row">
+          <div class="col-12">
+            <div class="powered-cover">
+              Powered by
+              <img
+                src="{% static 'images/SBlogo.png' %}"
+                alt="Logo"
+                style="width: 70px"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a href="javascript:;" id="return-top" class="return-top"
+      ><span><img src="images/up-icon.svg" alt="Up" /></span
+    ></a>
+  </body>
+</html>

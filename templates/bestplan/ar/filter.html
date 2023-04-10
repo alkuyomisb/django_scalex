@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <div>
 
   <head>
@@ -10,7 +10,7 @@
     <meta name="author" content="" />
     <title>TRA</title>
     <link rel="icon" href="{% static 'images/favicon.ico' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
@@ -19,24 +19,36 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> 
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous"> {% endcomment %}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <script>
+
       $(document).ready(function () {
-        $("select").change(function () {
+       
+
+        $(".service_type").change(function () {
+
           $(this).find("option:selected").each(function () {
             var optionValue = $(this).attr("value");
             if (optionValue) {
+
               $(".box").not("." + optionValue).hide();
               $("." + optionValue).show();
+
+              $("input").not("." + optionValue+"-required").prop('required',false);
+              $("." + optionValue+"-required").prop('required',true);
+
             } else {
+
               $(".box").hide();
+
             }
           });
+
         }).change();
       });
+    
     </script>
 
   </head>
@@ -56,7 +68,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav tool-nav">
             <li class="nav-item">
-              <a class="nav-link nav-lng" href="javaScript:;"><span class="nav-label">Arabic</span>
+              <a class="nav-link nav-lng" href="javaScript:;"><span class="nav-label">English</span>
                 <span class="nav-icon">
                   <img src="{% static 'images/top-nav-01.png' %}" alt="My image">
                 </span></a>
@@ -71,16 +83,17 @@
       <div class="banner-cover">
         <div class="container-xl">
           <div class="banner-plan-cover">
-            <div class="banner-plan-img">
-              <img src="{% static 'images/slider-mobile-plan.png' %}" alt="Image" />
-            </div>
+
             <div class="banner-plan-hd">
-              <h1><span class="hd-small">Find your</span> <br />Mobile Plan</h1>
-              <p>
-                Finding the mobile plan that meets your needs and budget has
-                never been easier. Use TRA's mobile plan finder to get started.
+              <h1><span class="hd-small float-right" >اختر باقة موبايلك !</span></h1>
+              <p class="float-right text-right">
+                العثور على باقة الموبايل التي تلبي كافة احتياجاتك لم تكن أسهل من أي وقت مضى.
+للحصول على أفضل باقة تناسبك استخدم محرك بحث هيئة تنظيم الاتصالات.
               </p>
-              <a class="btn btn-start" href="#">Get Started</a>
+              {% comment %} <a class="btn btn-start" href="#">إبدأ</a> {% endcomment %}
+            </div>
+                        <div class="banner-plan-img">
+              <img src="{% static 'images/slider-mobile-plan.png' %}" alt="Image" />
             </div>
           </div>
         </div>
@@ -94,192 +107,245 @@
           <div class="row">
             <div class="col-12">
               <div class="plan-select-form">
-                <form action="result" method="GET">
-                  <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">
-                      Service Type :</label>
-                    <div class="col-sm-8">
-                      <select class="form-control input-sm">
-                        <option>Choose Service Type</option>
-                        <option value="Mobile">Mobile </option>
-                        <option value="Fixedbroadband">Fixed Broadband </option>
-                        <option value="Both">Mobile & Fixed Broadband </option>
-                      </select>
-                    </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">
+                    نوع الخدمة:</label>
+                  <div class="col-sm-8">
+                    <select class="form-control input-sm service_type" name="service_type">
+                      <option>اختر نوع الخدمة</option>
+                      <option value="mobile">موبيل </option>
+                      <option value="fixed">منزلي</option>
+                      <option value="both">موبيل و منزلي</option>
+                    </select>
                   </div>
+                </div>
+
+               
+
+                <!--  Mobile Form -->
+                <form action="result" method="GET">
+                 
 
                   <!-- Mobile -->
-                  <div class="Mobile box" style="display: none;">
+                  <div class="mobile box" style="display: none;">
+
+                    <!-- Hidden Service Type -->
+                        <input class="form-control input-sm" name="service_type" value="mobile" type="text" Hidden required>
+
+                       
+        
                     <!-- ISP  -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        ISP ( Operator ) :</label>
+                        المشغل:</label>
                       <div class="col-sm-8">
                         <select class="form-control input-sm" name="rank">
-                          <option value="top">Best in Market </option>
-                          <option value="each">Best from each operator </option>
+                          <option value="top">الأفضل في السوق</option>
+                          <option value="each">الأفضل من كل مشغل</option>
                         </select>
                       </div>
                     </div>
+
                     <!-- Plan Type -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Plan Type :</label>
+                        نوع الباقة:</label>
                       <div class="col-sm-8">
-                        <select class="form-control input-sm">
-                          <option>All Plans </option>
-                          <option>Prepaid </option>
-                          <option>Postpaid </option>
+                        <select class="form-control input-sm" name="plan_type">
+                          <option value="all">جميع الباقات</option>
+                          <option value="prepaid">مسبقة الدفع</option>
+                          <option value="postpaid">آجل الدفع</option>
                         </select>
                       </div>
                     </div>
+
                     <!-- Term Length  -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Term Length :</label>
+                        اختر مدة الصلاحية:</label>
                       <div class="col-sm-8">
-                        <select class="form-control input-sm">
-                          <option>1 day </option>
-                          <option>1 Week </option>
-                          <option>1 Month </option>
-                          <option>+12 Months </option>
+                        <select class="form-control input-sm" name="term_length">
+                          <option value="1">يوم </option>
+                          <option value="7">اسبوع </option>
+                          <option value="28">شهر </option>
+                          <option value="360">أكثر من ١٢ شهر </option>
                         </select>
                       </div>
                     </div>
+
                     <!-- Data GB Per Month -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Data GB Per Month :</label>
+                        عدد البيانات في الشهر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" id="data_allowance" name="data_allowance" value="" type="text">
+                        <input class="form-control input-sm " id="data_allowance" name="data_allowance" value="" type="text" required> 
                       </div>
                     </div>
 
                      <!-- Data GB Per Month -->
                      <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Price :</label>
+                        السعر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" id="price" name="price" value="" type="text">
+                        <input class="form-control input-sm " id="price" name="price" value="" type="text" required >
                       </div>
                     </div>
 
                     <!-- Minutes Per Month -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Minutes Per Month :</label>
+                        عدد الدقائق في الشهر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " type="text" required >
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"></label>
+                      <div class="col-sm-8">
+                        <button class="btn btn-submit">اعثر على باقتك!</button>
                       </div>
                     </div>
                   </div>
+                  </form>
 
+                
+                  <!-- Fixed -->
+                <form action="result" method="GET">
+              
                   <!-- Fixedbroadband -->
-                  <div class="Fixedbroadband box" style="display: none;">
+                  <div class="fixed box" style="display: none;">
+                      <!-- Hidden Service Type -->
+                      <input class="form-control input-sm" name="service_type" value="fixed" type="text" Hidden required>
+
                     <!-- ISP -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        ISP ( Operator ) :</label>
+                        المشغل:</label>
                       <div class="col-sm-8">
-                        <select class="form-control input-sm">
-                          <option>Best in Market </option>
-                          <option>Best from each operator </option>
+                        <select class="form-control input-sm"  name="rank">
+                          <option>الأفضل في السوق</option>
+                          <option>الأفضل من كل مشغل</option>
                         </select>
                       </div>
                     </div>
+
                     <!-- Max Monthly spend -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
                         Max Monthly spend :</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " name="price" type="text" required >
                       </div>
                     </div>
+
                     <!-- Data GB Per Month -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Data GB Per Month :</label>
+                        عدد البيانات في الشهر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " name="data_allowance" type="text" required >
                       </div>
                     </div>
+
                     <!-- Minutes Per Month -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Minutes Per Month :</label>
+                        عدد الدقائق في الشهر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " type="text" required>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"></label>
+                      <div class="col-sm-8">
+                        <button class="btn btn-submit">اعثر على باقتك!</button>
                       </div>
                     </div>
                   </div>
+                </form>
+
+                <!-- Fixed and Mobile Form -->
+                <form action="result" method="GET">
+
+                  <!-- Hidden Service Type -->
+                  <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required>
 
                   <!-- Mobile & Fixed Broadband -->
-                  <div class="Both box" style="display: none;">
+                  <div class="both box" style="display: none;">
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        ISP ( Operator ) :</label>
+                        المشغل:</label>
                       <div class="col-sm-8">
-                        <select class="form-control input-sm">
-                          <option>Best in Market </option>
-                          <option>Best from each operator </option>
+                        <select class="form-control input-sm" name="rank">
+                          <option>الأفضل في السوق</option>
+                          <option>الأفضل من كل مشغل</option>
                         </select>
                       </div>
                     </div>
                     <!-- Plan Type -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Plan Type :</label>
+                        نوع الباقة:</label>
                       <div class="col-sm-8">
                         <select class="form-control input-sm">
-                          <option>All Plans </option>
-                          <option>Prepaid </option>
-                          <option>Postpaid </option>
+                          <option value="all">جميع الباقات</option>
+                          <option value="prepaid">مسبقة الدفع</option>
+                          <option value="postpaid">آجل الدفع</option>
                         </select>
                       </div>
                     </div>
+
                     <!-- Term Length  -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Term Length :</label>
+                        اختر مدة الصلاحية:</label>
                       <div class="col-sm-8">
                         <select class="form-control input-sm">
-                          <option>1 day </option>
-                          <option>1 Week </option>
-                          <option>1 Month </option>
-                          <option>+12 Months </option>
+                          <option value="1">يوم </option>
+                          <option value="7">اسبوع </option>
+                          <option value="28">شهر </option>
+                          <option value="360">أكثر من ١٢ شهر </option>
                         </select>
                       </div>
                     </div>
+
                     <!-- Data GB Per Month -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Data GB Per Month :</label>
+                        عدد الدقائق في الشهر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " name="data_allowance" type="text" required>
                       </div>
                     </div>
+
                     <!-- Minutes Per Month -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Minutes Per Month :</label>
+                        عدد الدقائق في الشهر:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " type="text" required>
                       </div>
                     </div>
+
                     <!-- Max Monthly spend -->
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">
-                        Max Monthly spend :</label>
+                        أعلى إنفاق شهري:</label>
                       <div class="col-sm-8">
-                        <input class="form-control input-sm" type="text">
+                        <input class="form-control input-sm " name="price" type="text" required>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-sm-4 col-form-label"></label>
-                    <div class="col-sm-8">
-                      <button class="btn btn-submit">Submit</button>
+                    
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"></label>
+                      <div class="col-sm-8">
+                        <button class="btn btn-submit">اعثر على باقتك!</button>
+                      </div>
                     </div>
+
                   </div>
                 </form>
       </section>
