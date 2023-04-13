@@ -5,7 +5,7 @@ def get_plans(**conditions):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="sxbsadmin",
+        password="",
         database="scalex"
     )
 
@@ -70,7 +70,7 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="sxbsadmin",
+        password="",
         database="scalex"
     )
 
