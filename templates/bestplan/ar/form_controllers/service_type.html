@@ -1,0 +1,18 @@
+<div class="form-group row">
+  {% if result_page != "yes" %}
+  <label class="col-sm-4 col-form-label"> Service Type :</label>
+  {% endif %}
+
+  <div class="col-sm-{{width}}">
+    <select
+      class="form-control input-sm service_type"
+      id="selectBox"
+      name="service_type"
+    >
+      <option>Choose Service Type</option>
+      <option value="mobile">Mobile</option>
+      <option value="fixed">Fixed Broadband</option>
+      <option value="both">Mobile & Fixed Broadband</option>
+    </select>
+  </div>
+</div>

@@ -1,373 +1,197 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<div>
+<html lang="en">
+  <div>
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <title>TRA</title>
+      <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/font-awesome.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/bootstrap.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/mdb.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/owl.carousel.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/owl.theme.default.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/jquery.fancybox.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/hover.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/animate.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/aos.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'css/style.css' %}"
+      />
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="{% static 'js/sb-script.js' %}"></script>
+      <script type="text/javascript">
+        function checkAllOperators() {
+          for (let i = 1; i <= 3; i++) {
+            document.getElementById("cb1_" + i).checked = true;
+            document.getElementById("cb2_" + i).checked = true;
+            document.getElementById("cb3_" + i).checked = true;
+            document.getElementById("cb4_" + i).checked = true;
+            document.getElementById("cb5_" + i).checked = true;
+          }
+        }
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>TRA</title>
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
-     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> 
-    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous"> {% endcomment %}
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
+        function uncheckAllOperators() {
+          for (let i = 1; i <= 3; i++) {
+            document.getElementById("cb1_" + i).checked = false;
+            document.getElementById("cb2_" + i).checked = false;
+            document.getElementById("cb3_" + i).checked = false;
+            document.getElementById("cb4_" + i).checked = false;
+            document.getElementById("cb5_" + i).checked = false;
+          }
+        }
 
-      $(document).ready(function () {
-       
+        function selectOpertor(event) {
+          if (event.checked) {
+            checkAllOperators();
+          } else {
+            uncheckAllOperators();
+          }
+        }
+      </script>
+    </head>
 
-        $(".service_type").change(function () {
-
-          $(this).find("option:selected").each(function () {
-            var optionValue = $(this).attr("value");
-            if (optionValue) {
-
-              $(".box").not("." + optionValue).hide();
-              $("." + optionValue).show();
-
-              $("input").not("." + optionValue+"-required").prop('required',false);
-              $("." + optionValue+"-required").prop('required',true);
-
-            } else {
-
-              $(".box").hide();
-
-            }
-          });
-
-        }).change();
-      });
-    
-    </script>
-
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
-      <div class="container-xl container-nav">
-        <div class="logo">
-          <a href="index.html">
-            <img src="{% static 'images/tra-logo.png' %}" alt="TRA">
-          </a>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
+        <div class="container-xl container-nav">
+          <div class="logo">
+            <a href="index.html">
+              <img src="{% static 'images/tra-logo.png' %}" alt="TRA" />
+            </a>
+          </div>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav tool-nav">
+              <li class="nav-item">
+                <a class="nav-link nav-lng" href="javaScript:;"
+                  ><span class="nav-label">Arabic</span>
+                  <span class="nav-icon">
+                    <img
+                      src="{% static 'images/top-nav-01.png' %}"
+                      alt="My image"
+                    /> </span
+                ></a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav tool-nav">
-            <li class="nav-item">
-              <a class="nav-link nav-lng" href="javaScript:;"><span class="nav-label">English</span>
-                <span class="nav-icon">
-                  <img src="{% static 'images/top-nav-01.png' %}" alt="My image">
-                </span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      </nav>
 
-
-    <section class="banner-sec">
-      <div class="banner-cover">
-        <div class="container-xl">
-          <div class="banner-plan-cover">
-
-            <div class="banner-plan-hd">
-              <h1><span class="hd-small float-right" >اختر باقة موبايلك !</span></h1>
-              <p class="float-right text-right">
-                العثور على باقة الموبايل التي تلبي كافة احتياجاتك لم تكن أسهل من أي وقت مضى.
-للحصول على أفضل باقة تناسبك استخدم محرك بحث هيئة تنظيم الاتصالات.
-              </p>
-              {% comment %} <a class="btn btn-start" href="#">إبدأ</a> {% endcomment %}
-            </div>
-                        <div class="banner-plan-img">
-              <img src="{% static 'images/slider-mobile-plan.png' %}" alt="Image" />
+      <section class="banner-sec">
+        <div class="banner-cover">
+          <div class="container-xl">
+            <div class="banner-plan-cover">
+              <div class="banner-plan-img">
+                <img
+                  src="{% static 'images/slider-mobile-plan.png' %}"
+                  alt="Image"
+                />
+              </div>
+              <div class="banner-plan-hd">
+                <h1>
+                  <span class="hd-small">Find your</span> <br />Mobile Plan
+                </h1>
+                <p>
+                  Finding the mobile plan that meets your needs and budget has
+                  never been easier. Use TRA's mobile plan finder to get
+                  started.
+                </p>
+                <a class="btn btn-start" href="#">Get Started</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
+      <main class="content-sec">
+        <section class="pos-sec-ind-sec">
+          <div class="container-xl">
+            <div class="row">
+              <div class="col-12">
+                <div class="plan-select-form">
+    
+                  {% include 'bestplan/en/sections/filter_form.html' with result_page='no' width="8"%}
+    
+        
+        
+                </section>
+      </main>
 
-    <main class="content-sec">
-      <section class="pos-sec-ind-sec">
+      
+      <footer class="footer-sec">
         <div class="container-xl">
           <div class="row">
             <div class="col-12">
-              <div class="plan-select-form">
-
-                <div class="form-group row">
-                  <label class="col-sm-4 col-form-label">
-                    نوع الخدمة:</label>
-                  <div class="col-sm-8">
-                    <select class="form-control input-sm service_type" name="service_type">
-                      <option>اختر نوع الخدمة</option>
-                      <option value="mobile">موبيل </option>
-                      <option value="fixed">منزلي</option>
-                      <option value="both">موبيل و منزلي</option>
-                    </select>
-                  </div>
-                </div>
-
-               
-
-                <!--  Mobile Form -->
-                <form action="result" method="GET">
-                 
-
-                  <!-- Mobile -->
-                  <div class="mobile box" style="display: none;">
-
-                    <!-- Hidden Service Type -->
-                        <input class="form-control input-sm" name="service_type" value="mobile" type="text" Hidden required>
-
-                       
-        
-                    <!-- ISP  -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        المشغل:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm" name="rank">
-                          <option value="top">الأفضل في السوق</option>
-                          <option value="each">الأفضل من كل مشغل</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Plan Type -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        نوع الباقة:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm" name="plan_type">
-                          <option value="all">جميع الباقات</option>
-                          <option value="prepaid">مسبقة الدفع</option>
-                          <option value="postpaid">آجل الدفع</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Term Length  -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        اختر مدة الصلاحية:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm" name="term_length">
-                          <option value="1">يوم </option>
-                          <option value="7">اسبوع </option>
-                          <option value="28">شهر </option>
-                          <option value="360">أكثر من ١٢ شهر </option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Data GB Per Month -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        عدد البيانات في الشهر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " id="data_allowance" name="data_allowance" value="" type="text" required> 
-                      </div>
-                    </div>
-
-                     <!-- Data GB Per Month -->
-                     <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        السعر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " id="price" name="price" value="" type="text" required >
-                      </div>
-                    </div>
-
-                    <!-- Minutes Per Month -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        عدد الدقائق في الشهر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " type="text" required >
-                      </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label"></label>
-                      <div class="col-sm-8">
-                        <button class="btn btn-submit">اعثر على باقتك!</button>
-                      </div>
-                    </div>
-                  </div>
-                  </form>
-
-                
-                  <!-- Fixed -->
-                <form action="result" method="GET">
-              
-                  <!-- Fixedbroadband -->
-                  <div class="fixed box" style="display: none;">
-                      <!-- Hidden Service Type -->
-                      <input class="form-control input-sm" name="service_type" value="fixed" type="text" Hidden required>
-
-                    <!-- ISP -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        المشغل:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm"  name="rank">
-                          <option>الأفضل في السوق</option>
-                          <option>الأفضل من كل مشغل</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Max Monthly spend -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        Max Monthly spend :</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " name="price" type="text" required >
-                      </div>
-                    </div>
-
-                    <!-- Data GB Per Month -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        عدد البيانات في الشهر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " name="data_allowance" type="text" required >
-                      </div>
-                    </div>
-
-                    <!-- Minutes Per Month -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        عدد الدقائق في الشهر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " type="text" required>
-                      </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label"></label>
-                      <div class="col-sm-8">
-                        <button class="btn btn-submit">اعثر على باقتك!</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-                <!-- Fixed and Mobile Form -->
-                <form action="result" method="GET">
-
-                  <!-- Hidden Service Type -->
-                  <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required>
-
-                  <!-- Mobile & Fixed Broadband -->
-                  <div class="both box" style="display: none;">
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        المشغل:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm" name="rank">
-                          <option>الأفضل في السوق</option>
-                          <option>الأفضل من كل مشغل</option>
-                        </select>
-                      </div>
-                    </div>
-                    <!-- Plan Type -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        نوع الباقة:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm">
-                          <option value="all">جميع الباقات</option>
-                          <option value="prepaid">مسبقة الدفع</option>
-                          <option value="postpaid">آجل الدفع</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Term Length  -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        اختر مدة الصلاحية:</label>
-                      <div class="col-sm-8">
-                        <select class="form-control input-sm">
-                          <option value="1">يوم </option>
-                          <option value="7">اسبوع </option>
-                          <option value="28">شهر </option>
-                          <option value="360">أكثر من ١٢ شهر </option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- Data GB Per Month -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        عدد الدقائق في الشهر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " name="data_allowance" type="text" required>
-                      </div>
-                    </div>
-
-                    <!-- Minutes Per Month -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        عدد الدقائق في الشهر:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " type="text" required>
-                      </div>
-                    </div>
-
-                    <!-- Max Monthly spend -->
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label">
-                        أعلى إنفاق شهري:</label>
-                      <div class="col-sm-8">
-                        <input class="form-control input-sm " name="price" type="text" required>
-                      </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                      <label class="col-sm-4 col-form-label"></label>
-                      <div class="col-sm-8">
-                        <button class="btn btn-submit">اعثر على باقتك!</button>
-                      </div>
-                    </div>
-
-                  </div>
-                </form>
-      </section>
-    </main>
-
-    <footer class="footer-sec">
-      <div class="container-xl">
-        <div class="row">
-          <div class="col-12">
-            <div class="powered-cover">
-              Powered by
-              <img src="{% static 'images/SBlogo.png' %}" alt="Logo" style="width: 70px ;">
+              <div class="powered-cover">
+                Powered by
+                <img
+                  src="{% static 'images/SBlogo.png' %}"
+                  alt="Logo"
+                  style="width: 70px"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
 
-    <a href="javaScript:;" id="return-top" class="return-top"><span>
-        <img src="{% static 'images/up-icon.svg' %}" alt="Up">
-      </span></a>
-  </body>
-</div>
-
+      <a href="javaScript:;" id="return-top" class="return-top"
+        ><span> <img src="{% static 'images/up-icon.svg' %}" alt="Up" /> </span
+      ></a>
+    </body>
+  </div>
 </html>

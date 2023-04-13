@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -65,7 +65,7 @@
         $(".export-button").on("click", function () {
           console.log("Export");
           $(".btn-submit").text("Export");
-          $("form").attr("action", "export");
+          $("form").attr("action", "export_filter_data");
 
           $("#search-plan-tab-01").attr("aria-selected", false); //Search
           $("#search-plan-tab-02").attr("aria-selected", true); //Export
@@ -86,29 +86,37 @@
           $("#search-plan-tab-01").addClass("active"); //Search
         });
 
-        $(".service_type")
-          .change(function () {
-            $(this)
-              .find("option:selected")
-              .each(function () {
-                var optionValue = $(this).attr("value");
-                if (optionValue) {
-                  $(".box")
-                    .not("." + optionValue)
-                    .hide();
-                  $("." + optionValue).show();
-
-                  $("input")
-                    .not("." + optionValue + "-required")
-                    .prop("required", false);
-                  $("." + optionValue + "-required").prop("required", true);
-                } else {
-                  $(".box").hide();
-                }
-              });
-          })
-          .change();
       });
+    </script>
+    <script src="{% static 'js/sb-script.js' %}"></script>
+    <script type="text/javascript">
+      function checkAllOperators() {
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById("cb1_" + i).checked = true;
+          document.getElementById("cb2_" + i).checked = true;
+          document.getElementById("cb3_" + i).checked = true;
+          document.getElementById("cb4_" + i).checked = true;
+          document.getElementById("cb5_" + i).checked = true;
+        }
+      }
+
+      function uncheckAllOperators() {
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById("cb1_" + i).checked = false;
+          document.getElementById("cb2_" + i).checked = false;
+          document.getElementById("cb3_" + i).checked = false;
+          document.getElementById("cb4_" + i).checked = false;
+          document.getElementById("cb5_" + i).checked = false;
+        }
+      }
+
+      function selectOpertor(event) {
+        if (event.checked) {
+          checkAllOperators();
+        } else {
+          uncheckAllOperators();
+        }
+      }
     </script>
   </head>
 
@@ -134,8 +142,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav tool-nav">
             <li class="nav-item">
-              <a class="nav-link nav-lng" href="javaScript:;"
-                ><span class="nav-label">Arabic</span>
+              {% if 'lang' in request.get_full_path %}
+              <a class="nav-link nav-lng" href="{{ request.get_full_path}}">
+              {% else %}
+              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"&lang=ar" }}">
+              {% endif %}
+              <span class="nav-label">Arabic</span>
                 <span class="nav-icon">
                   <img
                     src="{% static 'images/top-nav-01.png' %}"
@@ -148,7 +160,6 @@
       </div>
     </nav>
 
-    {% comment %}
     <section class="banner-sec">
       <div class="banner-cover">
         <div class="container-xl">
@@ -171,7 +182,6 @@
         </div>
       </div>
     </section>
-    {% endcomment %}
 
     <main class="content-sec">
       <section class="search-plan-sec">
@@ -193,7 +203,7 @@
                     >
                       <span class="nav-block search-button"
                         ><i class="fa fa-search" aria-hidden="true"></i>
-                        بحث</span
+                        Search</span
                       >
                     </a>
                   </li>
@@ -209,369 +219,14 @@
                       aria-selected="false"
                     >
                       <span class="nav-block export-button"
-                        ><i class="fa fa-download" aria-hidden="true"></i> تحميل
-                        الباقات</span
+                        ><i class="fa fa-download" aria-hidden="true"></i>
+                        Export Data</span
                       >
                     </a>
                   </li>
                 </ul>
                 <div class="tab-content" id="nav-tabContent">
-                  <div class="form-group row">
-                    {% comment %}
-                    <label class="col-sm-4 col-form-label">
-                      Service Type :</label
-                    >
-                    {% endcomment %}
-                    <div class="col-sm-12">
-                      <select
-                        class="form-control input-sm service_type"
-                        name="service_type"
-                      >
-                        <option>اختر نوع الخدمة</option>
-                        <option value="mobile">موبيل</option>
-                        <option value="fixed">منزلي</option>
-                        <option value="both">موبيل و منزلي</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <!--  Mobile Form -->
-                  <form action="result" method="GET">
-                    <!-- Mobile -->
-                    <div class="mobile box" style="display: none">
-                      <!-- Hidden Service Type -->
-                      <input
-                        class="form-control input-sm"
-                        name="service_type"
-                        value="mobile"
-                        type="text"
-                        hidden
-                        required
-                      />
-
-                      <!-- ISP  -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          ISP ( Operator ) :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm" name="rank">
-                            <option value="top">الأفضل في السوق</option>
-                            <option value="each">الأفضل من كل مشغل</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Plan Type -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Plan Type :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select
-                            class="form-control input-sm"
-                            name="plan_type"
-                          >
-                            <option value="all">جميع الباقات</option>
-                            <option value="prepaid">مسبقة الدفع</option>
-                            <option value="postpaid">آجل الدفع</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Term Length  -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Term Length :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select
-                            class="form-control input-sm"
-                            name="term_length"
-                          >
-                            <option value="1">يوم</option>
-                            <option value="7">اسبوع</option>
-                            <option value="28">شهر</option>
-                            <option value="360">أكثر من ١٢ شهر</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Data GB Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="عدد البيانات في الشهر"
-                            class="form-control input-sm"
-                            id="data_allowance"
-                            name="data_allowance"
-                            value=""
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label"> Price :</label>
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="السعر"
-                            class="form-control input-sm"
-                            id="price"
-                            name="price"
-                            value=""
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Minutes Per Month -->
-                      <div class="form-group row">
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="عدد الدقائق في الشهر"
-                            class="form-control input-sm"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"></label>
-                        <div class="col-sm-12">
-                          <button class="btn btn-submit">اعثر على باقتك</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-
-                  <!-- Fixed -->
-                  <form action="result" method="GET">
-                    <!-- Fixedbroadband -->
-                    <div class="fixed box" style="display: none">
-                      <!-- Hidden Service Type -->
-                      <input
-                        class="form-control input-sm"
-                        name="service_type"
-                        value="fixed"
-                        type="text"
-                        hidden
-                        required
-                      />
-
-                      <!-- ISP -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          ISP ( Operator ) :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm" name="rank">
-                            <option>الأفضل في السوق</option>
-                            <option>الأفضل من كل مشغل</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Max Monthly spend -->
-                      <div class="form-group row">
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Max Monthly Spend"
-                            class="form-control input-sm"
-                            name="price"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Data GB Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="عدد البيانات في الشهر"
-                            class="form-control input-sm"
-                            name="data_allowance"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Minutes Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Minutes Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="عدد الدقائق في الشهر"
-                            class="form-control input-sm"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-sm-12 col-form-label"></label>
-                        <div class="col-sm-12">
-                          <button class="btn btn-submit">
-                            اعثر على باقتك!
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-
-                  <!-- Fixed and Mobile Form -->
-                  <form action="result" method="GET">
-                    <!-- Hidden Service Type -->
-                    <input
-                      class="form-control input-sm"
-                      name="service_type"
-                      value="all"
-                      type="text"
-                      hidden
-                      required
-                    />
-
-                    <!-- Mobile & Fixed Broadband -->
-                    <div class="both box" style="display: none">
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          ISP ( Operator ) :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm" name="rank">
-                            <option>Best in Market</option>
-                            <option>Best from each operator</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Plan Type -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Plan Type :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm">
-                            <option value="all">All Plans</option>
-                            <option value="prepaid">Prepaid</option>
-                            <option value="postpaid">Postpaid</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Term Length  -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Term Length :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm">
-                            <option value="1">1 day</option>
-                            <option value="7">1 Week</option>
-                            <option value="28">1 Month</option>
-                            <option value="360">+12 Months</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Data GB Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Data GB Per Month"
-                            class="form-control input-sm"
-                            name="data_allowance"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Minutes Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Minutes Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Minutes Per Month"
-                            class="form-control input-sm"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Max Monthly spend -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Max Monthly spend :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Max Monthly Spend"
-                            class="form-control input-sm"
-                            name="price"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label"></label>
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <button class="btn btn-submit">Submit</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                    {% include 'bestplan/en/sections/filter_form.html' with result_page='yes'  width='12'%}
                 </div>
               </div>
             </div>
@@ -629,19 +284,19 @@
                               alt="Logo"
                           /></a>
                         </th>
-                        {% elif "awasr" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/awasr-logo.png' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
                         {% elif "friendly" in plan.isp %}
                         <th>
                           <a class="provider-logo" href="javascript:;"
                             ><img
                               src="{% static 'images/plan-logo-03.svg' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
+                        {% elif "awasr" in plan.isp %}
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/awasr-logo.png' %}"
                               alt="Logo"
                           /></a>
                         </th>
@@ -651,7 +306,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>اسم الباقة</td>
+                        <td>Plan Name</td>
 
                         {% for plan in plans %}
                         <td>
@@ -662,13 +317,13 @@
                         {% endfor %}
                       </tr>
                       <tr>
-                        <td>السعر الإجمالي للباقة (ريال عماني)</td>
+                        <td>Plan Type</td>
                         {% for plan in plans %}
                         <td>{{plan.plan_type}}</td>
                         {% endfor %}
                       </tr>
                       <tr>
-                        <td>سعر الباقة الأساسية (ريال عماني)</td>
+                        <td>Total Plan Price (OMR)</td>
                         {%for plan in plans%}
                         <td>
                           <span class="price-plan">{{ plan.price_value }}</span>
@@ -676,7 +331,6 @@
 
                         {%endfor%}
                       </tr>
-                      {% comment %}
                       <tr>
                         <td>Base Plan Price (OMR)</td>
                         {%for plan in plans%}
@@ -684,7 +338,7 @@
 
                         {%endfor%}
                       </tr>
-                      {% endcomment %} {% comment %}
+                      {% comment %}
                       <tr>
                         <td>Pay As You Go Fees (OMR)</td>
                         <td>-</td>
@@ -696,7 +350,7 @@
                       </tr>
                       {% endcomment %}
                       <tr>
-                        <td>طول المدة (ايام)</td>
+                        <td>Term Length</td>
                         {%for plan in plans%}
                         <td>{{ plan.duration_value }}</td>
 
@@ -714,32 +368,32 @@
                       </tr>
                       {% endcomment %}
                       <tr>
-                        <td>طول المدة (ايام)</td>
+                        <td>Plan Data</td>
                         {%for plan in plans%}
                         <td>{{ plan.data_allowance_value }}</td>
 
                         {%endfor%}
                       </tr>
                       <tr>
-                        <td>البيانات المحلية (جيجا بايت)</td>
+                        <td>Local Minutes</td>
                         {% for plan in plans %}
                         <td>{{plan.local_minutes}}</td>
                         {% endfor %}
                       </tr>
                       <tr>
-                        <td>دقائق على نفس الشبكة</td>
+                        <td>On-net Minutes</td>
                         {% for plan in plans %}
                         <td>{{plan.flexi_minutes}}</td>
                         {% endfor %}
                       </tr>
                       <tr>
-                        <td>الدقائق الدولية</td>
+                        <td>International Minutes</td>
                         {% for plan in plans %}
                         <td>{{plan.international_minutes}}</td>
                         {% endfor %}
                       </tr>
                       <tr>
-                        <td>بيانات التجوال (جيجا بايت)</td>
+                        <td>Roaming Data</td>
                         {% for plan in plans %}
                         <td>{{plan.world_roaming}}</td>
                         {% endfor %}
@@ -756,16 +410,15 @@
                       </tr>
                       {% endcomment %}
                       <tr>
-                        <td>الباقات الإضافية</td>
-                        {%for plan in plans%} {% if plan.add_on_link|length >
-                        1%}
+                        <td>Add-Ons</td>
+                        {%for plan in plans%}
                         <td>
                           <a class="btn-link" href="{{plan.add_on_url}}"
-                            >وصلةالباقات الإضافية</a
+                            >Add-On Link</a
                           >
                         </td>
 
-                        {% endif %} {%endfor%}
+                        {%endfor%}
                       </tr>
                     </tbody>
                   </table>

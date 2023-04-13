@@ -24,7 +24,6 @@ def get_plans(**conditions):
             condition, conditions[condition])
 
     query = "SELECT * FROM plan {} ;".format(query_conditions)
-    print(query)
     cursor = db.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
@@ -77,17 +76,29 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
 
     # Conditions
     query_conditions = ""
+
     for index, condition in enumerate(filter_dict):
-        if filter_dict[condition] == "all":
+        if "all" in filter_dict[condition] or "all" in condition:
             continue
+        else:
+            print(filter_dict[condition])
 
         if index != 0:
             query_conditions += " AND "
         else:
             query_conditions += " WHERE "
 
-        query_conditions += "{} = '{}'".format(
-            condition, filter_dict[condition])
+        value_set = "("
+
+        for index, val in enumerate(filter_dict[condition]):
+            if index == 0:
+                value_set += "'{}'".format(val)
+            else:
+                value_set += ",'{}'".format(val)
+        value_set += ")"
+
+        query_conditions += "{} in {}".format(
+            condition, value_set)
 
     # Order By
     query_orders_by = ""
@@ -108,7 +119,7 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
             ORDER BY {}
             LIMIT 0,{}
             """.format(query_distances, query_conditions, query_orders_by, limit)
-
+    print(query)
     cursor = db.cursor()
     cursor.execute(query)
     if limit == 1:
@@ -121,17 +132,11 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
     else:
         records = cursor.fetchall()
         data_list = []
-        print(data_list)
-        print("______________________________________________________________________")
 
         for record in records:
             data = record_to_dict(record)
             # print(data)
             data_list.append(data)
-            print(data_list)
-            print("TYPE: " + str(type(data_list)))
-            print(
-                "______________________________________________________________________")
 
         db.close()
         return data_list

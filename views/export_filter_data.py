@@ -15,7 +15,6 @@ def get_merged_value_unit(value, unit):
 
 
 def export_filter_data(request):
-
     price = request.GET.get("price", "all")
     data_allowance = request.GET.get("data_allowance", "all")
     service_type = request.GET.get("service_type", "all")
@@ -23,32 +22,26 @@ def export_filter_data(request):
     rank = request.GET.get("rank", "all")
     term_length = request.GET.get("term_length", 1)
 
-    omantel_plans = get_plans(
-        isp="omantel",  service_type=service_type, plan_type=plan_type)
-    redbull_plans = get_plans(
-        isp="redbull",  service_type=service_type, plan_type=plan_type)
-    vodafone_plans = get_plans(
-        isp="vodafone",  service_type=service_type, plan_type=plan_type)
-    ooredoo_plans = get_plans(
-        isp="ooredoo",  service_type=service_type, plan_type=plan_type)
-    friendly_plans = get_plans(
-        isp="friendly",  service_type=service_type, plan_type=plan_type)
-    rennah_plans = get_plans(
-        isp="renna",  service_type=service_type, plan_type=plan_type)
+    isp_list = []
+    omantel = request.GET.get("omantel", "off")
+    ooredeoo = request.GET.get("ooredeoo", "off")
+    vodafone = request.GET.get("vodafone", "off")
+    renna = request.GET.get("renna", "off")
+    redbull = request.GET.get("redbull", "off")
+    awasr = request.GET.get("awasr", "off")
 
-    stk = ScaleXToolkit()
-
-    plans_dic = {
-        "omantel": omantel_plans,
-        "redbull": redbull_plans,
-        "rennah": rennah_plans,
-        "vodafone": vodafone_plans,
-        "ooredoo": ooredoo_plans,
-        "friendly": friendly_plans,
-    }
-
-    filters = {"price": float(price), "data_allowance": float(
-        data_allowance), "term_length": int(term_length)}
+    if "on" in omantel:
+        isp_list.append("omantel")
+    if "on" in ooredeoo:
+        isp_list.append("ooredoo")
+    if "on" in vodafone:
+        isp_list.append("vodafone")
+    if "on" in renna:
+        isp_list.append("renna")
+    if "on" in redbull:
+        isp_list.append("redbull")
+    if "on" in awasr:
+        isp_list.append("awasr")
 
     response = HttpResponse(
         content_type='text/csv',
@@ -79,16 +72,16 @@ def export_filter_data(request):
             'Link',
             'Add Ons'
         ])
-
-    if "each" in rank:
+    stk = ScaleXToolkit()
+    if len(isp_list) == 0:
         plans = {
-            "omantel":    get_one_closest({"isp": "omantel", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "rennah":     get_one_closest({"isp": "renna", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "ooredoo":    get_one_closest({"isp": "ooredoo", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "redbull":    get_one_closest({"isp": "redbull", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "vodafone":   get_one_closest({"isp": "vodafone", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "friendly":   get_one_closest({"isp": "friendly", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "awasr":      get_one_closest({"isp": "awasr", "service_type": service_type, "plan_type": plan_type}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1)
+            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "vodafone":   get_one_closest({"isp": ["vodafone"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "friendly":   get_one_closest({"isp": ["friendly"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1)
         }
         data = stk.best_plan_merge(plans)
         print(str(data))
@@ -138,7 +131,7 @@ def export_filter_data(request):
             )
 
     else:
-        top_plans = get_one_closest({"service_type": service_type, "plan_type": plan_type}, {
+        top_plans = get_one_closest({"service_type": [service_type], "plan_type": [plan_type]}, {
                                     "price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 6),
         for index, plan in enumerate(top_plans[0]):
             writer.writerow([

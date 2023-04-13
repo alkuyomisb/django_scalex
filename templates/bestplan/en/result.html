@@ -64,9 +64,8 @@
     <script>
       $(document).ready(function () {
         $(".export-button").on("click", function () {
-          console.log("Export");
           $(".btn-submit").text("Export");
-          $("form").attr("action", "export");
+          $("form").attr("action", "export_filter_data");
 
           $("#search-plan-tab-01").attr("aria-selected", false); //Search
           $("#search-plan-tab-02").attr("aria-selected", true); //Export
@@ -76,7 +75,6 @@
         });
 
         $(".search-button").on("click", function () {
-          console.log("Search");
           $(".btn-submit").text("Find");
           $("form").attr("action", "result");
 
@@ -87,29 +85,38 @@
           $("#search-plan-tab-01").addClass("active"); //Search
         });
 
-        $(".service_type")
-          .change(function () {
-            $(this)
-              .find("option:selected")
-              .each(function () {
-                var optionValue = $(this).attr("value");
-                if (optionValue) {
-                  $(".box")
-                    .not("." + optionValue)
-                    .hide();
-                  $("." + optionValue).show();
-
-                  $("input")
-                    .not("." + optionValue + "-required")
-                    .prop("required", false);
-                  $("." + optionValue + "-required").prop("required", true);
-                } else {
-                  $(".box").hide();
-                }
-              });
-          })
-          .change();
+       
       });
+    </script>
+    <script src="{% static 'js/sb-script.js' %}"></script>
+    <script type="text/javascript">
+      function checkAllOperators() {
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById("cb1_" + i).checked = true;
+          document.getElementById("cb2_" + i).checked = true;
+          document.getElementById("cb3_" + i).checked = true;
+          document.getElementById("cb4_" + i).checked = true;
+          document.getElementById("cb5_" + i).checked = true;
+        }
+      }
+
+      function uncheckAllOperators() {
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById("cb1_" + i).checked = false;
+          document.getElementById("cb2_" + i).checked = false;
+          document.getElementById("cb3_" + i).checked = false;
+          document.getElementById("cb4_" + i).checked = false;
+          document.getElementById("cb5_" + i).checked = false;
+        }
+      }
+
+      function selectOpertor(event) {
+        if (event.checked) {
+          checkAllOperators();
+        } else {
+          uncheckAllOperators();
+        }
+      }
     </script>
   </head>
 
@@ -135,8 +142,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav tool-nav">
             <li class="nav-item">
-              <a class="nav-link nav-lng" href="javaScript:;"
-                ><span class="nav-label">Arabic</span>
+
+              {% if 'lang' in request.get_full_path %}
+              <a class="nav-link nav-lng" href="{{ request.get_full_path}}">
+              {% else %}
+              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"&lang=ar" }}">
+              {% endif %}
+                <span class="nav-label">Arabic</span>
                 <span class="nav-icon">
                   <img
                     src="{% static 'images/top-nav-01.png' %}"
@@ -215,372 +227,9 @@
                   </li>
                 </ul>
                 <div class="tab-content" id="nav-tabContent">
-                  <div class="form-group row">
-                    {% comment %}
-                    <label class="col-sm-4 col-form-label">
-                      Service Type :</label
-                    >
-                    {% endcomment %}
-                    <div class="col-sm-12">
-                      <select
-                        class="form-control input-sm service_type"
-                        name="service_type"
-                      >
-                        <option>Choose Service Type</option>
-                        <option value="mobile">Mobile</option>
-                        <option value="fixed">Fixed Broadband</option>
-                        <option value="both">Mobile & Fixed Broadband</option>
-                      </select>
-                    </div>
-                  </div>
+              
+                  {% include 'bestplan/en/sections/filter_form.html' with result_page='yes'  width='12'%}
 
-                  <!--  Mobile Form -->
-                  <form action="result" method="GET">
-                    <!-- Mobile -->
-                    <div class="mobile box" style="display: none">
-                      <!-- Hidden Service Type -->
-                      <input
-                        class="form-control input-sm"
-                        name="service_type"
-                        value="mobile"
-                        type="text"
-                        hidden
-                        required
-                      />
-
-                      <!-- ISP  -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          ISP ( Operator ) :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm" name="rank">
-                            <option value="top">Best in Market</option>
-                            <option value="each">
-                              Best from each operator
-                            </option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Plan Type -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Plan Type :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select
-                            class="form-control input-sm"
-                            name="plan_type"
-                          >
-                            <option value="all">All Plans</option>
-                            <option value="prepaid">Prepaid</option>
-                            <option value="postpaid">Postpaid</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Term Length  -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Term Length :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select
-                            class="form-control input-sm"
-                            name="term_length"
-                          >
-                            <option value="1">1 day</option>
-                            <option value="7">1 Week</option>
-                            <option value="28">1 Month</option>
-                            <option value="360">+12 Months</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Data GB Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Data GB per month"
-                            class="form-control input-sm"
-                            id="data_allowance"
-                            name="data_allowance"
-                            value=""
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label"> Price :</label>
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Price"
-                            class="form-control input-sm"
-                            id="price"
-                            name="price"
-                            value=""
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Minutes Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Minutes Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Minutes Per Month"
-                            class="form-control input-sm"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-sm-4 col-form-label"></label>
-                        <div class="col-sm-12">
-                          <button class="btn btn-submit">Submit</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-
-                  <!-- Fixed -->
-                  <form action="result" method="GET">
-                    <!-- Fixedbroadband -->
-                    <div class="fixed box" style="display: none">
-                      <!-- Hidden Service Type -->
-                      <input
-                        class="form-control input-sm"
-                        name="service_type"
-                        value="fixed"
-                        type="text"
-                        hidden
-                        required
-                      />
-
-                      <!-- ISP -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          ISP ( Operator ) :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm" name="rank">
-                            <option>Best in Market</option>
-                            <option>Best from each operator</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Max Monthly spend -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Max Monthly spend :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Max Monthly Spend"
-                            class="form-control input-sm"
-                            name="price"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Data GB Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Data GB Per Month"
-                            class="form-control input-sm"
-                            name="data_allowance"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Minutes Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Minutes Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Minutes Per Month"
-                            class="form-control input-sm"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-sm-12 col-form-label"></label>
-                        <div class="col-sm-12">
-                          <button class="btn btn-submit">Submit</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-
-                  <!-- Fixed and Mobile Form -->
-                  <form action="result" method="GET">
-                    <!-- Hidden Service Type -->
-                    <input
-                      class="form-control input-sm"
-                      name="service_type"
-                      value="all"
-                      type="text"
-                      hidden
-                      required
-                    />
-
-                    <!-- Mobile & Fixed Broadband -->
-                    <div class="both box" style="display: none">
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          ISP ( Operator ) :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm" name="rank">
-                            <option>Best in Market</option>
-                            <option>Best from each operator</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Plan Type -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Plan Type :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm">
-                            <option value="all">All Plans</option>
-                            <option value="prepaid">Prepaid</option>
-                            <option value="postpaid">Postpaid</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Term Length  -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Term Length :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <select class="form-control input-sm">
-                            <option value="1">1 day</option>
-                            <option value="7">1 Week</option>
-                            <option value="28">1 Month</option>
-                            <option value="360">+12 Months</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <!-- Data GB Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Data GB Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Data GB Per Month"
-                            class="form-control input-sm"
-                            name="data_allowance"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Minutes Per Month -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Minutes Per Month :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Minutes Per Month"
-                            class="form-control input-sm"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <!-- Max Monthly spend -->
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label">
-                          Max Monthly spend :</label
-                        >
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <input
-                            placeholder="Max Monthly Spend"
-                            class="form-control input-sm"
-                            name="price"
-                            type="text"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        {% comment %}
-                        <label class="col-sm-4 col-form-label"></label>
-                        {% endcomment %}
-                        <div class="col-sm-12">
-                          <button class="btn btn-submit">Submit</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
                 </div>
               </div>
             </div>
@@ -639,6 +288,13 @@
                               alt="Logo"
                           /></a>
                         </th>
+                        <th>
+                          <a class="provider-logo" href="javascript:;"
+                            ><img
+                              src="{% static 'images/awasr-logo.png' %}"
+                              alt="Logo"
+                          /></a>
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -674,6 +330,11 @@
                             >{{redbull.title}}</a
                           >
                         </td>
+                        <td>
+                          <a class="btn-link" href="{{awasr.link}}"
+                            >{{awasr.title}}</a
+                          >
+                        </td>
                       </tr>
                       <tr>
                         <td>Plan Type</td>
@@ -683,6 +344,7 @@
                         <td>{{ ooredoo.plan_type }}</td>
                         <td>{{ vodafone.plan_type }}</td>
                         <td>{{ redbull.plan_type }}</td>
+                        <td>{{ awasr.plan_type }}</td>
                       </tr>
                       <tr>
                         <td>Total Plan Price (OMR)</td>
@@ -716,6 +378,11 @@
                             >{{ redbull.price_value }}</span
                           >
                         </td>
+                        <td>
+                          <span class="price-plan"
+                            >{{ awasr.price_value }}</span
+                          >
+                        </td>
                       </tr>
                       <tr>
                         <td>Base Plan Price (OMR)</td>
@@ -725,6 +392,7 @@
                         <td>{{ooredoo.price_value}}</td>
                         <td>{{ vodafone.price_value }}</td>
                         <td>{{ redbull.price_value }}</td>
+                        <td>{{ awasr.price_value }}</td>
                       </tr>
                       {% comment %}
                       <tr>
@@ -745,6 +413,7 @@
                         <td>{{ ooredoo.duration_value}}</td>
                         <td>{{vodafone.duration_value}}</td>
                         <td>{{ redbull.duration_value }}</td>
+                        <td>{{ awasr.duration_value }}</td>
                       </tr>
                       {% comment %}
                       <tr>
@@ -765,6 +434,7 @@
                         <td>{{ooredoo.data_allowance_value}}</td>
                         <td>{{vodafone.data_allowance_value}}</td>
                         <td>{{redbull.data_allowance_value}}</td>
+                        <td>{{awasr.data_allowance_value}}</td>
                       </tr>
                       <tr>
                         <td>Local Minutes</td>
@@ -774,6 +444,7 @@
                         <td>{{ooredoo.local_minutes}}</td>
                         <td>{{vodafone.local_minutes}}</td>
                         <td>{{redbull.local_minutes}}</td>
+                        <td>{{awasr.local_minutes}}</td>
                       </tr>
                       <tr>
                         <td>On-net Minutes</td>
@@ -783,6 +454,7 @@
                         <td>{{ooredoo.flexi_minutes}}</td>
                         <td>{{vodafone.flexi_minutes}}</td>
                         <td>{{redbull.flexi_minutes}}</td>
+                        <td>{{awasr.flexi_minutes}}</td>
                       </tr>
                       <tr>
                         <td>International Minutes</td>
@@ -792,6 +464,7 @@
                         <td>{{ooredoo.international_minutes}}</td>
                         <td>{{vodafone.international_minutes}}</td>
                         <td>{{redbull.international_minutes}}</td>
+                        <td>{{awasr.international_minutes}}</td>
                       </tr>
                       <tr>
                         <td>Roaming Data (GB)</td>
@@ -801,6 +474,7 @@
                         <td>{{ooredoo.world_roaming_value}}</td>
                         <td>{{vodafone.world_roaming_value}}</td>
                         <td>{{redbull.world_roaming_value}}</td>
+                        <td>{{awasr.world_roaming_value}}</td>
                       </tr>
                       {% comment %}
                       <tr>
@@ -817,33 +491,38 @@
                         <td>Add-Ons</td>
                         <td>
                           <a class="btn-link" href="{{rennah.add_on_link}}"
-                            >Add-On Link 1</a
+                            >Add-On Link</a
                           >
                         </td>
                         <td>
                           <a class="btn-link" href="{{omantel.add_on_link}}"
-                            >Add-On Link 1</a
+                            >Add-On Link</a
                           >
                         </td>
                         <td>
                           <a class="btn-link" href="{{friendly.add_on_link}}"
-                            >Add-On Link 1</a
+                            >Add-On Link</a
                           >
                         </td>
 
                         <td>
                           <a class="btn-link" href="{{ooredo.add_on_link}}"
-                            >Add-On Link 1</a
+                            >Add-On Link</a
                           >
                         </td>
                         <td>
                           <a class="btn-link" href="{{vodafone.add_on_link}}"
-                            >Add-On Link 1</a
+                            >Add-On Link</a
                           >
                         </td>
                         <td>
                           <a class="btn-link" href="{{redbull.add_on_link}}"
-                            >Add-On Link 1</a
+                            >Add-On Link</a
+                          >
+                        </td>
+                        <td>
+                          <a class="btn-link" href="{{awasr.add_on_link}}"
+                            >Add-On Link</a
                           >
                         </td>
                       </tr>
