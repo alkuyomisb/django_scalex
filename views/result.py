@@ -16,7 +16,7 @@ def result(request):
         price = '0'
     if data_allowance == '':
         data_allowance = '0'
-    if data_allowance == '':
+    if term_length == '':
         term_length = '0'
 
     isp_list = []

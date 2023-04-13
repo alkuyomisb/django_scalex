@@ -2,8 +2,9 @@
   {% if result_page != "yes" %}
   <label class="col-sm-4 col-form-label"> Term Length :</label>
   {% endif %}
-  <div class="col-sm-8">
-    <select class="form-control input-sm">
+  <div class="col-sm-{{width}}">
+    <select class="form-control input-sm" name="term_length">
+      <option value="all">all</option>
       <option value="1">1 day</option>
       <option value="7">1 Week</option>
       <option value="28">1 Month</option>

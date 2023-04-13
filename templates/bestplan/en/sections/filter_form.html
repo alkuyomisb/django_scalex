@@ -16,8 +16,8 @@
         <!-- Plan Type -->
         {% include 'bestplan/en/form_controllers/plan_type.html' with result_page=result_page  width=width%}
 
-        <!-- Term Length  -->
-        {% include 'bestplan/en/form_controllers/plan_type.html' with result_page=result_page  width=width%}
+        {% comment %} <!-- Term Length  -->
+        {% include 'bestplan/en/form_controllers/term_length.html' with result_page=result_page  width=width%} {% endcomment %}
 
         <!-- Data GB Per Month -->
         {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}

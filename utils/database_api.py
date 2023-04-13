@@ -102,7 +102,7 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
     query_orders_by = ""
     query_distances = ""
     for index, order_by in enumerate(orders_by_dict):
-        if orders_by_dict[order_by] == 0 or orders_by_dict[order_by] == '':
+        if orders_by_dict[order_by] == 0 or orders_by_dict[order_by] == '0' or orders_by_dict[order_by] == '':
             continue
 
         query_distances += " , abs({} - {}) as distance_from_{} ".format(
