@@ -1,0 +1,27 @@
+{% load static %}
+<section class="banner-sec">
+    <div class="banner-cover">
+      <div class="container-xl">
+        <div class="banner-plan-cover">
+          <div class="banner-plan-img">
+            <img
+              src="{% static 'images/slider-mobile-plan.png' %}"
+              alt="Image"
+            />
+          </div>
+          <div class="banner-plan-hd">
+            <h1><span class="hd-small float-right" >اختر باقة موبايلك !</span></h1>
+            <p class="float-right text-right">
+              العثور على باقة الموبايل التي تلبي كافة احتياجاتك لم تكن أسهل من أي وقت مضى.
+للحصول على أفضل باقة تناسبك استخدم محرك بحث هيئة تنظيم الاتصالات.
+            </p>
+            {% if 'lang' in request.get_full_path %}
+            <a class="btn btn-start" href="/?lang={{request.GET.lang}}">إبدأ</a>
+            {% else %}
+            <a class="btn btn-start" href="/?lang=en">إبدأ</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

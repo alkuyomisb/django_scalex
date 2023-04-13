@@ -1,12 +1,12 @@
 <div class="form-group row">
   {% if result_page != "yes" %}
-  <label class="col-sm-4 col-form-label"> Plan Type :</label>
+  <label class="col-sm-4 col-form-label"> اختر نوع الباقة:</label>
   {% endif %}
   <div class="col-sm-{{width}}">
     <select class="form-control input-sm">
-      <option value="all">All Plans</option>
-      <option value="prepaid">Prepaid</option>
-      <option value="postpaid">Postpaid</option>
+      <option value="all">جميع الباقات</option>
+                          <option value="prepaid">مسبقة الدفع</option>
+                          <option value="postpaid">آجل الدفع</option>
     </select>
   </div>
 </div>

@@ -135,8 +135,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav tool-nav">
             <li class="nav-item">
-              <a class="nav-link nav-lng" href="javaScript:;"
-                ><span class="nav-label">Arabic</span>
+              {% if 'lang' in request.get_full_path %}
+              <a class="nav-link nav-lng" href="{{ request.get_full_path | cut:"&lang=en" |add:"&lang=ar"}}">
+              {% else %}
+              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"&lang=ar" }}">
+              {% endif %}<span class="nav-label">Arabic</span>
                 <span class="nav-icon">
                   <img
                     src="{% static 'images/top-nav-01.png' %}"
@@ -166,7 +169,7 @@
                 Finding the mobile plan that meets your needs and budget has
                 never been easier. Use TRA's mobile plan finder to get started.
               </p>
-              <a class="btn btn-start" href="#">Get Started</a>
+              <a class="btn btn-start" href="/?lang={{request.GET.lang}}">Get Started</a>
             </div>
           </div>
         </div>

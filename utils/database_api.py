@@ -5,7 +5,7 @@ def get_plans(**conditions):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
+        password="sxbsadmin",
         database="scalex"
     )
 
@@ -70,7 +70,7 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
+        password="sxbsadmin",
         database="scalex"
     )
 
@@ -80,8 +80,6 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
     for index, condition in enumerate(filter_dict):
         if "all" in filter_dict[condition] or "all" in condition:
             continue
-        else:
-            print(filter_dict[condition])
 
         if index != 0:
             query_conditions += " AND "
@@ -104,9 +102,13 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
     query_orders_by = ""
     query_distances = ""
     for index, order_by in enumerate(orders_by_dict):
+        if orders_by_dict[order_by] == 0 or orders_by_dict[order_by] == '':
+            continue
+
         query_distances += " , abs({} - {}) as distance_from_{} ".format(
             order_by, orders_by_dict[order_by], order_by)
-        if index != 0:
+
+        if query_orders_by != "":
             query_orders_by += " , distance_from_{} ".format(order_by)
         else:
             query_orders_by += "distance_from_{} ".format(order_by)

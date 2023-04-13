@@ -1,454 +1,257 @@
+{% extends 'bestplan/ar/sections/result_base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TRA</title>
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
-    <!-- Font Awesome 5 -->
-    <link
-      href="{$ static 'css/font-awesome.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap core CSS -->
-    <link
-      href="{% static 'css/bootstrap.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <!-- Material Design Bootstrap -->
-    <link href="{% static 'css/mdb.css' %}" type="text/css" rel="stylesheet" />
-    <link
-      href="{% static 'css/owl.carousel.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/owl.theme.default.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/dataTables.bootstrap4.min.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/jquery.fancybox.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/hover.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link
-      href="{% static 'css/animate.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link href="{% static 'css/aos.css' %}" type="text/css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link
-      href="{% static 'css/style.css' %}"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-    <script>
-      $(document).ready(function () {
-        $(".export-button").on("click", function () {
-          console.log("Export");
-          $(".btn-submit").text("Export");
-          $("form").attr("action", "export_filter_data");
 
-          $("#search-plan-tab-01").attr("aria-selected", false); //Search
-          $("#search-plan-tab-02").attr("aria-selected", true); //Export
-
-          $("#search-plan-tab-01").removeClass("active"); //Search
-          $("#search-plan-tab-02").addClass("active"); //Export
-        });
-
-        $(".search-button").on("click", function () {
-          console.log("Search");
-          $(".btn-submit").text("Find");
-          $("form").attr("action", "result");
-
-          $("#search-plan-tab-02").attr("aria-selected", false); //Export
-          $("#search-plan-tab-01").attr("aria-selected", true); //Search
-
-          $("#search-plan-tab-02").removeClass("active"); //Export
-          $("#search-plan-tab-01").addClass("active"); //Search
-        });
-
-      });
-    </script>
-    <script src="{% static 'js/sb-script.js' %}"></script>
-    <script type="text/javascript">
-      function checkAllOperators() {
-        for (let i = 1; i <= 3; i++) {
-          document.getElementById("cb1_" + i).checked = true;
-          document.getElementById("cb2_" + i).checked = true;
-          document.getElementById("cb3_" + i).checked = true;
-          document.getElementById("cb4_" + i).checked = true;
-          document.getElementById("cb5_" + i).checked = true;
-        }
-      }
-
-      function uncheckAllOperators() {
-        for (let i = 1; i <= 3; i++) {
-          document.getElementById("cb1_" + i).checked = false;
-          document.getElementById("cb2_" + i).checked = false;
-          document.getElementById("cb3_" + i).checked = false;
-          document.getElementById("cb4_" + i).checked = false;
-          document.getElementById("cb5_" + i).checked = false;
-        }
-      }
-
-      function selectOpertor(event) {
-        if (event.checked) {
-          checkAllOperators();
-        } else {
-          uncheckAllOperators();
-        }
-      }
-    </script>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
-      <div class="container-xl container-nav">
-        <div class="logo">
-          <a href="index.html">
-            <img src="{% static 'images/tra-logo.png' %}" alt="TRA" />
-          </a>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav tool-nav">
-            <li class="nav-item">
-              {% if 'lang' in request.get_full_path %}
-              <a class="nav-link nav-lng" href="{{ request.get_full_path}}">
-              {% else %}
-              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"&lang=ar" }}">
-              {% endif %}
-              <span class="nav-label">Arabic</span>
-                <span class="nav-icon">
-                  <img
-                    src="{% static 'images/top-nav-01.png' %}"
-                    alt="My image"
-                  /> </span
-              ></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <section class="banner-sec">
-      <div class="banner-cover">
-        <div class="container-xl">
-          <div class="banner-plan-cover">
-            <div class="banner-plan-img">
-              <img
-                src="{% static 'images/slider-mobile-plan.png' %}"
-                alt="Image"
-              />
-            </div>
-            <div class="banner-plan-hd">
-              <h1><span class="hd-small">Find your</span> <br />Mobile Plan</h1>
-              <p>
-                Finding the mobile plan that meets your needs and budget has
-                never been easier. Use TRA's mobile plan finder to get started.
-              </p>
-              <a class="btn btn-start" href="#">Get Started</a>
+{% block result_table %}
+<main class="content-sec">
+  <section class="search-plan-sec">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-lg-3 col-search-form">
+          <div class="search-form-tb">
+            <ul class="nav search-form-nav" id="searchTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="search-plan-tab-01"
+                  data-toggle="tab"
+                  data-target="#search-plan-nav-01"
+                  type="button"
+                  role="tab"
+                  aria-controls="search-plan-nav-02"
+                  aria-selected="true"
+                >
+                  <span class="nav-block search-button"
+                    ><i class="fa fa-search" aria-hidden="true"></i>
+                    بحث</span
+                  >
+                </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="search-plan-tab-02"
+                  data-toggle="tab"
+                  data-target="#search-plan-nav-02"
+                  type="button"
+                  role="tab"
+                  aria-controls="search-plan-nav-02"
+                  aria-selected="false"
+                >
+                  <span class="nav-block export-button"
+                    ><i class="fa fa-download" aria-hidden="true"></i>
+                    تنزيل</span
+                  >
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content" id="nav-tabContent">
+                {% include 'bestplan/ar/sections/filter_form.html' with result_page='yes'  width='12'%}
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="col-12 col-lg">
+          <div class="search-plan-table">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      <a class="mobile-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-mobile.png' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
 
-    <main class="content-sec">
-      <section class="search-plan-sec">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12 col-lg-3 col-search-form">
-              <div class="search-form-tb">
-                <ul class="nav search-form-nav" id="searchTab" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <a
-                      class="nav-link active"
-                      id="search-plan-tab-01"
-                      data-toggle="tab"
-                      data-target="#search-plan-nav-01"
-                      type="button"
-                      role="tab"
-                      aria-controls="search-plan-nav-02"
-                      aria-selected="true"
-                    >
-                      <span class="nav-block search-button"
-                        ><i class="fa fa-search" aria-hidden="true"></i>
-                        Search</span
+                    {% for plan in plans %} {%if "omantel" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-logo-02.svg' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+                    {% elif "renna" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-logo-01.svg' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+                    {% elif "redbull" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-logo-06.png' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+                    {% elif "vodafone" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-logo-05.svg' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+                    {% elif "ooredoo" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-logo-04.svg' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+                    {% elif "friendly" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/plan-logo-03.svg' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+                    {% elif "awasr" in plan.isp %}
+                    <th>
+                      <a class="provider-logo" href="javascript:;"
+                        ><img
+                          src="{% static 'images/awasr-logo.png' %}"
+                          alt="Logo"
+                      /></a>
+                    </th>
+
+                    {% endif %} {% endfor %}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>اسم الباقة</td>
+
+                    {% for plan in plans %}
+                    <td>
+                      <a class="btn-link" href="{{plan.link}}"
+                        >{{plan.title}}</a
                       >
-                    </a>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <a
-                      class="nav-link"
-                      id="search-plan-tab-02"
-                      data-toggle="tab"
-                      data-target="#search-plan-nav-02"
-                      type="button"
-                      role="tab"
-                      aria-controls="search-plan-nav-02"
-                      aria-selected="false"
-                    >
-                      <span class="nav-block export-button"
-                        ><i class="fa fa-download" aria-hidden="true"></i>
-                        Export Data</span
+                    </td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <td>نوع الباقة</td>
+                    {% for plan in plans %}
+                    {% if 'PREPAID' in plan.plan_type %}
+                    <td>مسبقة الدفع</td>
+                    {% elif 'POSTPAID' in plan.plan_type %}
+                    <td>آجل الدفع الدفع</td>
+                    {% else %}
+                    {% endif %}
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <td>السعر الإجمالي للباقة (ريال عماني)</td>
+                    {%for plan in plans%}
+                    <td>
+                      <span class="price-plan">{{ plan.price_value }}</span>
+                    </td>
+
+                    {%endfor%}
+                  </tr>
+                  <tr>
+                    <td>سعر الباقة الأساسية (ريال عماني)</td>
+                    {%for plan in plans%}
+                    <td>{{ plan.price_value }}</td>
+
+                    {%endfor%}
+                  </tr>
+                  {% comment %}
+                  <tr>
+                    <td>Pay As You Go Fees (OMR)</td>
+                    <td>-</td>
+                    <td>0</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  {% endcomment %}
+                  <tr>
+                    <td>طول المدة (ايام)</td>
+                    {%for plan in plans%}
+                    <td>{{ plan.duration_value }}</td>
+
+                    {%endfor%}
+                  </tr>
+                  {% comment %}
+                  <tr>
+                    <td>Contract (Yes, No)</td>
+                    <td>-</td>
+                    <td>No</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  {% endcomment %}
+                  <tr>
+                    <td>البيانات المحلية (جيجا بايت)</td>
+                    {%for plan in plans%}
+                    <td>{{ plan.data_allowance_value }}</td>
+
+                    {%endfor%}
+                  </tr>
+                  <tr>
+                    <td>الدقائق المحلية</td>
+                    {% for plan in plans %}
+                    <td>{{plan.local_minutes}}</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <td>دقائق على نفس الشبكة</td>
+                    {% for plan in plans %}
+                    <td>{{plan.flexi_minutes}}</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <td>الدقائق الدولية</td>
+                    {% for plan in plans %}
+                    <td>{{plan.international_minutes}}</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <td>بيانات التجوال (جيجا بايت)</td>
+                    {% for plan in plans %}
+                    <td>{{plan.world_roaming}}</td>
+                    {% endfor %}
+                  </tr>
+                  {% comment %}
+                  <tr>
+                    <td>Additional Benifits</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  {% endcomment %}
+                  <tr>
+                    <td>الباقات الإضافية</td>
+                    {%for plan in plans%}
+                    <td>
+                      <a class="btn-link" href="{{plan.add_on_url}}"
+                        >وصلة الباقة  الإضافية</a
                       >
-                    </a>
-                  </li>
-                </ul>
-                <div class="tab-content" id="nav-tabContent">
-                    {% include 'bestplan/en/sections/filter_form.html' with result_page='yes'  width='12'%}
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg">
-              <div class="search-plan-table">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>
-                          <a class="mobile-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-mobile.png' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
+                    </td>
 
-                        {% for plan in plans %} {%if "omantel" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-logo-02.svg' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-                        {% elif "renna" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-logo-01.svg' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-                        {% elif "redbull" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-logo-06.png' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-                        {% elif "vodafone" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-logo-05.svg' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-                        {% elif "ooredoo" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-logo-04.svg' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-                        {% elif "friendly" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/plan-logo-03.svg' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-                        {% elif "awasr" in plan.isp %}
-                        <th>
-                          <a class="provider-logo" href="javascript:;"
-                            ><img
-                              src="{% static 'images/awasr-logo.png' %}"
-                              alt="Logo"
-                          /></a>
-                        </th>
-
-                        {% endif %} {% endfor %}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Plan Name</td>
-
-                        {% for plan in plans %}
-                        <td>
-                          <a class="btn-link" href="{{plan.link}}"
-                            >{{plan.title}}</a
-                          >
-                        </td>
-                        {% endfor %}
-                      </tr>
-                      <tr>
-                        <td>Plan Type</td>
-                        {% for plan in plans %}
-                        <td>{{plan.plan_type}}</td>
-                        {% endfor %}
-                      </tr>
-                      <tr>
-                        <td>Total Plan Price (OMR)</td>
-                        {%for plan in plans%}
-                        <td>
-                          <span class="price-plan">{{ plan.price_value }}</span>
-                        </td>
-
-                        {%endfor%}
-                      </tr>
-                      <tr>
-                        <td>Base Plan Price (OMR)</td>
-                        {%for plan in plans%}
-                        <td>{{ plan.price_value }}</td>
-
-                        {%endfor%}
-                      </tr>
-                      {% comment %}
-                      <tr>
-                        <td>Pay As You Go Fees (OMR)</td>
-                        <td>-</td>
-                        <td>0</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
-                      {% endcomment %}
-                      <tr>
-                        <td>Term Length</td>
-                        {%for plan in plans%}
-                        <td>{{ plan.duration_value }}</td>
-
-                        {%endfor%}
-                      </tr>
-                      {% comment %}
-                      <tr>
-                        <td>Contract (Yes, No)</td>
-                        <td>-</td>
-                        <td>No</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
-                      {% endcomment %}
-                      <tr>
-                        <td>Plan Data</td>
-                        {%for plan in plans%}
-                        <td>{{ plan.data_allowance_value }}</td>
-
-                        {%endfor%}
-                      </tr>
-                      <tr>
-                        <td>Local Minutes</td>
-                        {% for plan in plans %}
-                        <td>{{plan.local_minutes}}</td>
-                        {% endfor %}
-                      </tr>
-                      <tr>
-                        <td>On-net Minutes</td>
-                        {% for plan in plans %}
-                        <td>{{plan.flexi_minutes}}</td>
-                        {% endfor %}
-                      </tr>
-                      <tr>
-                        <td>International Minutes</td>
-                        {% for plan in plans %}
-                        <td>{{plan.international_minutes}}</td>
-                        {% endfor %}
-                      </tr>
-                      <tr>
-                        <td>Roaming Data</td>
-                        {% for plan in plans %}
-                        <td>{{plan.world_roaming}}</td>
-                        {% endfor %}
-                      </tr>
-                      {% comment %}
-                      <tr>
-                        <td>Additional Benifits</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                      </tr>
-                      {% endcomment %}
-                      <tr>
-                        <td>Add-Ons</td>
-                        {%for plan in plans%}
-                        <td>
-                          <a class="btn-link" href="{{plan.add_on_url}}"
-                            >Add-On Link</a
-                          >
-                        </td>
-
-                        {%endfor%}
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer-sec">
-      <div class="container-xl">
-        <div class="row">
-          <div class="col-12">
-            <div class="powered-cover">
-              Powered by
-              <img
-                src="{% static 'images/SBlogo.png' %}"
-                alt="Logo"
-                style="width: 70px"
-              />
+                    {%endfor%}
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-
-    <a href="javascript:;" id="return-top" class="return-top"
-      ><span><img src="images/up-icon.svg" alt="Up" /></span
-    ></a>
-  </body>
-</html>
+    </div>
+  </section>
+</main>
+{% endblock %}

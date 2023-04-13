@@ -1,0 +1,356 @@
+/* Arabic CSS
+  --------------------------------------- */
+
+@font-face {
+  font-family: "Droid Arabic Kufi";
+  src: url("../fonts/DroidArabicKufi.eot");
+  src: url("../fonts/DroidArabicKufi.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/DroidArabicKufi.woff2") format("woff2"),
+    url("../fonts/DroidArabicKufi.woff") format("woff"),
+    url("../fonts/DroidArabicKufi.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Droid Arabic Kufi", "Rajdhani";
+  text-align: right;
+}
+
+.return-top {
+  left: auto;
+  right: 20px;
+}
+
+.rtl .navbar-nav .nav-item + .nav-item,
+[dir="rtl"] .navbar-nav .nav-item + .nav-item {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.rtl .dropdown-menu,
+[dir="rtl"] .dropdown-menu {
+  right: auto;
+  left: 0;
+  text-align: right;
+}
+[dir="rtl"] .bootstrap-select .dropdown-toggle {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .bootstrap-select .dropdown-toggle .filter-option {
+  text-align: right;
+}
+.rtl .dropdown-toggle::after,
+[dir="rtl"] .dropdown-toggle::after {
+  margin-right: 0.255rem;
+  margin-left: 0;
+}
+
+.loader-overlay .loader {
+  direction: ltr;
+}
+
+.navbar-main .logo {
+  margin-left: 0;
+  margin-right: 1rem;
+  order: 3;
+}
+
+.navbar-main .navbar-collapse {
+  direction: unset;
+  order: 1;
+}
+
+.tool-nav .nav-item + .nav-item {
+  margin-left: 0 !important;
+  margin-right: 1.5rem !important;
+}
+
+.tool-nav .nav-item + .nav-item::before {
+  left: 0;
+  right: -1rem;
+}
+
+.tool-nav .nav-item .nav-link .nav-icon {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.sector-item .sector-it-hd h3::after {
+  left: auto;
+  right: 0;
+}
+
+.sector-item .sector-it-content .btn-more {
+  margin: 0 auto 0 0;
+}
+
+.sector-item .sector-it-content .btn-more .icon-right {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+.service-tb-nav .nav-item .nav-link {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.stake-accordion .card .card-header h3 .icon {
+  right: auto;
+  left: 0.5rem;
+}
+
+.stake-item ul li {
+  padding: 0 1.5rem 0 0;
+}
+
+.stake-item ul li::before {
+  left: auto;
+  right: 0;
+}
+
+.sector-indcators .sector-ind-hd {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.sector-indcators .sector-ind-hd::before {
+  left: auto;
+  right: 0;
+}
+
+.sec-ind-list .sec-ind-item .sec-ind-icon {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+.sector-ind-graph {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.telecom-list .tele-item .tele-icon {
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+.postal-list .postal-item .postal-icon {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+.postal-list .postal-item .postal-label {
+  text-align: left;
+}
+
+.media-cover .media-hd {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.media-cover .media-hd::before {
+  left: auto;
+  right: 0;
+}
+
+.ft-links li a {
+  padding: 0.1rem 0.1rem 0.1rem 0;
+}
+
+.ft-links li a::before {
+  left: auto;
+  right: 0;
+}
+
+.ft-links li a:hover {
+  padding: 0.1rem 0.5rem 0.1rem 0;
+}
+
+.btm-links li + li {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+.btm-links li + li::before {
+  left: auto;
+  right: -1rem;
+}
+
+.footer-social .sm-item + .sm-item {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+.registry-search .reg-search-form .input-group .form-control {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+.registry-search .reg-search-form .input-group .btn-search img {
+  margin-left: 0;
+  margin-right: 1.5rem;
+}
+
+.auction-cover .auction-hd {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.auction-cover .auction-hd::before {
+  left: 0;
+  right: 0;
+}
+
+.auction-cover .auction-table .checkbox {
+  padding: 0 35px 0 0;
+  margin: 5px 0 5px 10px;
+}
+
+.auction-cover .auction-table .checkbox .checkmark {
+  left: auto;
+  right: 0;
+}
+
+.auction-cover .auction-table .checkbox .checkmark:after {
+  left: auto;
+  right: 1px;
+}
+
+.about-om-cover .abt-om-hd {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.about-om-cover .abt-om-hd::before {
+  left: auto;
+  right: 0;
+}
+
+.registrars-carousel .owl-theme .owl-nav .owl-prev {
+  left: auto;
+  right: -5rem;
+  background-image: url(../images/arrow-right.svg);
+}
+
+.registrars-carousel .owl-theme .owl-nav .owl-next {
+  right: auto;
+  left: -5rem;
+  background-image: url(../images/arrow-left.svg);
+}
+
+.registrars-carousel:hover .owl-theme .owl-nav .owl-prev {
+  left: auto;
+  right: 25px;
+}
+
+.registrars-carousel:hover .owl-theme .owl-nav .owl-next {
+  right: auto;
+  left: 25px;
+}
+
+.registrars-carousel .owl-item {
+  border-left: solid 0 var(--bk-grade-100);
+  border-right: solid 1px var(--bk-grade-100);
+}
+
+.lt-event-cover .lt-event-hd {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.lt-event-cover .lt-event-hd::before {
+  left: auto;
+  right: 0;
+}
+
+.lt-event-carousel .owl-theme .owl-nav .owl-prev {
+  right: auto;
+  left: 3.5rem;
+  background-image: url(../images/arrow-left.svg);
+}
+
+.lt-event-carousel .owl-theme .owl-nav .owl-next {
+  right: auto;
+  left: 0;
+  background-image: url(../images/arrow-right.svg);
+}
+
+.lt-event-item .lt-event-it-body {
+  padding-left: 0;
+  padding-right: 1.5rem;
+  border-left: solid 0 var(--bk-grade-100);
+  border-right: solid 1px var(--bk-grade-100);
+}
+
+.policy-item .policy-it-icon {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+.faq-cover .faq-hd {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+.faq-cover .faq-hd::before {
+  left: auto;
+  right: 0;
+}
+
+.faq-accordion .card .card-header h3 {
+  padding: 1.25rem 0 1.25rem 2rem;
+  margin: 0;
+}
+
+.faq-accordion .card .card-header h3 .icon {
+  right: auto;
+  left: 0;
+}
+
+/* RESPONSIVE CSS
+  -------------------------------------------------- */
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1200px) {
+}
+@media (min-width: 1366px) {
+}
+@media (max-width: 1919px) {
+}
+@media (max-width: 1600px) {
+}
+
+@media (max-width: 1440px) {
+}
+
+@media (max-width: 1366px) {
+}
+
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 991px) {
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 576px) {
+  .registry-search .reg-search-form .input-group .btn-search img {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+  .policy-item .policy-it-icon {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+
+  .faq-accordion .card .card-header h3 {
+    padding: 1rem 0 1rem 2rem;
+  }
+}

@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-qyevtc$7k66=tm1m1731)zvi#873llnm3#i*&czcf&-h1gt@2(
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '10.42.55.19'
+    '10.42.55.19',
+    '127.0.0.1'
 ]
 
 STATICFILES_DIRS = [

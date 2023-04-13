@@ -3,10 +3,8 @@ from django.shortcuts import render
 
 def index(request):
     data = {}
-    print('indexing...')
-    # return render(
-    #     request,
-    #     "bestplan/en/mobile_form.html", data)
+    lang = request.GET.get("lang", "en")
+
     return render(
         request,
-        "bestplan/en/filter.html", data)
+        "bestplan/{}/filter.html".format(lang), data)

@@ -10,6 +10,14 @@ def result(request):
     plan_type = request.GET.get("plan_type", "all")
     rank = request.GET.get("rank", "all")
     term_length = request.GET.get("term_length", 1)
+    lang = request.GET.get("lang", 'en')
+
+    if price == '':
+        price = '0'
+    if data_allowance == '':
+        data_allowance = '0'
+    if data_allowance == '':
+        term_length = '0'
 
     isp_list = []
     omantel = request.GET.get("omantel", "off")
@@ -37,16 +45,16 @@ def result(request):
 
     if len(isp_list) == 0:
         plans = {
-            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]},  {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type": [plan_type]},    {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]},  {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
+            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]},  {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
             "vodafone":   get_one_closest({"isp": ["vodafone"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
             "friendly":   get_one_closest({"isp": ["friendly"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
             "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1)
         }
         res = plans
-        link = "bestplan/en/result.html"
+        link = "bestplan/{}/result.html".format(lang)
     else:
         TOTAL_PLANS_NUMBER = 7
         top_plans = []
@@ -54,6 +62,6 @@ def result(request):
         top_plans = get_one_closest({"isp": isp_list,  "service_type": [service_type], "plan_type": [plan_type]}, {
                                     "price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, TOTAL_PLANS_NUMBER),
         res = {"plans": top_plans[0]}
-        link = "bestplan/en/top_result.html"
+        link = "bestplan/{}/top_result.html".format(lang)
 
     return render(request, link, res)
