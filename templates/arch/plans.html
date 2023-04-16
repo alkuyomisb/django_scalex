@@ -36,11 +36,27 @@
       <!-- plan and Promotions tabs -->
       <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'plan')">plans</button>
-        <button class="tablinks active" onclick="openTab(event, 'promotions')"  id="defaultOpen">Promotions</button>
+        <button class="tablinks active" onclick="openTab(event, 'promotions')" id="defaultOpen">Promotions</button>
       </div>
 
 
       <!-- plan table -->
+      <!-- <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for plan in plans %}
+          <tr>
+            <td>{{ plan.price_value }} {{ plan.price_unit }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table> -->
       <div id="plan" class="tabcontent">
 
         <!-- PRICE RANGE  DIALOG -->
@@ -125,60 +141,145 @@
             <table class="table" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Date</th>
                   <th>
-                    Plan Details
+                    ISP
                   </th>
+                  <th>
+                    Package
+                  </th>
+                  <th>
+                    Service
+                  </th>
+                  <th>
+                    Plan
+                  </th>
+
                   <th>
                     Price
-                  </th>
-                  <th>
-                    Data Volume
                   </th>
                   <th>
                     Duration
                   </th>
                   <th>
+                    Data Allowance
+                  </th>
+                  <th>
+                    Flexi Minutes
+                  </th>
+                  <th>
+                    Local Minutes
+                  </th>
+                  <th>
                     International Minutes
                   </th>
                   <th>
-                    Roaming Usage
+                    Fixed Line Minutes
                   </th>
+                  <th>
+                    SMS
+                  </th>
+                  <th>
+                    Social Media Data
+                  </th>
+
+
+                  <th>
+                    Download Speed
+                  </th>
+                  <th>
+                    Upload Speed
+                  </th>
+                  <th>
+                    World Roaming
+                  </th>
+                  <th>
+                    Contract Duration
+                  </th>
+                  <th>
+                    Last Checked
+                  </th>
+                  <th>
+                    Status
+                  </th>
+                  <th style="width: 2px;">
+                    ISP Link
+                  </th>
+                  <th>
+                    Add-on Link
+                  </th>
+
                 </tr>
               </thead>
               <tbody>
-                {%for package in OoredooHalaPackages%}
+                {% for plan in plans %}
                 <tr>
-                  <td>2021-07-14</td>
                   <td>
-                    {% ifchanged  package.package%}{{package.package}}{% endifchanged %}
-                  </td>
-                  <td>
-                    {% ifchanged  package.price%}{{package.price}}{% endifchanged %}
-
+                    {{plan.isp}}
                   </td>
                   <td>
-                    <span>
-                      {% ifchanged  package.GB%}{{package.GB}}{% endifchanged %}
-
-                    </span>
+                    {{plan.title}}
                   </td>
-                  <td> {% ifchanged  package.title%}{{package.title}}{% endifchanged %}
+                  <td>
+                    {{plan.service_type}}
+                  </td>
+                  <td>
+                    {{plan.plan_type}}
+                  </td>
+
+                  <td>
+                    {{ plan.price_value }} {{ plan.price_unit }}
+                  </td>
+                  <td>
+                    {{plan.duration_value}} {{plan.duration_unit}}
+                  </td>
+                  <td>
+                    {{plan.data_allowance_value}} {{plan.data_allowance_unit}}
+                  </td>
+                  <td>
+                    {{plan.flexi_minutes}}
+                  </td>
+                  <td>
+                    {{plan.local_minutes}}
+                  </td>
+                  <td>
+                    {{plan.international_minutes}}
+                  </td>
+                  <td>
+                    {{plan.fixed_line_minutes}}
+                  </td>
+                  <td>
+                    {{plan.sms}}
+                  </td>
+                  <td>
+                    {{plan.social_media_data_value}} {{plan.social_media_data_unit}}
+                  </td>
 
 
+
+                  <td>
+                    {{plan.download_speed_value}} {{plan.download_speed_unit}}
                   </td>
-                  <td> -
-                    {% comment %} <span>
-                      Zone One: PAYG
-                    </span><br />
-                    <span>
-                      Zone 2 : NA
-                    </span> {% endcomment %}
+                  <td>
+                    {{plan.upload_speed_value}} {{plan.upload_speed_unit}}
                   </td>
-                  <td> -
-                    {% comment %} <span>
-                      UNL/$10 Day Pass
-                    </span> {% endcomment %}
+                  <td>
+                    {{plan.world_roaming_value}} {{plan.world_roaming_unit}}
+                  </td>
+                  <td>
+                    {{plan.contract_duration_value}} {{plan.contract_duration_unit}}
+                  </td>
+                  <td>
+                    {{plan.last_checked}}
+                  </td>
+                  <td>
+                    {{plan.status}}
+                  </td>
+                  <td style="text-align: left; width: 2px;">
+                    <a>{{plan.link}}</a>
+                  </td>
+                  <td>
+                    <a> {{plan.add_on_link}}</a>
+
                   </td>
                 </tr>
                 {%endfor%}
@@ -187,21 +288,21 @@
                 <tr>
                   <td>2021-07-14</td>
                   <td>
-                    {% ifchanged  package.title%}{{package.title}}{% endifchanged %}
+                    {% ifchanged package.title%}{{package.title}}{% endifchanged %}
                   </td>
                   <td>
-                    {% ifchanged  package.price%}{{package.price}}{% endifchanged %}
+                    {% ifchanged package.price%}{{package.price}}{% endifchanged %}
 
                   </td>
                   <td>
                     <span>
-                      {% ifchanged  package.data%}{{package.data}}{% endifchanged %}
+                      {% ifchanged package.data%}{{package.data}}{% endifchanged %}
 
                     </span>
                   </td>
-                  <td>  {% ifchanged  package.data%}{{package.duration}}{% endifchanged %}
+                  <td> {% ifchanged package.data%}{{package.duration}}{% endifchanged %}
                   </td>
-                  <td> {% ifchanged  package.IntlMins%}{{package.IntlMins}}{% endifchanged %}
+                  <td> {% ifchanged package.IntlMins%}{{package.IntlMins}}{% endifchanged %}
 
                   </td>
                   <td> -
@@ -322,10 +423,12 @@
                 </tr>
               </thead>
               <tbody>
+                {% for data in myresult %}
                 <tr>
                   <td>2021-07-14</td>
                   <td>
-                    Small output Choice
+                    <!-- Small output Choice -->
+                    {{ data.0 }} sss
                   </td>
                   <td>
                     $45.00
@@ -355,6 +458,8 @@
                     </span>
                   </td>
                 </tr>
+                {% endfor %}
+
                 <tr>
                   <td>2021-07-14</td>
                   <td>Medium output Choice</td>
