@@ -196,9 +196,6 @@
                     Contract Duration
                   </th>
                   <th>
-                    Last Checked
-                  </th>
-                  <th>
                     Status
                   </th>
                   <th style="width: 2px;">
@@ -254,8 +251,6 @@
                     {{plan.social_media_data_value}} {{plan.social_media_data_unit}}
                   </td>
 
-
-
                   <td>
                     {{plan.download_speed_value}} {{plan.download_speed_unit}}
                   </td>
@@ -269,16 +264,13 @@
                     {{plan.contract_duration_value}} {{plan.contract_duration_unit}}
                   </td>
                   <td>
-                    {{plan.last_checked}}
-                  </td>
-                  <td>
                     {{plan.status}}
                   </td>
                   <td style="text-align: left; width: 2px;">
-                    <a>{{plan.link}}</a>
+                    <a href="{{plan.link}}">{{plan.link}}</a>
                   </td>
                   <td>
-                    <a> {{plan.add_on_link}}</a>
+                    <a href="{{plan.add_on_link}}"> {{plan.add_on_link}}</a>
 
                   </td>
                 </tr>
@@ -547,7 +539,7 @@
 </body>
 
 <script>
-
+  
   // tab function start
   function openTab(evt, tabName) {
     var i, tabcontent, tablinks;

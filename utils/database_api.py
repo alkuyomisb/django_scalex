@@ -1,4 +1,5 @@
 import mysql.connector
+from datetime import datetime
 
 def get_all_plans ():
     plans = []
@@ -10,16 +11,14 @@ def get_all_plans ():
     )
 
     mycursor = mydb.cursor()
-
     mycursor.execute("SELECT * FROM plan")
-
     myresult = mycursor.fetchall()
 
     for plan in myresult:
         p = record_to_dict(plan)
         plans.append(p)
 
-
+   
     mydb.close()
     return plans
 
@@ -52,6 +51,7 @@ def get_plans(**conditions):
     cursor.execute(query)
     records = cursor.fetchall()
     plans = []
+    
 
     for index, record in enumerate(records):
         data = {
