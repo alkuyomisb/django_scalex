@@ -1,5 +1,5 @@
 import mysql.connector
-from datetime import datetime
+import matplotlib.pyplot as plt
 
 def get_all_plans ():
     plans = []
@@ -228,3 +228,27 @@ def get_empty_dict():
         "add_on_link": "-"
     }
     return data
+
+
+def display_chart(x, y, chart_type):
+    if chart_type == "line":
+        plt.plot(x, y)
+        plt.title("line")
+        plt.xlabel("X")
+        plt.ylabel("Y")
+        plt.show()
+    elif chart_type == "line":
+        plt.scatter(x, y)
+        plt.title("line Chart")
+        plt.xlabel("X")
+        plt.ylabel("Y")
+        plt.show()
+    elif chart_type == "pie":
+        plt.bar(x, y)
+        plt.title("pie Chart")
+        plt.xlabel("X")
+        plt.ylabel("Y")
+        plt.show()
+    else:
+        print("Invalid chart type")
+   
