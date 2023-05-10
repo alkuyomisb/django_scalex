@@ -1,0 +1,23 @@
+<div class="form-group row">
+  {% if result_page != "yes" %}
+  <label class="col-sm-4 col-form-label"> Roaming :</label>
+  {% endif %}
+
+  <div class="col-sm-{{width}}">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="with_roaming"
+            id="r1_{{id}}"
+          />
+          <label class="form-check-label" for="roaming"> مع بيانات التجوال</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

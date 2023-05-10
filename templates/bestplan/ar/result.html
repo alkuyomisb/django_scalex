@@ -120,27 +120,27 @@
                   <tr>
                     <td>اسم الباقة</td>
                     <td>
-                      <a class="btn-link" href="{{rennah.link}}"
+                      <a class="btn-link" target="_blank" href="{{rennah.link}}"
                         >{{rennah.title}}</a
                       >
                     </td>
                     <td>
-                      <a class="btn-link" href="{{omantel.link}}"
+                      <a class="btn-link" target="_blank" href="{{omantel.link}}"
                         >{{omantel.title}}</a
                       >
                     </td>
                     <td>
-                      <a class="btn-link" href="{{friendly.link}}"
+                      <a class="btn-link" target="_blank" href="{{friendly.link}}"
                         >{{friendly.title}}</a
                       >
                     </td>
                     <td>
-                      <a class="btn-link" href="{{ooredoo.link}}"
+                      <a class="btn-link" target="_blank" href="{{ooredoo.link}}"
                         >{{ooredoo.title}}</a
                       >
                     </td>
                     <td>
-                      <a class="btn-link" href="{{vodafone.link}}"
+                      <a class="btn-link" target="_blank" href="{{vodafone.link}}"
                         >{{vodafone.title}}</a
                       >
                     </td>
@@ -150,7 +150,7 @@
                       >
                     </td>
                     <td>
-                      <a class="btn-link" href="{{awasr.link}}"
+                      <a class="btn-link" target="_blank" href="{{awasr.link}}"
                         >{{awasr.title}}</a
                       >
                     </td>
@@ -350,41 +350,82 @@
                   <tr>
                     <td>الباقات الإضافية</td>
                     <td>
-                      <a class="btn-link" href="{{rennah.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+                      {%if rennah.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{rennah.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
                     </td>
                     <td>
-                      <a class="btn-link" href="{{omantel.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+                      {%if omantel.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{omantel.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
+
+                  
                     </td>
                     <td>
-                      <a class="btn-link" href="{{friendly.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+                      <a class="btn-link" target="_blank" href="{{friendly.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
                     </td>
 
                     <td>
-                      <a class="btn-link" href="{{ooredo.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+
+                      {%if ooredo.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{ooredo.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
+
+                  
                     </td>
                     <td>
-                      <a class="btn-link" href="{{vodafone.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+
+                      {%if vodafone.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{vodafone.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
+
+
+                  
                     </td>
                     <td>
-                      <a class="btn-link" href="{{redbull.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+
+                      {%if redbull.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{redbull.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
+
+
+                   
                     </td>
                     <td>
-                      <a class="btn-link" href="{{awasr.add_on_link}}"
-                      >وصلة الباقة  الإضافية</a
+
+
+                      {%if awasr.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{awasr.add_on_link}}"
+                        >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
                     </td>
+                    <td>
+
                   </tr>
                 </tbody>
               </table>

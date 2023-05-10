@@ -130,7 +130,7 @@
 
                     {% for plan in plans %}
                     <td>
-                      <a class="btn-link" href="{{plan.link}}"
+                      <a class="btn-link" target="_blank" href="{{plan.link}}"
                         >{{plan.title}}</a
                       >
                     </td>
@@ -238,9 +238,15 @@
                     <td>الباقات الإضافية</td>
                     {%for plan in plans%}
                     <td>
-                      <a class="btn-link" href="{{plan.add_on_url}}"
+
+                      {%if plan.add_on_link|length > 1 %}
+                      <a class="btn-link" target="_blank" href="{{plan.add_on_link}}"
                         >وصلة الباقة  الإضافية</a
                       >
+                      {%else%}
+                      -
+                      {%endif%}
+
                     </td>
 
                     {%endfor%}

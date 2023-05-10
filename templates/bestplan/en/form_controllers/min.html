@@ -1,0 +1,46 @@
+<div class="form-group row">
+  {% if result_page != "yes" %}
+  <label class="col-sm-4 col-form-label"> Minutes :</label>
+  {% endif %}
+
+  <div class="col-sm-{{width}}">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            onchange="selectMinutes(this)"
+            id="ALL_MIN_{{id}}"
+          />
+          <label class="form-check-label"> Both </label>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="international_minutes"
+            id="m1_{{id}}"
+          />
+          <label class="form-check-label" for="international_minutes"> International Minutes </label>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="local_minutes"
+            id="m2_{{id}}"
+          />
+          <label class="form-check-label" for="local_minutes"> Local Minutes </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

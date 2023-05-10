@@ -99,6 +99,7 @@
           document.getElementById("cb3_" + i).checked = true;
           document.getElementById("cb4_" + i).checked = true;
           document.getElementById("cb5_" + i).checked = true;
+          document.getElementById("cb6_" + i).checked = true;
         }
       }
 
@@ -109,6 +110,7 @@
           document.getElementById("cb3_" + i).checked = false;
           document.getElementById("cb4_" + i).checked = false;
           document.getElementById("cb5_" + i).checked = false;
+          document.getElementById("cb6_" + i).checked = false;
         }
       }
 
@@ -119,6 +121,32 @@
           uncheckAllOperators();
         }
       }
+
+      function checkAllMinutes() {
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById("m1_" + i).checked = true;
+          document.getElementById("m2_" + i).checked = true;
+        }
+      }
+
+      function uncheckAllMinutes() {
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById("m1_" + i).checked = false;
+          document.getElementById("m2_" + i).checked = false;
+        }
+      }
+
+      function selectMinutes(event) {
+        console.log("selectMinutes")
+        if (event.checked) {
+          checkAllMinutes();
+        } else {
+          uncheckAllMinutes();
+        }
+      }
+
+
+      
     </script>
   </head>
 
@@ -316,7 +344,7 @@
 
                         {% for plan in plans %}
                         <td>
-                          <a class="btn-link" href="{{plan.link}}"
+                          <a class="btn-link" target="_blank" href="{{plan.link}}"
                             >{{plan.title}}</a
                           >
                         </td>
@@ -419,9 +447,15 @@
                         <td>Add-Ons</td>
                         {%for plan in plans%}
                         <td>
-                          <a class="btn-link" href="{{plan.add_on_url}}"
+
+                          {%if plan.add_on_link|length > 1 %}
+                          <a class="btn-link" target="_blank" href="{{plan.add_on_link}}"
                             >Add-On Link</a
                           >
+                          {%else%}
+                          -
+                          {%endif%}
+
                         </td>
 
                         {%endfor%}

@@ -75,6 +75,7 @@
             document.getElementById("cb3_" + i).checked = true;
             document.getElementById("cb4_" + i).checked = true;
             document.getElementById("cb5_" + i).checked = true;
+            document.getElementById("cb6_" + i).checked = true;
           }
         }
 
@@ -85,6 +86,7 @@
             document.getElementById("cb3_" + i).checked = false;
             document.getElementById("cb4_" + i).checked = false;
             document.getElementById("cb5_" + i).checked = false;
+            document.getElementById("cb6_" + i).checked = false;
           }
         }
 
@@ -95,6 +97,33 @@
             uncheckAllOperators();
           }
         }
+
+        function checkAllMinutes() {
+          for (let i = 1; i <= 3; i++) {
+            document.getElementById("m1_" + i).checked = true;
+            document.getElementById("m2_" + i).checked = true;
+          }
+        }
+
+        function uncheckAllMinutes() {
+          for (let i = 1; i <= 3; i++) {
+            document.getElementById("m1_" + i).checked = false;
+            document.getElementById("m2_" + i).checked = false;
+          }
+        }
+
+        function selectMinutes(event) {
+          if (event.checked) {
+            checkAllMinutes();
+          } else {
+            uncheckAllMinutes();
+          }
+        }
+
+
+     
+
+
       </script>
     </head>
 

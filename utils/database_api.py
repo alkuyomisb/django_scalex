@@ -66,7 +66,7 @@ def get_plans(**conditions):
     return plans
 
 
-def get_one_closest(filter_dict, orders_by_dict, limit):
+def get_one_closest(filter_dict, not_filter_dict, orders_by_dict, limit):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -96,6 +96,27 @@ def get_one_closest(filter_dict, orders_by_dict, limit):
         value_set += ")"
 
         query_conditions += "{} in {}".format(
+            condition, value_set)
+
+    for index, condition in enumerate(not_filter_dict):
+        if "all" in not_filter_dict[condition] or "all" in condition:
+            continue
+
+        if len(filter_dict) > 0:
+            query_conditions += " AND "
+        else:
+            query_conditions += " WHERE "
+
+        value_set = "("
+
+        for index, val in enumerate(not_filter_dict[condition]):
+            if index == 0:
+                value_set += "'{}'".format(val)
+            else:
+                value_set += ",'{}'".format(val)
+        value_set += ")"
+
+        query_conditions += "{} != {}".format(
             condition, value_set)
 
     # Order By
