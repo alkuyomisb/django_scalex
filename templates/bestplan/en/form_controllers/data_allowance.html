@@ -1,9 +1,9 @@
 
 <script>
   var rangeSlider = function(){
-    var slider = $('.range-slider'),
-        range = $('.range-slider__range'),
-        value = $('.range-slider__value');
+    var slider = $('.da_range-slider'),
+        range = $('.da_range-slider__range'),
+        value = $('.da_range-slider__value');
       
     slider.each(function(){
   
@@ -28,10 +28,10 @@
   
 
 
-  .range-slider {
+  .da_range-slider {
     width: 100%;
  }
-  .range-slider__range {
+  .da_range-slider__range {
     -webkit-appearance: none;
     width: calc(100% - (73px));
     height: 5px;
@@ -41,7 +41,7 @@
     padding: 0;
     margin: 0;
  }
-  .range-slider__range::-webkit-slider-thumb {
+  .da_range-slider__range::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -50,13 +50,13 @@
     cursor: pointer;
     transition: background 0.15s ease-in-out;
  }
-  .range-slider__range::-webkit-slider-thumb:hover {
+  .da_range-slider__range::-webkit-slider-thumb:hover {
     background: #005ba3;
  }
-  .range-slider__range:active::-webkit-slider-thumb {
+  .da_range-slider__range:active::-webkit-slider-thumb {
     background: #005ba3;
  }
-  .range-slider__range::-moz-range-thumb {
+  .da_range-slider__range::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border: 0;
@@ -65,16 +65,16 @@
     cursor: pointer;
     transition: background 0.15s ease-in-out;
  }
-  .range-slider__range::-moz-range-thumb:hover {
+  .da_range-slider__range::-moz-range-thumb:hover {
     background: #005ba3;
  }
-  .range-slider__range:active::-moz-range-thumb {
+  .da_range-slider__range:active::-moz-range-thumb {
     background: #005ba3;
  }
-  .range-slider__range:focus::-webkit-slider-thumb {
+  .da_range-slider__range:focus::-webkit-slider-thumb {
     box-shadow: 0 0 0 3px #fff, 0 0 0 6px #005ba3;
  }
-  .range-slider__value {
+  .da_range-slider__value {
     display: inline-block;
     position: relative;
     width: 60px;
@@ -86,7 +86,7 @@
     padding: 5px 10px;
     margin-left: 8px;
  }
-  .range-slider__value:after {
+  .da_range-slider__value:after {
     position: absolute;
     top: 8px;
     left: -7px;
@@ -114,9 +114,9 @@
   {% endif %}
   <div class="col-sm-{{width}}">
     
-    <div class="range-slider ">
-      <input class="range-slider__range" type="range" name="data_allowance" value="50" min="0"  max="100">
-      <span class="range-slider__value">0</span>
+    <div class="da_range-slider ">
+      <input class="da_range-slider__range" type="range" name="data_allowance" value="50" min="0"  max="100">
+      <span class="da_range-slider__value">0</span>
     </div>
       {% comment %} <input
       class="form-control input-sm both-required"

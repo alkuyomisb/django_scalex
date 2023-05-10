@@ -1,18 +1,18 @@
 <script>
   var rangeSlider = function(){
-    var slider = $('.range-slider'),
-        range = $('.range-slider__range'),
-        value = $('.range-slider__value');
+    var slider = $('.ms_range-slider'),
+        range = $('.ms_range-slider__range'),
+        value = $('.ms_range-slider__value');
       
     slider.each(function(){
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " GB");
+        $(this).html(value + " RO");
       });
   
       range.on('input', function(){
-        $(this).next(value).html(this.value + " GB");
+        $(this).next(value).html(this.value + " RO");
       });
     });
   };
@@ -28,10 +28,10 @@
   
 
 
-  .range-slider {
+  .ms_range-slider {
     width: 100%;
  }
-  .range-slider__range {
+  .ms_range-slider__range {
     -webkit-appearance: none;
     width: calc(100% - (73px));
     height: 5px;
@@ -41,7 +41,7 @@
     padding: 0;
     margin: 0;
  }
-  .range-slider__range::-webkit-slider-thumb {
+  .ms_range-slider__range::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -50,13 +50,13 @@
     cursor: pointer;
     transition: background 0.15s ease-in-out;
  }
-  .range-slider__range::-webkit-slider-thumb:hover {
+  .ms_range-slider__range::-webkit-slider-thumb:hover {
     background: #005ba3;
  }
-  .range-slider__range:active::-webkit-slider-thumb {
+  .ms_range-slider__range:active::-webkit-slider-thumb {
     background: #005ba3;
  }
-  .range-slider__range::-moz-range-thumb {
+  .ms_range-slider__range::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border: 0;
@@ -65,16 +65,16 @@
     cursor: pointer;
     transition: background 0.15s ease-in-out;
  }
-  .range-slider__range::-moz-range-thumb:hover {
+  .ms_range-slider__range::-moz-range-thumb:hover {
     background: #005ba3;
  }
-  .range-slider__range:active::-moz-range-thumb {
+  .ms_range-slider__range:active::-moz-range-thumb {
     background: #005ba3;
  }
-  .range-slider__range:focus::-webkit-slider-thumb {
+  .ms_range-slider__range:focus::-webkit-slider-thumb {
     box-shadow: 0 0 0 3px #fff, 0 0 0 6px #005ba3;
  }
-  .range-slider__value {
+  .ms_range-slider__value {
     display: inline-block;
     position: relative;
     width: 60px;
@@ -86,7 +86,7 @@
     padding: 5px 10px;
     margin-left: 8px;
  }
-  .range-slider__value:after {
+  .ms_range-slider__value:after {
     position: absolute;
     top: 8px;
     left: -7px;
@@ -109,12 +109,12 @@
 
 <div class="form-group row">
   {% if result_page != "yes" %}
-  <label class="col-sm-4 col-form-label"> Max Monthly Month :</label>
+  <label class="col-sm-4 col-form-label"> Price :</label>
   {% endif %}
   <div class="col-sm-{{width}}">
-    <div class="range-slider ">
-      <input class="range-slider__range" type="range" name="price" value="50" min="0"  max="100">
-      <span class="range-slider__value">0</span>
+    <div class="ms_range-slider ">
+      <input class="ms_range-slider__range" type="range" name="price" value="50" min="0"  max="100">
+      <span class="ms_range-slider__value">0</span>
     </div>
 
     {% comment %} <input

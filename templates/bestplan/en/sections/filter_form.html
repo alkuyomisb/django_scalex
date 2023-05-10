@@ -22,7 +22,6 @@
         <!-- Data GB Per Month -->
         {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
 
-
          <!-- Minutes -->
          {% include 'bestplan/en/form_controllers/min.html' with  id="1" result_page=result_page  width=width%}
 
@@ -30,7 +29,7 @@
         {% include 'bestplan/en/form_controllers/roaming.html' with  id="1" result_page=result_page  width=width%}
 
         <!-- Price -->
-        {% include 'bestplan/en/form_controllers/price.html' with result_page=result_page  width=width%}
+        {% include 'bestplan/en/form_controllers/max_monthly_spend.html' with result_page=result_page  width=width%}
 
         <!-- Minutes Per Month -->
         {% include 'bestplan/en/form_controllers/minutes.html' with result_page=result_page  width=width%}
@@ -51,7 +50,6 @@
       <input class="form-control input-sm " name="service_type" value="fixed" type="text" Hidden required>
 
     {% include 'bestplan/en/form_controllers/fixed_operator.html'  with id="2"  result_page=result_page  width=width%}
-
 
     <!-- Max Monthly spend -->
     {% include 'bestplan/en/form_controllers/max_monthly_spend.html' with result_page=result_page  width=width%}

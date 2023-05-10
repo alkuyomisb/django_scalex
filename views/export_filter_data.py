@@ -84,7 +84,6 @@ def export_filter_data(request):
             "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1)
         }
         data = stk.best_plan_merge(plans)
-        print(str(data))
         index = 0
         for key, plan in data.items():
             index += 1

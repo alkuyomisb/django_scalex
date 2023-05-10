@@ -77,7 +77,7 @@ def result(request):
         TOTAL_PLANS_NUMBER = 7
         top_plans = []
 
-        top_plans = get_one_closest({"isp": isp_list,  "service_type": [service_type], "plan_type": [plan_type]}, {
+        top_plans = get_one_closest({"isp": isp_list,  "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {
                                     "price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, TOTAL_PLANS_NUMBER),
         res = {"plans": top_plans[0]}
         link = "bestplan/{}/top_result.html".format(lang)
