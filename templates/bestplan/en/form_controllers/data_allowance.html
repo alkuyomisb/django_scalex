@@ -13,7 +13,12 @@
       });
   
       range.on('input', function(){
-        $(this).next(value).html(this.value + " GB");
+      console.log("CHANGE")
+        if(this.value == 100){
+          $(this).next(value).html(this.value + "+ GB");
+          }else{
+            $(this).next(value).html(this.value + " GB");
+          }
       });
     });
   };

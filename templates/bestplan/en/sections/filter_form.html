@@ -2,14 +2,12 @@
     
     
 <!--  Mobile Form -->
-<form action="result" method="GET">
+<form action="result" method="GET" class="mobile box" style="display: none;">
  
-
   <!-- Mobile -->
-  <div class="mobile box" style="display: none;">
 
     <!-- Hidden Service Type -->
-        <input class="form-control input-sm" name="service_type" value="mobile" type="text" Hidden required>
+        <input class="form-control input-sm" name="service_type" value="mobile" type="text" Hidden required />
 
         {% include 'bestplan/en/form_controllers/operator.html' with id="1" result_page=result_page  width=width%}
         
@@ -22,91 +20,98 @@
         <!-- Data GB Per Month -->
         {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
 
-         <!-- Minutes -->
-         {% include 'bestplan/en/form_controllers/min.html' with  id="1" result_page=result_page  width=width%}
+        <!-- Minutes Per Month -->
+        {% include 'bestplan/en/form_controllers/minutes_per_month.html' with result_page=result_page  width=width%}
+
+        <!-- Minutes -->
+        {% include 'bestplan/en/form_controllers/min.html' with  id="1" result_page=result_page  width=width%}
 
         <!-- Roaming -->
         {% include 'bestplan/en/form_controllers/roaming.html' with  id="1" result_page=result_page  width=width%}
 
         <!-- Price -->
-        {% include 'bestplan/en/form_controllers/max_monthly_spend.html' with result_page=result_page  width=width%}
-
-        <!-- Minutes Per Month -->
-        {% include 'bestplan/en/form_controllers/minutes.html' with result_page=result_page  width=width%}
+        {% include 'bestplan/en/form_controllers/price.html' with result_page=result_page  width=width%}
 
         <!-- Submit Button-->
         {% include 'bestplan/en/form_controllers/submit_button.html' with result_page=result_page  width=width%}
+        
+</form>
+    
+    
+    <!-- Fixed -->
+<form action="result" method="GET" class="fixed box" style="display: none;">
+      
+      <!-- Fixedbroadband -->
+        <!-- Hidden Service Type -->
+        <input class="form-control input-sm" name="service_type" value="fixed" type="text" Hidden required />
+        
+        {% include 'bestplan/en/form_controllers/fixed_operator.html'  with id="2"  result_page=result_page  width=width%}
+        
+        <!-- Price -->
+        {% include 'bestplan/en/form_controllers/price.html' with result_page=result_page  width=width%}
+        
+        <!-- Minutes -->
+        {% include 'bestplan/en/form_controllers/min.html' with  id="2" result_page=result_page  width=width%}
+        
+        <!-- Roaming -->
+        {% include 'bestplan/en/form_controllers/roaming.html' with  id="2" result_page=result_page  width=width%}
+        
+        <!-- Data GB Per Month -->
+        {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
+        
+        <!-- Minutes Per Month -->
+        {% include 'bestplan/en/form_controllers/minutes_per_month.html' with result_page=result_page  width=width%}
+        
+        <!-- Submit Button-->
+        {% include 'bestplan/en/form_controllers/submit_button.html' with result_page=result_page  width=width%}
+        
+</form>
+    
+<!-- Fixed and Mobile Form -->
+<form action="result" method="GET" class="both box" style="display: none;" >
+      
+      {% comment %} <!-- Hidden Service Type -->
+      <input class="form-control input-sm " name="service_type" value="all" type="text" Hidden required />
+      
+      <!-- Language -->
+      <input class="form-control input-sm" name="lang" value="ar" type="text" Hidden required /> {% endcomment %}
 
-  </div>
-  </form>
+  <!-- Mobile & Fixed Broadband -->
+        {% include 'bestplan/en/form_controllers/both_operator.html'  with id="3"  result_page=result_page  width=width%}
+      
+        <!-- Plan Type -->
+        {% include 'bestplan/en/form_controllers/plan_type.html' with result_page=result_page  width=width%}
+      
+        <!-- Term Length  -->
+        {% include 'bestplan/en/form_controllers/term_length.html' with result_page=result_page  width=width%}
+        
+        <!-- Data GB Per Month -->
+        {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
+      
+        <!-- Minutes Per Month -->
+        {% include 'bestplan/en/form_controllers/minutes_per_month.html' with result_page=result_page  width=width%}
 
-
-  <!-- Fixed -->
-<form action="result" method="GET">
-
-  <!-- Fixedbroadband -->
-  <div class="fixed box" style="display: none;">
-      <!-- Hidden Service Type -->
-      <input class="form-control input-sm " name="service_type" value="fixed" type="text" Hidden required>
-
-    {% include 'bestplan/en/form_controllers/fixed_operator.html'  with id="2"  result_page=result_page  width=width%}
-
-    <!-- Max Monthly spend -->
-    {% include 'bestplan/en/form_controllers/max_monthly_spend.html' with result_page=result_page  width=width%}
-
-    <!-- Minutes -->
-    {% include 'bestplan/en/form_controllers/min.html' with  id="2" result_page=result_page  width=width%}
-
-    <!-- Roaming -->
-    {% include 'bestplan/en/form_controllers/roaming.html' with  id="2" result_page=result_page  width=width%}
-
-    <!-- Data GB Per Month -->
-    {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
-
-    <!-- Minutes Per Month -->
-    {% include 'bestplan/en/form_controllers/minutes.html' with result_page=result_page  width=width%}
-
-    <!-- Submit Button-->
-    {% include 'bestplan/en/form_controllers/submit_button.html' with result_page=result_page  width=width%}
-
-  </div>
+        <!-- Price -->
+        {% include 'bestplan/en/form_controllers/price.html' with result_page=result_page  width=width%}
+      
+        <!-- Submit Button-->
+        {% include 'bestplan/en/form_controllers/submit_button.html' with result_page=result_page  width=width%}
+  
 </form>
 
-<!-- Fixed and Mobile Form -->
-<form action="result" method="GET">
-
-  <!-- Hidden Service Type -->
-  <input class="form-control input-sm " name="service_type" value="all" type="text" Hidden required>
-  
-  <!-- Language -->
-  <input class="form-control input-sm" name="lang" value="ar" type="text" Hidden required>
-  
-  <!-- Mobile & Fixed Broadband -->
-  <div class="both box" style="display: none;">
-
-    {% include 'bestplan/en/form_controllers/operator.html'  with id="3"  result_page=result_page  width=width%}
-
-    <!-- Plan Type -->
-    {% include 'bestplan/en/form_controllers/plan_type.html' with result_page=result_page  width=width%}
 
 
-    <!-- Term Length  -->
-    {% include 'bestplan/en/form_controllers/plan_type.html' with result_page=result_page  width=width%}
-    
+<form action="result" method="GET" class="hhh box" style="display: none;" >
+  <!-- Data GB Per Month -->
+  {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
 
-    <!-- Data GB Per Month -->
-    {% include 'bestplan/en/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
-    
+  <!-- Minutes Per Month -->
+  {% include 'bestplan/en/form_controllers/minutes_per_month.html' with result_page=result_page  width=width%}
 
-    <!-- Minutes Per Month -->
-    {% include 'bestplan/en/form_controllers/minutes.html' with result_page=result_page  width=width%}
-    
+  <!-- Price -->
+  {% include 'bestplan/en/form_controllers/price.html' with result_page=result_page  width=width%}
 
-    <!-- Max Monthly spend -->
-    {% include 'bestplan/en/form_controllers/max_monthly_spend.html' with result_page=result_page  width=width%}
+  <!-- Submit Button-->
+  {% include 'bestplan/en/form_controllers/submit_button.html' with result_page=result_page  width=width%}
 
-    
-    <!-- Submit Button-->
-    {% include 'bestplan/en/form_controllers/submit_button.html' with result_page=result_page  width=width%}
-  </div>
 </form>

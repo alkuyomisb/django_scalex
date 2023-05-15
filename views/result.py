@@ -16,7 +16,7 @@ def result(request):
         price = '0'
     if data_allowance == '':
         data_allowance = '0'
-    if term_length == '':
+    if term_length == '' or term_length == 'all':
         term_length = '0'
 
     # Operators

@@ -1,18 +1,22 @@
 <script>
   var rangeSlider = function(){
-    var slider = $('.ms_range-slider'),
-        range = $('.ms_range-slider__range'),
-        value = $('.ms_range-slider__value');
+    var slider = $('.mm_range-slider'),
+        range = $('.mm_range-slider__range'),
+        value = $('.mm_range-slider__value');
       
     slider.each(function(){
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " ريال");
+        $(this).html(value + " RO");
       });
   
       range.on('input', function(){
-        $(this).next(value).html(this.value + " ريال");
+        if(this.value == 100){
+          $(this).next(value).html(this.value + "+ RO");
+        }else{
+          $(this).next(value).html(this.value + " RO");
+        }
       });
     });
   };
@@ -27,10 +31,10 @@
   
 
 
-  .ms_range-slider {
+  .mm_range-slider {
     width: 100%;
  }
-  .ms_range-slider__range {
+  .mm_range-slider__range {
     -webkit-appearance: none;
     width: calc(100% - (73px));
     height: 5px;
@@ -40,7 +44,7 @@
     padding: 0;
     margin: 0;
  }
-  .ms_range-slider__range::-webkit-slider-thumb {
+  .mm_range-slider__range::-webkit-slider-thumb {
     appearance: none;
     width: 20px;
     height: 20px;
@@ -49,13 +53,13 @@
     cursor: pointer;
     transition: background 0.15s ease-in-out;
  }
-  .ms_range-slider__range::-webkit-slider-thumb:hover {
+  .mm_range-slider__range::-webkit-slider-thumb:hover {
     background: #005ba3;
  }
-  .ms_range-slider__range:active::-webkit-slider-thumb {
+  .mm_range-slider__range:active::-webkit-slider-thumb {
     background: #005ba3;
  }
-  .ms_range-slider__range::-moz-range-thumb {
+  .mm_range-slider__range::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border: 0;
@@ -64,16 +68,16 @@
     cursor: pointer;
     transition: background 0.15s ease-in-out;
  }
-  .ms_range-slider__range::-moz-range-thumb:hover {
+  .mm_range-slider__range::-moz-range-thumb:hover {
     background: #005ba3;
  }
-  .ms_range-slider__range:active::-moz-range-thumb {
+  .mm_range-slider__range:active::-moz-range-thumb {
     background: #005ba3;
  }
-  .ms_range-slider__range:focus::-webkit-slider-thumb {
+  .mm_range-slider__range:focus::-webkit-slider-thumb {
     box-shadow: 0 0 0 3px #fff, 0 0 0 6px #005ba3;
  }
-  .ms_range-slider__value {
+  .mm_range-slider__value {
     display: inline-block;
     position: relative;
     width: 60px;
@@ -85,18 +89,17 @@
     padding: 5px 10px;
     margin-left: 8px;
  }
- .ms_range-slider__value:after {
-  position: absolute;
-  top: 8px;
-  right: -7px;
-  width: 0;
-  height: 0;
-  border-top: 7px solid transparent;
-  border-left: 7px solid #2c3e50;
-  border-bottom: 7px solid transparent;
-  content: '';
-}
-
+  .mm_range-slider__value:after {
+    position: absolute;
+    top: 8px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #2c3e50;
+    border-bottom: 7px solid transparent;
+    content: '';
+ }
   ::-moz-range-track {
     background: #d7dcdf;
     border: 0;
@@ -106,21 +109,17 @@
  }
   
 </style>
+
+
+
 <div class="form-group row">
   {% if result_page != "yes" %}
-  <label class="col-sm-4 col-form-label"> مقدار الدفع الشهري</label>
+  <label class="col-sm-4 col-form-label"> Minutes Per Month :</label>
   {% endif %}
   <div class="col-sm-{{width}}">
-    <div class="ms_range-slider ">
-      <input class="ms_range-slider__range" type="range" name="price" value="50" min="0"  max="100">
-      <span class="ms_range-slider__value">0</span>
+    <div class="mm_range-slider ">
+      <input class="mm_range-slider__range" type="range" name="minutes" value="50" min="0"   max="100">
+      <span class="mm_range-slider__value">50</span>
     </div>
-    {% comment %} <input
-      class="form-control input-sm both-required"
-      name="price"
-      type="text"
-      placeholder="مقدار الدفع الشهري"
-      
-    /> {% endcomment %}
   </div>
 </div>
