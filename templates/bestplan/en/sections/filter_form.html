@@ -7,6 +7,8 @@
   <!-- Mobile -->
 
     <!-- Hidden Service Type -->
+    <input class="form-control input-sm" name="lang" value="en" type="text" Hidden required /> 
+
         <input class="form-control input-sm" name="service_type" value="mobile" type="text" Hidden required />
 
         {% include 'bestplan/en/form_controllers/operator.html' with id="1" result_page=result_page  width=width%}
@@ -43,6 +45,8 @@
       
       <!-- Fixedbroadband -->
         <!-- Hidden Service Type -->
+        <input class="form-control input-sm" name="lang" value="en" type="text" Hidden required /> 
+
         <input class="form-control input-sm" name="service_type" value="fixed" type="text" Hidden required />
         
         {% include 'bestplan/en/form_controllers/fixed_operator.html'  with id="2"  result_page=result_page  width=width%}
@@ -72,9 +76,11 @@
       
       {% comment %} <!-- Hidden Service Type -->
       <input class="form-control input-sm " name="service_type" value="all" type="text" Hidden required />
-      
+      {% endcomment %}
+  
+  
       <!-- Language -->
-      <input class="form-control input-sm" name="lang" value="ar" type="text" Hidden required /> {% endcomment %}
+      <input class="form-control input-sm" name="lang" value="en" type="text" Hidden required /> 
 
   <!-- Mobile & Fixed Broadband -->
         {% include 'bestplan/en/form_controllers/both_operator.html'  with id="3"  result_page=result_page  width=width%}
