@@ -70,27 +70,26 @@
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="{% static 'js/sb-script.js' %}"></script>
       <script type="text/javascript">
+
         function checkAllOperators() {
-          for (let i = 1; i <= 4; i++) {
+          for (let i = 1; i <= 3; i++) {
             document.getElementById("cb1_" + i).checked = true;
             document.getElementById("cb2_" + i).checked = true;
             document.getElementById("cb3_" + i).checked = true;
             document.getElementById("cb4_" + i).checked = true;
             document.getElementById("cb5_" + i).checked = true;
             document.getElementById("cb6_" + i).checked = true;
-            document.getElementById("cb7_" + i).checked = true;
           }
         }
 
         function uncheckAllOperators() {
-          for (let i = 1; i <= 4; i++) {
+          for (let i = 1; i <= 3; i++) {
             document.getElementById("cb1_" + i).checked = false;
             document.getElementById("cb2_" + i).checked = false;
             document.getElementById("cb3_" + i).checked = false;
             document.getElementById("cb4_" + i).checked = false;
             document.getElementById("cb5_" + i).checked = false;
             document.getElementById("cb6_" + i).checked = false;
-            document.getElementById("cb7_" + i).checked = false;
           }
         }
 
@@ -106,6 +105,7 @@
         
 
         function checkAllMinutes() {
+
           for (let i = 1; i <= 1; i++) {
             document.getElementById("m1_" + i).checked = true;
             document.getElementById("m2_" + i).checked = true;
@@ -113,6 +113,7 @@
         }
 
         function uncheckAllMinutes() {
+
           for (let i = 1; i <= 1; i++) {
             document.getElementById("m1_" + i).checked = false;
             document.getElementById("m2_" + i).checked = false;
@@ -120,6 +121,7 @@
         }
 
         function selectMinutes(event) {
+
           if (event.checked) {
             checkAllMinutes();
           } else {
