@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRA</title>
+
+
     <link rel="icon" href="{% static 'images/favicon.ico' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -20,66 +22,161 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/statistics.css' %}" />
 
+
+    <!-- multiSelectDiv -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/multiSelectStyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
     <!-- chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- multiSelectDiv -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- multiSelectDiv -->
+
+    <!-- limit select library -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+
 </head>
 
 <body>
     <!-- Choose Chart Dialog -->
-    <div>
-        <dialog class="chartDialog" id="DialogChart">
-            <div class="form-group row">
-                <span class="col-sm-4 col-form-label"> xValue :</span>
-                <div class="col-sm-8">
-                    <select class="form-control input-sm">
-                        <option>Choose xValue</option>
-                        <option value="Date">Date</option>
-                        <option value="Price">Price</option>
-                        <option value="DataVolume">Data Volume</option>
-                        <option value="ExcessData">Excess Data</option>
-                        <option value="InternationalMinutes">
-                            International Minutes
-                        </option>
-                        <option value="RoamingUsage">Roaming Usage</option>
-                    </select>
-                </div>
-            </div>
+    <form action="/save-chart" method="GET">
+        <div>
+            <dialog class="chartDialog" id="DialogChart">
+                <input name="chartType" value="" hidden id="chartTypeInput" />
+                <!-- <div class="form-group row">
+                   
+                    <span for="xValues" class="col-sm-4 col-form-label"> xValue :</span>
+                    <div class="col-sm-8">
+                        <select class="form-control input-sm" name="xAxis" id="xValues">
+                            <option value="price_value">Price</option>
+                            <option value="international_minutes">International Minutes</option>
+                        </select>
+                    </div>
+                </div> -->
 
-            <!-- xyVaues -->
-            <div class="form-group row">
-                <span class="col-sm-4 col-form-label"> yValue :</span>
-                <div class="col-sm-8">
-                    <select class="form-control input-sm">
-                        <option>Choose yValue</option>
-                        <option value="Date">Date</option>
-                        <option value="Price">Price</option>
-                        <option value="DataVolume">Data Volume</option>
-                        <option value="ExcessData">Excess Data</option>
-                        <option value="InternationalMinutes">
-                            International Minutes
-                        </option>
-                        <option value="RoamingUsage">Roaming Usage</option>
-                    </select>
-                </div>
-            </div>
-            <!-- xyVaues -->
 
-            <!-- Choose Chart Type -->
-            <div class="form-group row">
-                <span class="col-sm-6 col-form-label"> Chart Type :</span>
-                <div class="chartType" id="chartType">
-                    <img src="{% static 'images/lineChart1.png' %}" class="chart" onclick="enableImage(this)" />
-                    <img src="{% static 'images/barChartpng.png' %}" class="chart" onclick="enableImage(this)" />
-                    <img src="{% static 'images/pieChart.png' %}" class="chart" onclick="enableImage(this)" />
+                <!-- xyVaues -->
+                <!-- <div class="form-group row">
+                    <span for="yValues" class="col-sm-4 col-form-label"> yValue :</span>
+                    <div class="col-sm-8">
+                        <select class="form-control input-sm" id="yValues" name="yAxis">
+                            <option value="price_value">Price</option>
+                            <option value="international_minutes">International Minutes</option>
+                        </select>
+                    </div>
+                </div> -->
+                <!-- xyVaues -->
+
+                <!-- Choose Chart Type -->
+                <div class="form-group row">
+                    <span class="col-sm-6 col-form-label"> Chart Type :</span>
+                    <div class="chartType" id="chartType">
+                        <img name="line" src="{% static 'images/lineChart1.png' %}" class="chart"
+                            onclick="enableImage(this)" />
+                        <img name="bar" src="{% static 'images/barChartpng.png' %}" class="chart"
+                            onclick="enableImage(this)" />
+                        <img name="pie" src="{% static 'images/pieChart.png' %}" class="chart"
+                            onclick="enableImage(this)" />
+                    </div>
                 </div>
-            </div>
-            <!-- Choose Chart Type -->
-            <div class="modal-footer">
-                <button class="btn btn-chart" id="chartHide">Close</button>
-                <button class="btn btn-chart" type="button">Apply</button>
-            </div>
-        </dialog>
-    </div>
+
+                <!-- <div id="no-limit">
+                    <p>いくつでも選択可能</p>
+                    <select class="select2" style="width: 100%;">
+                        <option value="A">Apple</option>
+                        <option value="B">Banana</option>
+                        <option value="C">Chocolate</option>
+                        <option value="D">Dessert</option>
+                    </select>
+                </div> -->
+                <!-- <div id="limit-2">
+                    <p>2つまで選択可能</p>
+                    <select class="select2" style="width: 100%;">
+                        <option value="A">Apple</option>
+                        <option value="B">Banana</option>
+                        <option value="C">Chocolate</option>
+                        <option value="D">Dessert</option>
+                    </select>
+                </div> -->
+                <!-- <div id="limit-2-custom-message">
+                    <p>2つまで選択可能(カスタムメッセージ)</p>
+                    <select class="select2" style="width: 100%;">
+                        <option value="A">Apple</option>
+                        <option value="B">Banana</option>
+                        <option value="C">Chocolate</option>
+                        <option value="D">Dessert</option>
+                    </select>
+                </div> -->
+
+
+                <div id="multiSelectDiv" style="display: none;">
+                    <section>
+                        <div class="form-group row">
+                                <div id="limit-2">
+                                    <span >Select Lable</span>
+                                    <select id="multiSelect" class="select2" style="width: 100%;" multiple>
+                                        <option value="price_value">Price</option>
+                                        <option value="international_minutes">International Minutes</option>
+                                        <option value="data_allowance_value">Data Allowance</option>
+                                        <option value="flexi_minutes">Flexi Minutes</option>
+                                        <option value="local_minutes">Local Minutes</option>
+                                        <option value="duration_value">Duration Value</option>
+                                        <option value="social_media_data_value">Social Media Data</option>
+                                        <option value="download_speed_value">Download Speed</option>
+                                        <option value="upload_speed_value">Upload Speed</option>
+                                        <option value="fixed_line_minutes">Fixed Line Minutes</option>
+                                        <option value="world_roaming_value">World Roaming</option>
+                                        <option value="contract_duration_value">Contract Duration</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
+                <div class="form-group row" id="oneSelect" style="display: none;">
+                    <span for="xValues" class="col-sm-4 col-form-label"> xValue :</span>
+                    <div class="col-sm-8">
+                        <select class="form-control input-sm" id="xValues" name="xAxis">
+                            <option value="price_value">Price</option>
+                            <option value="international_minutes">International Minutes</option>
+                            <option value="data_allowance_value">Data Allowance</option>
+                            <option value="flexi_minutes">Flexi Minutes</option>
+                            <option value="local_minutes">Local Minutes</option>
+                            <option value="duration_value">Duration Value</option>
+                            <option value="social_media_data_value">Social Media Data</option>
+                            <option value="download_speed_value">Download Speed</option>
+                            <option value="upload_speed_value">Upload Speed</option>
+                            <option value="fixed_line_minutes">Fixed Line Minutes</option>
+                            <option value="world_roaming_value">World Roaming</option>
+                            <option value="contract_duration_value">Contract Duration</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Choose Chart Type -->
+                <div class="modal-footer">
+                    <button class="btn btn-chart" id="chartHide" type="button">Close</button>
+                    <button class="btn btn-chart" type="submit">Apply</button>
+
+                </div>
+            </dialog>
+        </div>
+    </form>
     <!-- Choose Chart Dialog -->
 
     <div>
@@ -89,7 +186,7 @@
             </div>
             <div class="modal-footer">
                 <button id="removeHide1" class="btn btn-chart">Close</button>
-                <button type="button" class="btn btn-chart" onclick="deleteDiv()">
+                <button type="button" class="btn btn-chart" id="deleteChart" onclick="deleteDiv()">
                     Delete
                 </button>
             </div>
@@ -124,8 +221,14 @@
         </dialog>
     </div>
 
-    <div class="row">
-        <div>
+    <div class="row" id="row">
+        <!-- <div id="deleteDiv"> -->
+        <!-- <button class="delete" id="removeChartShow1" style="display:none;">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="barChart" style="height: 350px; padding: 15px; width: 350px"></canvas> -->
+        <!-- </div> -->
+        <!-- <div>
             <button class="delete" id="removeChartShow1" style="display:none;">
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
             </button>
@@ -142,6 +245,22 @@
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
             </button>
             <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas>
+        </div> -->
+        <div>
+            <button class="delete" id="removeChartShow3" style="display:none;">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button>
+            <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas>
+        </div>
+
+        <div id="chartsContainer">
+            <!-- <button class="delete" id="removeChartShow2" style="display:none;">
+                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
+            </button> -->
+            <div>
+
+            </div>
+            <!-- <canvas id="newChart" width="600" height="400"></canvas> -->
         </div>
         <div>
             <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
@@ -149,87 +268,35 @@
                 <div class="btn-txt">Add Chart</div>
             </button>
         </div>
+        <!-- <div>
+            <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Add Chart</div>
+            </button>
+        </div> -->
         <div>
-            <button onclick="return showHide() ,showHide0(), showHide1() ,showHide2();" class="btn-outline-primary"
-                style="margin-left:50px;">Edit
+            <button onclick="
+                // return showHide() ,showHide0(), showHide1() ,
+                showHide() , showHide2();" class="btn-outline-primary" style="margin-left:50px;">Edit
             </button>
         </div>
     </div>
 </body>
 
 <script>
-    // bar chart
-    const barChart = document.getElementById("barChart");
 
-    new Chart(barChart, {
-        type: "bar",
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [
-                {
-                    label: "# of Votes",
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
+    // for multiSelect to select only two labels
+    $(document).ready(function() {
+    $('#limit-2 .select2').select2({
+      multiple: "multiple",
+      maximumSelectionLength: 2,
+      language: {
+        maximumSelected: (args) => "You can only select 2 labels"
+      }
     });
-    // bar chart
+  });
 
-    // line chart
-    const lineChart = document.getElementById("lineChart");
 
-    new Chart(lineChart, {
-        type: "line",
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [
-                {
-                    label: "# of Votes",
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
-    // line chart
-
-    const pieChart = document.getElementById("pieChart");
-
-    new Chart(pieChart, {
-        type: "pie",
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [
-                {
-                    label: "# of Votes",
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1,
-                },
-            ],
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                },
-            },
-        },
-    });
 
     (function () {
         var dateDialog = document.getElementById("DialogChart");
@@ -241,16 +308,248 @@
         };
     })();
 
-    // remove chart dialog
-    (function () {
-        var removeDialog1 = document.getElementById("removeChartDialog1");
-        document.getElementById("removeChartShow1").onclick = function () {
-            removeDialog1.show();
-        };
-        document.getElementById("removeHide1").onclick = function () {
-            removeDialog1.close();
-        };
-    })();
+
+    var charts = "{{charts |escapejs }}";
+    chartsList = JSON.parse(charts)["charts"]
+    const chartsContainer = document.getElementById('chartsContainer');
+
+    chartsList.forEach(element => {
+
+        const chartDiv = document.createElement('div');
+        chartDiv.id = 'chart';
+        chartsContainer.append(chartDiv);
+        const deletebutton = document.createElement('button');
+        chartDiv.appendChild(deletebutton);
+        deletebutton.id = 'removeChartShow1';
+        // deletebutton.style = 'display:none';
+        deletebutton.className = 'btn btn-chart';
+        deletebutton.textContent = 'delete';
+        const canvas = document.createElement('canvas');
+        canvas.width = 400;
+        canvas.height = 400;
+        chartDiv.appendChild(canvas);
+
+
+        function showHide(element) {
+            var elm = document.getElementById("removeChartShow1");
+            if (elm.style.display == "block") {
+                elm.style.display = "none";
+            }
+            else {
+                elm.style.display = "block";
+            }
+
+        }
+
+        (function () {
+            var removeDialog1 = document.getElementById("removeChartDialog1");
+            document.getElementById("removeChartShow1").onclick = function () {
+                removeDialog1.show();
+            };
+            document.getElementById("removeHide1").onclick = function () {
+                removeDialog1.close();
+            };
+        })();
+
+        function showDeleteButtons() {
+            // Get all the chart elements
+            var charts = document.getElementsById('chart');
+
+            charts.forEach(charts, function (chart) {
+
+                var deleteButton = document.getElementById('removeChartShow1');
+
+                deleteButton.addEventListener('click', function () {
+                    chart.parentNode.removeChild(chart);
+                });
+
+                chart.appendChild(deleteButton);
+            });
+        }
+
+
+
+        var chartType = element["chartType"]
+        var xAxis_list = element["xAxis_list"]
+        var yAxis_list = element["yAxis_list"]
+        var xAxis_lable = element["xAxis_lable"]
+        var yAxis_lable = element["yAxis_lable"]
+
+        // console.log("chartType", chartType)
+        // console.log("xAxis_list", xAxis_list)
+        // console.log("yAxis_list", yAxis_list)
+        // console.log("xAxis_lable", xAxis_lable)
+        // console.log("yAxis_lable", yAxis_lable)
+
+
+        if (chartType == 'line') {
+            new Chart(canvas, {
+                type: "line",
+                data: {
+                    labels: xAxis_list,
+                    datasets: [
+                        {
+                            label: xAxis_lable,
+                            data: yAxis_list,
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+            });
+        }
+        else if (chartType == 'bar') {
+
+            new Chart(canvas, {
+                type: "bar",
+                data: {
+                    labels: xAxis_list,
+                    datasets: [
+                        {
+                            label: xAxis_lable,
+                            data: yAxis_list,
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+            });
+        }
+        else if (chartType == 'pie') {
+            var combinedData = {};
+            var total = 0;
+            for (var i = 0; i < xAxis_list.length; i++) {
+                var value = xAxis_list[i];
+                if (value in combinedData) {
+                    combinedData[value]++;
+                } else {
+                    combinedData[value] = 1;
+                }
+                total++;
+            }
+            // console.log("total: ", total + " label : ", xAxis_lable)
+
+
+            var percentages = {};
+            for (var value in combinedData) {
+                var count = combinedData[value];
+                percentages[value] = (count / total) * 100;
+            }
+
+            // console.log("par: ", percentages)
+
+            new Chart(canvas, {
+                type: "pie",
+                data: {
+                    lables: xAxis_list,
+                    datasets: [
+                        {
+                            label: xAxis_lable,
+                            data: Object.values(percentages),
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        labels: {
+                            render: 'percentage',
+                            precision: 2
+                        }
+                    },
+                }
+
+            });
+        }
+        else {
+            console.log("no such type!");
+        }
+    })
+
+
+        // new Chart(barChart, {
+        //     type: "bar",
+        //     data: {
+        //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        //         datasets: [
+        //             {
+        //                 label: "# of Votes",
+        //                 data: [12, 19, 3, 5, 2, 3],
+        //                 borderWidth: 1,
+        //             },
+        //         ],
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true,
+        //             },
+        //         },
+        //     },
+        // });
+        // // bar chart
+
+        // // line chart
+        // const lineChart = document.getElementById("lineChart");
+
+        // new Chart(lineChart, {
+        //     type: "line",
+        //     data: {
+        //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        //         datasets: [
+        //             {
+        //                 label: "# of Votes",
+        //                 data: [12, 19, 3, 5, 2, 3],
+        //                 borderWidth: 1,
+        //             },
+        //         ],
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true,
+        //             },
+        //         },
+        //     },
+        // });
+        // // line chart
+
+        // const pieChart = document.getElementById("pieChart");
+
+        // new Chart(pieChart, {
+        //     type: "pie",
+        //     data: {
+        //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        //         datasets: [
+        //             {
+        //                 label: "# of Votes",
+        //                 data: [12, 19, 3, 5, 2, 3],
+        //                 borderWidth: 1,
+        //             },
+        //         ],
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true,
+        //             },
+        //         },
+        //     },
+        // });
+
+
+
+        // remove chart dialog
+        (function () {
+            var removeDialog1 = document.getElementById("removeChartDialog1");
+            document.getElementById("removeChartShow1").onclick = function () {
+                removeDialog1.show();
+            };
+            document.getElementById("removeHide1").onclick = function () {
+                removeDialog1.close();
+            };
+        })();
 
     (function () {
         var removeDialog2 = document.getElementById("removeChartDialog2");
@@ -272,6 +571,8 @@
         };
     })();
 
+    
+
     // Chart type function
     function enableImage(imageElement) {
         // get all chart images
@@ -282,6 +583,24 @@
         }
         // enable selected image by removing the grayscale effect
         imageElement.style.filter = "none";
+        // console.log(imageElement.name)
+        const chartTypeInput = document.getElementById("chartTypeInput")
+        chartTypeInput.value = imageElement.name
+
+        //select dropDown 
+        var multiSelectDiv = document.getElementById("multiSelectDiv");
+        var oneSelect = document.getElementById("oneSelect");
+        if (chartTypeInput.value == 'bar' || chartTypeInput.value == 'line') {
+            multiSelectDiv.style.display = "block";
+            oneSelect.style.display = "none";
+        }
+        else {
+            oneSelect.style.display = "block";
+            multiSelectDiv.style.display = "none";
+        }
+
+
+
     }
 
 

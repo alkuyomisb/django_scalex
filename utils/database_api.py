@@ -17,6 +17,7 @@ def get_all_plans ():
     for plan in myresult:
         p = record_to_dict(plan)
         plans.append(p)
+    
 
    
     mydb.close()
@@ -229,26 +230,111 @@ def get_empty_dict():
     }
     return data
 
+def add_chart(chartType , xAxis , yAxis):
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="scalex"
+    )
 
-def display_chart(x, y, chart_type):
-    if chart_type == "line":
-        plt.plot(x, y)
-        plt.title("line")
-        plt.xlabel("X")
-        plt.ylabel("Y")
-        plt.show()
-    elif chart_type == "line":
-        plt.scatter(x, y)
-        plt.title("line Chart")
-        plt.xlabel("X")
-        plt.ylabel("Y")
-        plt.show()
-    elif chart_type == "pie":
-        plt.bar(x, y)
-        plt.title("pie Chart")
-        plt.xlabel("X")
-        plt.ylabel("Y")
-        plt.show()
-    else:
-        print("Invalid chart type")
+    cursor = db.cursor()
+    cursor.execute("INSERT INTO charts (chartType ,xAxis , yAxis) values ('{}' , '{}' , '{}');".format(chartType ,xAxis , yAxis))
+    
+
+
+def get_axis_list(axis , isFloat = False):
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="scalex"
+    )
+    axis_list = []
+    
+    cursor = db.cursor()
+    cursor.execute("SELECT id, {} FROM plan".format(axis))
+    plans_tale = cursor.fetchall()
+    for axis in plans_tale:
+        id = axis[0]
+        value = axis[1]
+        value = ''.join(filter(lambda x: x.isdigit() or x == '.', str(value)))
+        if value == '':
+            value = '0'
+        axis_list.append(value)
+        if isFloat:
+            axis_list.append(float(value))
+        else:
+            axis_list.append(value)
+
+
+
+    return axis_list
+
+def get_all_charts ():
+    all_charts = []
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="scalex"
+    )
+
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM charts")
+    charts = cursor.fetchall()
+
+    for chart in charts:
+        all_charts.append(chart)
+    
+    mydb.close()
+    return all_charts
+
+def get_chart_dict():
+   db_charts = get_all_charts()
+   res = {"charts" : []}
+   try:
+    for chart in db_charts:
+            chart_dict = {"xAxis_list" : [], "yAxis_list" : [], "xAxis_lable" : "" , "yAxis_lable" : "","chartType" : ""}
+            xAxis_list = get_axis_list(chart[1] ,isFloat=True)
+            yAxis_list = get_axis_list(chart[2] ,isFloat=True)
+            xAxis_lable = chart[1]
+            yAxis_lable = chart[2]
+            chartType = chart[3]
+            chart_dict["xAxis_list"] = xAxis_list
+            chart_dict["yAxis_list"] = yAxis_list
+            chart_dict["xAxis_lable"] = xAxis_lable
+            chart_dict["yAxis_lable"] = yAxis_lable
+            chart_dict["chartType"] = chartType
+
+            res["charts"].append(chart_dict)
+   except NameError:
+    pass
+
+
+
+   return res
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
    
