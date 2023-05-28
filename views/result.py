@@ -51,7 +51,7 @@ def result(request):
         not_filter_dict["international_minutes"] = "0"
 
     if "on" in local_minutes:
-        not_filter_dict["local_minutes"] = "0"
+        not_filter_dict["total_local_minutes"] = "0"
 
     # Roaming
     with_roaming = request.GET.get("with_roaming", "off")
