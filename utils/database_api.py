@@ -122,17 +122,17 @@ def get_one_closest(filter_dict, not_filter_dict, orders_by_dict, limit):
         else:
             query_conditions += " WHERE "
 
-        value_set = "("
+        # value_set = "("
 
-        for index, val in enumerate(not_filter_dict[condition]):
-            if index == 0:
-                value_set += "'{}'".format(val)
-            else:
-                value_set += ",'{}'".format(val)
-        value_set += ")"
+        # for index, val in enumerate(not_filter_dict[condition]):
+        #     if index == 0:
+        #         value_set += "'{}'".format(val)
+        #     else:
+        #         value_set += ",'{}'".format(val)
+        # value_set += ")"
 
         query_conditions += "{} != {}".format(
-            condition, value_set)
+            condition, not_filter_dict[condition])
 
     # Order By
     query_orders_by = ""
