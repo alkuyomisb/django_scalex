@@ -411,7 +411,7 @@
                       <tr>
                         <td>Local Minutes</td>
                         {% for plan in plans %}
-                        <td>{{plan.local_minutes}}</td>
+                        <td>{{plan.total_local_minutes}}</td>
                         {% endfor %}
                       </tr>
                       <tr>
@@ -497,7 +497,7 @@
       <!-- Custom JS -->
       <script src="{% static "/js/footer/main.js" %}"></script>
     <a href="javascript:;" id="return-top" class="return-top"
-      ><span><img src="images/up-icon.svg" alt="Up" /></span
+      ><span><img src="static/images/up-icon.svg" alt="Up" /></span
     ></a>
   </body>
 </html>

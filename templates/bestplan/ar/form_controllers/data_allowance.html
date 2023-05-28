@@ -8,15 +8,15 @@
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " GB");
+        $(this).html("0 - " + value + " GB");
       });
   
       range.on('input', function(){
 
         if(this.value == 100){
-          $(this).next(value).html(this.value + "+ GB");
+          $(this).next(value).html("0 - "+this.value + "+ GB");
           }else{
-            $(this).next(value).html(this.value + " GB");
+            $(this).next(value).html("0 - "+this.value + " GB");
           }
         
 

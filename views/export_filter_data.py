@@ -19,6 +19,7 @@ def export_filter_data(request):
     data_allowance = request.GET.get("data_allowance", "all")
     service_type = request.GET.get("service_type", "all")
     plan_type = request.GET.get("plan_type", "all")
+    total_local_minutes = request.GET.get("minutes", "all")
     rank = request.GET.get("rank", "all")
     term_length = request.GET.get("term_length", 1)
 
@@ -99,13 +100,13 @@ def export_filter_data(request):
     stk = ScaleXToolkit()
     if len(isp_list) == 0:
         plans = {
-            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "vodafone":   get_one_closest({"isp": ["vodafone"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "friendly":   get_one_closest({"isp": ["friendly"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1)
+            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type":   [plan_type]},  not_filter_dict,  {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "vodafone":   get_one_closest({"isp": ["vodafone"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "friendly":   get_one_closest({"isp": ["friendly"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1)
         }
         data = stk.best_plan_merge(plans)
         index = 0
@@ -154,8 +155,11 @@ def export_filter_data(request):
             )
 
     else:
-        top_plans = get_one_closest({"service_type": [service_type], "plan_type": [plan_type]}, {
-                                    "price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 6),
+        TOTAL_PLANS_NUMBER = 7
+        top_plans = []
+
+        top_plans = get_one_closest({"isp": isp_list,  "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {
+                                    "price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, TOTAL_PLANS_NUMBER),
         for index, plan in enumerate(top_plans[0]):
             writer.writerow([
                 index,

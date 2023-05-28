@@ -8,8 +8,9 @@ def result(request):
     data_allowance = request.GET.get("data_allowance", "all")
     service_type = request.GET.get("service_type", "all")
     plan_type = request.GET.get("plan_type", "all")
+    total_local_minutes = request.GET.get("minutes", "all")
     rank = request.GET.get("rank", "all")
-    term_length = request.GET.get("term_length", 1)
+    term_length = request.GET.get("term_length", 30)
     lang = request.GET.get("lang", 'en')
 
     if price == '':
@@ -63,13 +64,13 @@ def result(request):
 
     if len(isp_list) == 0:
         plans = {
-            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type":   [plan_type]},  not_filter_dict,  {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "vodafone":   get_one_closest({"isp": ["vodafone"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "friendly":   get_one_closest({"isp": ["friendly"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1),
-            "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length}, 1)
+            "omantel":    get_one_closest({"isp": ["omantel"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "rennah":     get_one_closest({"isp": ["renna"], "service_type": [service_type], "plan_type":   [plan_type]},  not_filter_dict,  {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "ooredoo":    get_one_closest({"isp": ["ooredoo"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "redbull":    get_one_closest({"isp": ["redbull"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "vodafone":   get_one_closest({"isp": ["vodafone"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "friendly":   get_one_closest({"isp": ["friendly"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1),
+            "awasr":      get_one_closest({"isp": ["awasr"], "service_type": [service_type], "plan_type": [plan_type]}, not_filter_dict, {"price_value": price, "data_allowance_value": data_allowance, "duration_value": term_length, "total_local_minutes": total_local_minutes}, 1)
         }
         res = plans
         link = "bestplan/{}/result.html".format(lang)

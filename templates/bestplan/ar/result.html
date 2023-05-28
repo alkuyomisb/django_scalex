@@ -204,6 +204,8 @@
                     {% elif 'POSTPAID' in awasr.plan_type %}
                     <td>آجل الدفع الدفع</td>
                     {% else %}
+                    <td> - </td>
+
                     {% endif %}
                   </tr>
                   <tr>
@@ -298,7 +300,7 @@
                   </tr>
                   <tr>
                     <td>الدقائق المحلية</td>
-                    <td>{{renna.local_minutes}}</td>
+                    <td>{{rennah.local_minutes}}</td>
                     <td>{{omantel.local_minutes}}</td>
                     <td>{{friendly.local_minutes}}</td>
                     <td>{{ooredoo.local_minutes}}</td>
@@ -308,7 +310,7 @@
                   </tr>
                   <tr>
                     <td>دقائق على نفس الشبكة</td>
-                    <td>{{renna.flexi_minutes}}</td>
+                    <td>{{rennah.flexi_minutes}}</td>
                     <td>{{omantel.flexi_minutes}}</td>
                     <td>{{friendly.flexi_minutes}}</td>
                     <td>{{ooredoo.flexi_minutes}}</td>
@@ -318,7 +320,7 @@
                   </tr>
                   <tr>
                     <td>الدقائق الدولية</td>
-                    <td>{{renna.international_minutes}}</td>
+                    <td>{{rennah.international_minutes}}</td>
                     <td>{{omantel.international_minutes}}</td>
                     <td>{{friendly.international_minutes}}</td>
                     <td>{{ooredoo.international_minutes}}</td>
@@ -328,7 +330,7 @@
                   </tr>
                   <tr>
                     <td>بيانات التجوال (جيجا بايت)</td>
-                    <td>{{renna.world_roaming_value}}</td>
+                    <td>{{rennah.world_roaming_value}}</td>
                     <td>{{omantel.world_roaming_value}}</td>
                     <td>{{friendly.world_roaming_value}}</td>
                     <td>{{ooredoo.world_roaming_value}}</td>

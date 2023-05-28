@@ -8,14 +8,14 @@
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " ريال");
+        $(this).html("0 - " + value + " ريال");
       });
   
       range.on('input', function(){
         if(this.value == 100){
-          $(this).next(value).html(this.value + "+ ريال");
+          $(this).next(value).html("0 - "+this.value + "+ ريال");
           }else{
-            $(this).next(value).html(this.value + " ريال");
+            $(this).next(value).html("0 - "+this.value + " ريال");
           }
 
       });

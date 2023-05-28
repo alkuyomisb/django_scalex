@@ -8,14 +8,14 @@
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " Min");
+        $(this).html("0 - " + value + " Min");
       });
   
       range.on('input', function(){
         if(this.value == 100){
-          $(this).next(value).html(this.value + "+ Min");
+          $(this).next(value).html("0 - "+this.value + "+ Min");
         }else{
-          $(this).next(value).html(this.value + " Min");
+          $(this).next(value).html("0 - "+this.value + " Min");
         }
       });
     });

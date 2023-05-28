@@ -9,14 +9,14 @@
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " دقائق");
+        $(this).html("0 - " + value + " دقائق");
       });
   
       range.on('input', function(){
         if(this.value == 100){
-          $(this).next(value).html(this.value + "+ دقائق");
+          $(this).next(value).html("0 - "+this.value + "+ دقائق");
         }else{
-          $(this).next(value).html(this.value + " دقائق");
+          $(this).next(value).html("0 - "+this.value + " دقائق");
         }
       });
     });

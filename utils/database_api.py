@@ -77,6 +77,7 @@ def get_one_closest(filter_dict, not_filter_dict, orders_by_dict, limit):
     # Conditions
     query_conditions = ""
 
+    # Filter from filter_dict ( This values must match to the values in Database)
     for index, condition in enumerate(filter_dict):
         if "all" in filter_dict[condition] or "all" in condition:
             continue
@@ -98,11 +99,25 @@ def get_one_closest(filter_dict, not_filter_dict, orders_by_dict, limit):
         query_conditions += "{} in {}".format(
             condition, value_set)
 
+    # Filter from orders_by_dict (This values must be in the range of zero to the given value)
+    for index, order_by in enumerate(orders_by_dict):
+        if orders_by_dict[order_by] == 0 or orders_by_dict[order_by] == '0' or orders_by_dict[order_by] == '':
+            continue
+
+        if len(query_conditions) > 0:
+            query_conditions += " AND "
+        else:
+            query_conditions += " WHERE "
+
+        query_conditions += "{} BETWEEN 0 AND {} ".format(
+            order_by, orders_by_dict[order_by])
+
+    # Sorting th results
     for index, condition in enumerate(not_filter_dict):
         if "all" in not_filter_dict[condition] or "all" in condition:
             continue
 
-        if len(filter_dict) > 0:
+        if len(query_conditions) > 0:
             query_conditions += " AND "
         else:
             query_conditions += " WHERE "
@@ -196,7 +211,8 @@ def record_to_dict(record):
         "world_roaming_unit": record[26],
         "contract_duration_value": record[27],
         "contract_duration_unit": record[28],
-        "add_on_link": record[29]
+        "add_on_link": record[29],
+        "total_local_minutes": record[30]
     }
     return data
 
@@ -231,6 +247,7 @@ def get_empty_dict():
         "world_roaming_unit": "-",
         "contract_duration_value": "-",
         "contract_duration_unit": "-",
-        "add_on_link": "-"
+        "add_on_link": "-",
+        "total_local_minutes": "-",
     }
     return data

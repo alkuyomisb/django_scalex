@@ -8,14 +8,14 @@
   
       value.each(function(){
         var value = $(this).prev().attr('value');
-        $(this).html(value + " RO");
+        $(this).html("0 - " + value + " RO");
       });
   
       range.on('input', function(){
         if(this.value == 100){
-        $(this).next(value).html(this.value + "+ RO");
+        $(this).next(value).html("0 - "+this.value + "+ RO");
         }else{
-          $(this).next(value).html(this.value + " RO");
+          $(this).next(value).html("0 - "+this.value + " RO");
         }
       });
     });
