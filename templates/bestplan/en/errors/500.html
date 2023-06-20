@@ -1,0 +1,19 @@
+ {% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>500 Error</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/error/error_500.css' %}">
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> {% endcomment %}
+</head>
+<body>
+    <div class="error-container">
+        <img src="error-illustration.png" alt="Error Illustration" class="error-illustration">
+        <h1 class="error-message">Oops! Something went wrong.</h1>
+        <p class="error-explanation">We're experiencing some technical difficulties at the moment. Please try again later.</p>
+        <a href="#" class="cta-button">Go Back</a>
+        <p class="alternative-links">You can also <a href="/">return to the homepage</a> or try <a href="/search">searching</a> for specific information.</p>
+    </div>
+</body>
+</html> 

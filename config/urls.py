@@ -17,6 +17,7 @@ from django.urls import path
 from django.contrib import admin
 import views.views as views
 
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('result', views.result, name='result'),
@@ -28,3 +29,5 @@ urlpatterns = [
     path('export_filter_data', views.export_filter_data, name='export_filter_data'),
     # path('admin/', admin.site.urls),
 ]
+
+handler500 = 'views.error_500.error_500'
