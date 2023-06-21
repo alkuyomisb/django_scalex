@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from utils.database_api import add_chart
-def save_chart(request):
-    
-    chartType = request.GET.get("chartType")
-    xAxis = request.GET.get("xAxis")
-    yAxis = request.GET.get("yAxis")
-    add_chart( chartType , xAxis , yAxis )
+from django.shortcuts import redirect
 
-    return render(request, "arch/statistics.html" )
+def save_chart(request):
+    query_params = request.GET
+    chartType = request.GET.get("chartType")
+    plan_fields = query_params.getlist("plan_field")
+    add_chart(chartType, plan_fields)
+
+
+    return redirect('statistics')

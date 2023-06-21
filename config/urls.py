@@ -24,6 +24,7 @@ urlpatterns = [
     path('statistics', views.statistics, name='statistics'),
     path('tab', views.tab, name='tab'),
     path('save-chart', views.save_chart, name='save-chart'),
+    path('delete-chart', views.delete_chart, name='delete-chart'),
     # path('data', views.data, name='data'),
     # path('export', views.export_data, name='export'),
     path('export_filter_data', views.export_filter_data, name='export_filter_data'),

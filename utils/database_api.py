@@ -1,5 +1,4 @@
 import mysql.connector
-import matplotlib.pyplot as plt
 
 def get_all_plans ():
     plans = []
@@ -22,6 +21,25 @@ def get_all_plans ():
    
     mydb.close()
     return plans
+
+def display_columns_names ():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="scalex"
+    )
+
+    cursor = mydb.cursor()
+    query = f"SHOW COLUMNS FROM plan"
+    cursor.execute(query)
+
+    column_names = [column[0] for column in cursor.fetchall()]
+ 
+    cursor.close()
+    mydb.close()
+    return column_names
+
 
 
 def get_plans(**conditions):
@@ -230,7 +248,7 @@ def get_empty_dict():
     }
     return data
 
-def add_chart(chartType , xAxis , yAxis):
+def add_chart(chartType ,plan_fields):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -239,82 +257,175 @@ def add_chart(chartType , xAxis , yAxis):
     )
 
     cursor = db.cursor()
-    cursor.execute("INSERT INTO charts (chartType ,xAxis , yAxis) values ('{}' , '{}' , '{}');".format(chartType ,xAxis , yAxis))
+    cursor.execute("INSERT INTO charts (chart_type) values ('{}' );".format(chartType ))
+    chart_id = cursor.lastrowid  
+    print("chart id: ",chart_id);
+    for plan_field in plan_fields:
+        cursor.execute("INSERT INTO chart_parameters (chart_id , plan_field) VALUES ('{}','{}')".format(chart_id , plan_field))
+
+    db.commit()
+    cursor.close()
+    db.close()
+
+
+def delete_chart_and_parameters(chart_id):
+    try:
+        db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="scalex"
+        )
+        cursor = db.cursor()
+
+        # Delete the chart from the charts table
+        delete_chart_query = "DELETE FROM charts WHERE id = %s"
+        cursor.execute(delete_chart_query, (chart_id,))
+
+        # Delete the chart parameters from the chart_parameters table
+        delete_params_query = "DELETE FROM chart_parameters WHERE chart_id = %s"
+        cursor.execute(delete_params_query, (chart_id,))
+
+        db.commit()
+        cursor.close()
+        db.close()
+
+        print("Chart and associated parameters deleted successfully.")
+    except mysql.connector.Error as error:
+        print("Error deleting chart and associated parameters:", error)
+        
+        
+
+
+def get_charts ():
     
-
-
-def get_axis_list(axis , isFloat = False):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
         password="",
         database="scalex"
     )
-    axis_list = []
-    
     cursor = db.cursor()
-    cursor.execute("SELECT id, {} FROM plan".format(axis))
-    plans_tale = cursor.fetchall()
-    for axis in plans_tale:
-        id = axis[0]
-        value = axis[1]
-        value = ''.join(filter(lambda x: x.isdigit() or x == '.', str(value)))
-        if value == '':
-            value = '0'
-        axis_list.append(value)
-        if isFloat:
-            axis_list.append(float(value))
-        else:
-            axis_list.append(value)
+
+    chart_query = "SELECT chart_type , id FROM charts"  #retreive all charts
+    cursor.execute(chart_query)
+    chart_results = cursor.fetchall()
+    #store the data
+    data = {"charts": []}
+
+    # display chart type 
+    for chart_row in chart_results: 
+        chart_type = chart_row[0] #store chart_type
+        chart_id = chart_row[1]
+        if chart_type == 'pie': #check chart type
+
+            # Retrieve parameters for the specific chart type from the chart_parameters table
+            param_query = """
+            SELECT plan_field
+            FROM chart_parameters
+            WHERE chart_id = %s;
+            """
+            cursor.execute(param_query, (chart_id,))
+            param_results = cursor.fetchall()
+
+            #chart dictionary
+            chart = {
+                "id" : chart_id,
+                "chartType": chart_type,
+                "parameters": []
+            }
+            
+
+            # display the parameters and value for the specific chart type
+            for param_row in param_results:
+                parameter = {
+                "plan_field": param_row[0],
+                "value": None,
+                }
+
+
+                # get the sum of plan field from plan table 
+                sum_query = "SELECT SUM(CAST({} AS DECIMAL)) FROM plan".format(param_row[0])
+                cursor.execute(sum_query)
+                sum_result = cursor.fetchone()
+                parameter["value"] = int(sum_result[0])
+                chart["parameters"].append(parameter)
+
+            # data["charts"].append(chart)
+
+                     
+        elif chart_type in ['line', 'bar']: #check anothe chart type
+
+            # Retrieve parameters for the specific chart type from the chart_parameters table
+            param_query = """
+            SELECT plan_field
+            FROM chart_parameters
+            WHERE chart_id = %s;
+            """
+            cursor.execute(param_query, (chart_id,))
+            param_results = cursor.fetchall()
+
+            #chart dictionary
+            chart = {
+                "id" : chart_id , 
+                "chartType": chart_type,
+                "lables": [],
+                "values" : []
+            }
+            
+
+            # display the parameters and value for the specific chart type
+            for param_row in param_results:
+                chart["lables"].append(
+                    param_row[0],
+                )
+            x = param_results[0][0]
+            y = param_results[1][0]
+            chart_values = retrieve_xy_values(x, y)
+            chart["values"] = chart_values
+            
+        data["charts"].append(chart)
+            
 
 
 
-    return axis_list
+    cursor.close()
+    db.close()
+    return data
 
-def get_all_charts ():
-    all_charts = []
-    mydb = mysql.connector.connect(
+
+def retrieve_xy_values(column1_name, column2_name):
+    db = mysql.connector.connect(
         host="localhost",
         user="root",
         password="",
         database="scalex"
     )
+    cursor = db.cursor()
+    query = "SELECT {0}, {1} FROM plan".format(column1_name, column2_name)
+    cursor.execute(query)
 
-    cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM charts")
-    charts = cursor.fetchall()
+    values = cursor.fetchall()
+    cursor.close()
+    db.close()
 
-    for chart in charts:
-        all_charts.append(chart)
-    
-    mydb.close()
-    return all_charts
-
-def get_chart_dict():
-   db_charts = get_all_charts()
-   res = {"charts" : []}
-   try:
-    for chart in db_charts:
-            chart_dict = {"xAxis_list" : [], "yAxis_list" : [], "xAxis_lable" : "" , "yAxis_lable" : "","chartType" : ""}
-            xAxis_list = get_axis_list(chart[1] ,isFloat=True)
-            yAxis_list = get_axis_list(chart[2] ,isFloat=True)
-            xAxis_lable = chart[1]
-            yAxis_lable = chart[2]
-            chartType = chart[3]
-            chart_dict["xAxis_list"] = xAxis_list
-            chart_dict["yAxis_list"] = yAxis_list
-            chart_dict["xAxis_lable"] = xAxis_lable
-            chart_dict["yAxis_lable"] = yAxis_lable
-            chart_dict["chartType"] = chartType
-
-            res["charts"].append(chart_dict)
-   except NameError:
-    pass
+    chart_values = []
+    for value in values:
+        if len(value) >= 2 and all(is_numeric(val) for val in value):
+            x_value = float(str(value[0]))
+            y_value = float(str(value[1]))
+            chart_values.append({"x": x_value, "y": y_value})
+            
+    return chart_values
 
 
 
-   return res
-
+def is_numeric(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
 
 
 

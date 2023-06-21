@@ -21,8 +21,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/statistics.css' %}" />
-
-
     <!-- multiSelectDiv -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/multiSelectStyle.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
@@ -50,33 +48,11 @@
 
 <body>
     <!-- Choose Chart Dialog -->
-    <form action="/save-chart" method="GET">
+    <form action="/save-chart" method="GET" id="form">
         <div>
             <dialog class="chartDialog" id="DialogChart">
                 <input name="chartType" value="" hidden id="chartTypeInput" />
-                <!-- <div class="form-group row">
-                   
-                    <span for="xValues" class="col-sm-4 col-form-label"> xValue :</span>
-                    <div class="col-sm-8">
-                        <select class="form-control input-sm" name="xAxis" id="xValues">
-                            <option value="price_value">Price</option>
-                            <option value="international_minutes">International Minutes</option>
-                        </select>
-                    </div>
-                </div> -->
 
-
-                <!-- xyVaues -->
-                <!-- <div class="form-group row">
-                    <span for="yValues" class="col-sm-4 col-form-label"> yValue :</span>
-                    <div class="col-sm-8">
-                        <select class="form-control input-sm" id="yValues" name="yAxis">
-                            <option value="price_value">Price</option>
-                            <option value="international_minutes">International Minutes</option>
-                        </select>
-                    </div>
-                </div> -->
-                <!-- xyVaues -->
 
                 <!-- Choose Chart Type -->
                 <div class="form-group row">
@@ -91,87 +67,39 @@
                     </div>
                 </div>
 
-                <!-- <div id="no-limit">
-                    <p>いくつでも選択可能</p>
-                    <select class="select2" style="width: 100%;">
-                        <option value="A">Apple</option>
-                        <option value="B">Banana</option>
-                        <option value="C">Chocolate</option>
-                        <option value="D">Dessert</option>
-                    </select>
-                </div> -->
-                <!-- <div id="limit-2">
-                    <p>2つまで選択可能</p>
-                    <select class="select2" style="width: 100%;">
-                        <option value="A">Apple</option>
-                        <option value="B">Banana</option>
-                        <option value="C">Chocolate</option>
-                        <option value="D">Dessert</option>
-                    </select>
-                </div> -->
-                <!-- <div id="limit-2-custom-message">
-                    <p>2つまで選択可能(カスタムメッセージ)</p>
-                    <select class="select2" style="width: 100%;">
-                        <option value="A">Apple</option>
-                        <option value="B">Banana</option>
-                        <option value="C">Chocolate</option>
-                        <option value="D">Dessert</option>
-                    </select>
-                </div> -->
 
 
                 <div id="multiSelectDiv" style="display: none;">
                     <section>
                         <div class="form-group row">
-                                <div id="limit-2">
-                                    <span >Select Lable</span>
-                                    <select id="multiSelect" class="select2" style="width: 100%;" multiple>
-                                        <option value="price_value">Price</option>
-                                        <option value="international_minutes">International Minutes</option>
-                                        <option value="data_allowance_value">Data Allowance</option>
-                                        <option value="flexi_minutes">Flexi Minutes</option>
-                                        <option value="local_minutes">Local Minutes</option>
-                                        <option value="duration_value">Duration Value</option>
-                                        <option value="social_media_data_value">Social Media Data</option>
-                                        <option value="download_speed_value">Download Speed</option>
-                                        <option value="upload_speed_value">Upload Speed</option>
-                                        <option value="fixed_line_minutes">Fixed Line Minutes</option>
-                                        <option value="world_roaming_value">World Roaming</option>
-                                        <option value="contract_duration_value">Contract Duration</option>
-                                    </select>
+                            <div id="limit-2">
+                                <span>Select Lable</span>
+                                <select id="multiSelect" name="plan_field" class="select2" style="width: 100%;"
+                                    multiple>
+                                    <option value="price_value">Price</option>
+                                    <option value="international_minutes">International Minutes</option>
+                                    <option value="data_allowance_value">Data Allowance</option>
+                                    <option value="flexi_minutes">Flexi Minutes</option>
+                                    <option value="local_minutes">Local Minutes</option>
+                                    <option value="duration_value">Duration Value</option>
+                                    <option value="social_media_data_value">Social Media Data</option>
+                                    <option value="download_speed_value">Download Speed</option>
+                                    <option value="upload_speed_value">Upload Speed</option>
+                                    <option value="fixed_line_minutes">Fixed Line Minutes</option>
+                                    <option value="world_roaming_value">World Roaming</option>
+                                    <option value="contract_duration_value">Contract Duration</option>
+                                </select>
                             </div>
                         </div>
                     </section>
                 </div>
 
 
-                <div class="form-group row" id="oneSelect" style="display: none;">
-                    <span for="xValues" class="col-sm-4 col-form-label"> xValue :</span>
-                    <div class="col-sm-8">
-                        <select class="form-control input-sm" id="xValues" name="xAxis">
-                            <option value="price_value">Price</option>
-                            <option value="international_minutes">International Minutes</option>
-                            <option value="data_allowance_value">Data Allowance</option>
-                            <option value="flexi_minutes">Flexi Minutes</option>
-                            <option value="local_minutes">Local Minutes</option>
-                            <option value="duration_value">Duration Value</option>
-                            <option value="social_media_data_value">Social Media Data</option>
-                            <option value="download_speed_value">Download Speed</option>
-                            <option value="upload_speed_value">Upload Speed</option>
-                            <option value="fixed_line_minutes">Fixed Line Minutes</option>
-                            <option value="world_roaming_value">World Roaming</option>
-                            <option value="contract_duration_value">Contract Duration</option>
-                        </select>
-                    </div>
-                </div>
-
-
-
 
                 <!-- Choose Chart Type -->
                 <div class="modal-footer">
                     <button class="btn btn-chart" id="chartHide" type="button">Close</button>
-                    <button class="btn btn-chart" type="submit">Apply</button>
+                    <button class="btn btn-chart" type="submit" id="save-chart">Apply</button>
 
                 </div>
             </dialog>
@@ -179,73 +107,28 @@
     </form>
     <!-- Choose Chart Dialog -->
 
-    <div>
-        <dialog class="removeChartDialog" id="removeChartDialog1">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
-            </div>
-            <div class="modal-footer">
-                <button id="removeHide1" class="btn btn-chart">Close</button>
-                <button type="button" class="btn btn-chart" id="deleteChart" onclick="deleteDiv()">
-                    Delete
-                </button>
-            </div>
-        </dialog>
-    </div>
+
 
     <div>
-        <dialog class="removeChartDialog" id="removeChartDialog2">
+        <dialog class="removeChartDialog" id="deleteDialog" style="position: fixed;">
             <div class="modal-header">
                 <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
             </div>
             <div class="modal-footer">
-                <button id="removeHide2" class="btn btn-chart">Close</button>
-                <button type="button" class="btn btn-chart" onclick="deleteDiv()">
-                    Delete
-                </button>
-            </div>
-        </dialog>
-    </div>
-
-    <div>
-        <dialog class="removeChartDialog" id="removeChartDialog3">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
-            </div>
-            <div class="modal-footer">
-                <button id="removeHide3" class="btn btn-chart">Close</button>
-                <button type="button" class="btn btn-chart" onclick="deleteDiv()">
-                    Delete
-                </button>
+                <button id="closeDialog" class="btn btn-chart">Close</button>
+                <form action="/delete-chart" method="POST">
+                    <input type="hidden" name="chart_id" id="deleteChartId" value="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-chart">
+                        Delete
+                    </button>
+                </form>
             </div>
         </dialog>
     </div>
 
     <div class="row" id="row">
-        <!-- <div id="deleteDiv"> -->
-        <!-- <button class="delete" id="removeChartShow1" style="display:none;">
-                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
-            </button>
-            <canvas id="barChart" style="height: 350px; padding: 15px; width: 350px"></canvas> -->
-        <!-- </div> -->
-        <!-- <div>
-            <button class="delete" id="removeChartShow1" style="display:none;">
-                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
-            </button>
-            <canvas id="barChart" style="height: 350px; padding: 15px; width: 350px"></canvas>
-        </div>
-        <div>
-            <button class="delete" id="removeChartShow2" style="display:none;">
-                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
-            </button>
-            <canvas id="lineChart" style="height: 350px; padding: 15px; width: 350px"></canvas>
-        </div>
-        <div>
-            <button class="delete" id="removeChartShow3" style="display:none;">
-                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
-            </button>
-            <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas>
-        </div> -->
+
         <div>
             <button class="delete" id="removeChartShow3" style="display:none;">
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
@@ -254,30 +137,22 @@
         </div>
 
         <div id="chartsContainer">
-            <!-- <button class="delete" id="removeChartShow2" style="display:none;">
-                <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
-            </button> -->
-            <div>
 
-            </div>
-            <!-- <canvas id="newChart" width="600" height="400"></canvas> -->
+            <!-- Charts with Delete Button -->
+
+
         </div>
+
         <div>
             <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
                 <div class="add-icon"></div>
                 <div class="btn-txt">Add Chart</div>
             </button>
         </div>
-        <!-- <div>
-            <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
-                <div class="add-icon"></div>
-                <div class="btn-txt">Add Chart</div>
-            </button>
-        </div> -->
+
+
         <div>
-            <button onclick="
-                // return showHide() ,showHide0(), showHide1() ,
-                showHide() , showHide2();" class="btn-outline-primary" style="margin-left:50px;">Edit
+            <button id="editButton" onclick="addChart();" class="btn-outline-primary" style="margin-left:50px">Edit
             </button>
         </div>
     </div>
@@ -285,19 +160,8 @@
 
 <script>
 
-    // for multiSelect to select only two labels
-    $(document).ready(function() {
-    $('#limit-2 .select2').select2({
-      multiple: "multiple",
-      maximumSelectionLength: 2,
-      language: {
-        maximumSelected: (args) => "You can only select 2 labels"
-      }
-    });
-  });
 
-
-
+    // dialog for chooseing chartType and lables
     (function () {
         var dateDialog = document.getElementById("DialogChart");
         document.getElementById("addChartShow").onclick = function () {
@@ -309,157 +173,267 @@
     })();
 
 
-    var charts = "{{charts |escapejs }}";
-    chartsList = JSON.parse(charts)["charts"]
+    var chart_result = "{{charts |escapejs }}";
+    chartsList = JSON.parse(chart_result)["charts"]
+    console.log("charts: ", chartsList)
     const chartsContainer = document.getElementById('chartsContainer');
+    editButton = document.getElementById('editButton');
+
 
     chartsList.forEach(element => {
+        var labels, values;
+        var chartType = element["chartType"]
+        var parameters = element["parameters"]
+        var xValues = [];
+        var yValues = [];
+        var planFields = []
+        var sumValues = []
 
-        const chartDiv = document.createElement('div');
+        // line & bar charts
+        if (element.chartType === "bar" || element.chartType === "line") {
+            labels = element.lables //get lable name
+
+            //to remove (_) from lables
+            var formattedLabels = labels.map(function (label) {
+                return label.replace(/_/g, ' ').replace('value', '').trim();
+            });
+
+            // store x and y values in list
+            element.values.forEach(function (value) {
+                xValues.push(value.x);
+                yValues.push(value.y);
+            });
+
+            console.log("Labels:", labels);
+            console.log("xValues:", xValues);
+            console.log("yValues:", yValues);
+        }
+
+
+        // pie chart
+        else if (element.chartType === "pie") {
+            var parameters = element.parameters;
+            // get plan_field
+            planFields = parameters.map(function (param) {
+                return param.plan_field.replace(/_/g, ' ').replace('value', '').trim();
+            });
+
+            //get value for each field
+            sumValues = parameters.map(function (param) {
+                return param.value;
+            });
+            console.log("plan_field: ", planFields)
+            console.log("sum Value: ", sumValues)
+        }
+
+
+        const chartDiv = document.createElement('div'); //create div for chart
         chartDiv.id = 'chart';
-        chartsContainer.append(chartDiv);
-        const deletebutton = document.createElement('button');
+        chartsContainer.append(chartDiv); // append div in charts container
+        const deletebutton = document.createElement('button'); //create delete button for each chart
+
         chartDiv.appendChild(deletebutton);
-        deletebutton.id = 'removeChartShow1';
-        // deletebutton.style = 'display:none';
+        deletebutton.id = 'removeChart';
+        deletebutton.style = 'display:none';
         deletebutton.className = 'btn btn-chart';
         deletebutton.textContent = 'delete';
-        const canvas = document.createElement('canvas');
-        canvas.width = 400;
+        const canvas = document.createElement('canvas'); // create canvas
+        canvas.width = 500;
         canvas.height = 400;
         chartDiv.appendChild(canvas);
 
 
-        function showHide(element) {
-            var elm = document.getElementById("removeChartShow1");
-            if (elm.style.display == "block") {
-                elm.style.display = "none";
-            }
-            else {
-                elm.style.display = "block";
-            }
-
-        }
-
-        (function () {
-            var removeDialog1 = document.getElementById("removeChartDialog1");
-            document.getElementById("removeChartShow1").onclick = function () {
-                removeDialog1.show();
-            };
-            document.getElementById("removeHide1").onclick = function () {
-                removeDialog1.close();
-            };
-        })();
-
-        function showDeleteButtons() {
-            // Get all the chart elements
-            var charts = document.getElementsById('chart');
-
-            charts.forEach(charts, function (chart) {
-
-                var deleteButton = document.getElementById('removeChartShow1');
-
-                deleteButton.addEventListener('click', function () {
-                    chart.parentNode.removeChild(chart);
-                });
-
-                chart.appendChild(deleteButton);
-            });
-        }
+        // Show delete buttons for every chart
+        editButton.addEventListener('click', function () {
+            deletebutton.style.display = deletebutton.style.display === 'none' ? 'inline-block' : 'none';
+        });
 
 
-
-        var chartType = element["chartType"]
-        var xAxis_list = element["xAxis_list"]
-        var yAxis_list = element["yAxis_list"]
-        var xAxis_lable = element["xAxis_lable"]
-        var yAxis_lable = element["yAxis_lable"]
-
-        // console.log("chartType", chartType)
-        // console.log("xAxis_list", xAxis_list)
-        // console.log("yAxis_list", yAxis_list)
-        // console.log("xAxis_lable", xAxis_lable)
-        // console.log("yAxis_lable", yAxis_lable)
+        // Show Delete Dialog
+        deletebutton.addEventListener('click', function () {
+            var deleteChartIdInput = document.getElementById("deleteChartId")
+            deleteChartIdInput.value = element.id
+            console.log("iddd11: ", deleteChartIdInput)
+            const deleteDialog = document.getElementById("deleteDialog");
+            deleteDialog.style.display = deleteDialog.style.display === 'none' ? 'inline-block' : 'none';
+        });
 
 
+        // Hide Dialog When Close Click
+        const closeDialogButton = document.getElementById('closeDialog');
+        const deleteDialog = document.getElementById('deleteDialog');
+        closeDialogButton.addEventListener('click', function () {
+            deleteDialog.style.display = 'none';
+        });
+
+
+        // displaying the charts 
         if (chartType == 'line') {
+            var uniqueXValues = [];
+            var uniqueYValues = [];
+
+            for (var i = 0; i < xValues.length; i++) {
+                var xValue = xValues[i];
+                var yValue = yValues[i];
+
+                if (xValue && yValue && !hasDuplicate(uniqueXValues, uniqueYValues, xValue, yValue)) {
+                    uniqueXValues.push(xValue);
+                    uniqueYValues.push(yValue);
+                }
+            }
+
+            // check if there is an duplicate points
+            function hasDuplicate(arr1, arr2, xValue, yValue) {
+                for (var i = 0; i < arr1.length; i++) {
+                    if (arr1[i] === xValue && arr2[i] === yValue) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            // displayed uniqueXValues in ascending order
+            uniqueXValues.sort(function (a, b) {
+                return a - b;
+            });
+
+
+            console.log("uniqueXValuesLine: ", uniqueXValues)
+            console.log("uniqueYValuesLine: ", uniqueYValues)
+
             new Chart(canvas, {
                 type: "line",
                 data: {
-                    labels: xAxis_list,
+                    labels: uniqueXValues,
                     datasets: [
                         {
-                            label: xAxis_lable,
-                            data: yAxis_list,
+                            label: formattedLabels.join(" & "),
+                            data: uniqueYValues,
                             borderWidth: 1,
                         },
                     ],
                 },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: labels[0].replace(/_/g, ' ').replace('value', ''),
+                            },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: labels[1].replace(/_/g, ' ').replace('value', ''),
+                            },
+                        },
+                    },
+                },
             });
         }
-        else if (chartType == 'bar') {
+        else if (chartType === 'bar') {
+
+            var uniqueXValues = [];
+            var uniqueYValues = [];
+
+            for (var i = 0; i < xValues.length; i++) {
+                var xValue = xValues[i];
+                var yValue = yValues[i];
+
+                if (xValue && yValue && !hasDuplicate(uniqueXValues, uniqueYValues, xValue, yValue)) {
+                    uniqueXValues.push(xValue);
+                    uniqueYValues.push(yValue);
+                }
+            }
+
+            // check if there is an duplicate points
+            function hasDuplicate(arr1, arr2, xValue, yValue) {
+                for (var i = 0; i < arr1.length; i++) {
+                    if (arr1[i] === xValue && arr2[i] === yValue) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            // display uniqueXValues in ascending order
+            uniqueXValues.sort(function (a, b) {
+                return a - b;
+            });
+
+
+            console.log("uniqueXValuesBar: ", uniqueXValues)
+            console.log("uniqueYValuesBar: ", uniqueYValues)
+
 
             new Chart(canvas, {
                 type: "bar",
                 data: {
-                    labels: xAxis_list,
+                    labels: uniqueXValues,
                     datasets: [
                         {
-                            label: xAxis_lable,
-                            data: yAxis_list,
+                            label: formattedLabels.join(" & "),
+                            data: uniqueYValues,
                             borderWidth: 1,
                         },
                     ],
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: labels[0].replace(/_/g, ' ').replace('value', ''),
+                            },
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: labels[1].replace(/_/g, ' '),
+                            },
+                        },
+                    },
                 },
             });
         }
         else if (chartType == 'pie') {
-            var combinedData = {};
-            var total = 0;
-            for (var i = 0; i < xAxis_list.length; i++) {
-                var value = xAxis_list[i];
-                if (value in combinedData) {
-                    combinedData[value]++;
-                } else {
-                    combinedData[value] = 1;
-                }
-                total++;
-            }
-            // console.log("total: ", total + " label : ", xAxis_lable)
+            var datasets = [];
 
+            // Loop over the planFields array
+            for (var i = 0; i < planFields.length; i++) {
+                var dataset = {
+                    label: planFields[i],
+                    value: sumValues[i],
+                    borderWidth: 1
+                };
 
-            var percentages = {};
-            for (var value in combinedData) {
-                var count = combinedData[value];
-                percentages[value] = (count / total) * 100;
+                datasets.push(dataset);
+                console.log("dataset: ", dataset)
             }
 
-            // console.log("par: ", percentages)
+
+            // get percentages
+            var totalSum = sumValues.reduce(function (accumulator, currentValue) {
+                return accumulator + currentValue;
+            }, 0);
+
+            var percentages = sumValues.map(function (value) {
+                return ((value / totalSum) * 100).toFixed(0);
+            });
+
 
             new Chart(canvas, {
                 type: "pie",
                 data: {
-                    lables: xAxis_list,
-                    datasets: [
-                        {
-                            label: xAxis_lable,
-                            data: Object.values(percentages),
-                            borderWidth: 1,
-                        },
-                    ],
-                },
-
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        labels: {
-                            render: 'percentage',
-                            precision: 2
-                        }
-                    },
+                    // to show % with the persentages 
+                    labels: planFields.map(function (label, index) {
+                        return label + ' (' + percentages[index] + '%)';
+                    }),
+                    datasets: [{
+                        data: percentages,
+                        borderWidth: 1,
+                    }],
                 }
-
             });
         }
         else {
@@ -468,110 +442,6 @@
     })
 
 
-        // new Chart(barChart, {
-        //     type: "bar",
-        //     data: {
-        //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        //         datasets: [
-        //             {
-        //                 label: "# of Votes",
-        //                 data: [12, 19, 3, 5, 2, 3],
-        //                 borderWidth: 1,
-        //             },
-        //         ],
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true,
-        //             },
-        //         },
-        //     },
-        // });
-        // // bar chart
-
-        // // line chart
-        // const lineChart = document.getElementById("lineChart");
-
-        // new Chart(lineChart, {
-        //     type: "line",
-        //     data: {
-        //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        //         datasets: [
-        //             {
-        //                 label: "# of Votes",
-        //                 data: [12, 19, 3, 5, 2, 3],
-        //                 borderWidth: 1,
-        //             },
-        //         ],
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true,
-        //             },
-        //         },
-        //     },
-        // });
-        // // line chart
-
-        // const pieChart = document.getElementById("pieChart");
-
-        // new Chart(pieChart, {
-        //     type: "pie",
-        //     data: {
-        //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        //         datasets: [
-        //             {
-        //                 label: "# of Votes",
-        //                 data: [12, 19, 3, 5, 2, 3],
-        //                 borderWidth: 1,
-        //             },
-        //         ],
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true,
-        //             },
-        //         },
-        //     },
-        // });
-
-
-
-        // remove chart dialog
-        (function () {
-            var removeDialog1 = document.getElementById("removeChartDialog1");
-            document.getElementById("removeChartShow1").onclick = function () {
-                removeDialog1.show();
-            };
-            document.getElementById("removeHide1").onclick = function () {
-                removeDialog1.close();
-            };
-        })();
-
-    (function () {
-        var removeDialog2 = document.getElementById("removeChartDialog2");
-        document.getElementById("removeChartShow2").onclick = function () {
-            removeDialog2.show();
-        };
-        document.getElementById("removeHide2").onclick = function () {
-            removeDialog2.close();
-        };
-    })();
-
-    (function () {
-        var removeDialog3 = document.getElementById("removeChartDialog3");
-        document.getElementById("removeChartShow3").onclick = function () {
-            removeDialog3.show();
-        };
-        document.getElementById("removeHide3").onclick = function () {
-            removeDialog3.close();
-        };
-    })();
-
-    
 
     // Chart type function
     function enableImage(imageElement) {
@@ -583,58 +453,37 @@
         }
         // enable selected image by removing the grayscale effect
         imageElement.style.filter = "none";
-        // console.log(imageElement.name)
         const chartTypeInput = document.getElementById("chartTypeInput")
         chartTypeInput.value = imageElement.name
 
         //select dropDown 
         var multiSelectDiv = document.getElementById("multiSelectDiv");
-        var oneSelect = document.getElementById("oneSelect");
+        var unlimitSelectDiv = document.getElementById("unlimit");
         if (chartTypeInput.value == 'bar' || chartTypeInput.value == 'line') {
             multiSelectDiv.style.display = "block";
-            oneSelect.style.display = "none";
+            $(document).ready(function () {
+                $('#limit-2 .select2').select2({
+                    multiple: "multiple",
+                    maximumSelectionLength: 2,
+                    language: {
+                        maximumSelected: (args) => "You can only select 2 labels"
+                    }
+                });
+            });
         }
         else {
-            oneSelect.style.display = "block";
-            multiSelectDiv.style.display = "none";
+            multiSelectDiv.style.display = "block";
+            $(document).ready(function () {
+                $('#limit-2 .select2').select2({
+                    multiple: "multiple",
+                });
+            });
         }
-
-
-
     }
 
 
-    // Edit Mode Functions
-    function showHide() {
-        var elm = document.getElementById("removeChartShow1");
-        if (elm.style.display == "block") {
-            elm.style.display = "none";
-        }
-        else {
-            elm.style.display = "block";
-        }
-    }
-    function showHide0() {
-        var elm = document.getElementById("removeChartShow2");
-        if (elm.style.display == "block") {
-            elm.style.display = "none";
-        }
-        else {
-            elm.style.display = "block";
-        }
-    }
-
-    function showHide1() {
-        var elm = document.getElementById("removeChartShow3");
-        if (elm.style.display == "block") {
-            elm.style.display = "none";
-        }
-        else {
-            elm.style.display = "block";
-        }
-    }
-
-    function showHide2() {
+    // Add Chart Dialog
+    function addChart() {
         var elm = document.getElementById("addChartShow");
         if (elm.style.display == "block") {
             elm.style.display = "none";
@@ -643,6 +492,7 @@
             elm.style.display = "block";
         }
     }
+
 </script>
 
 </html>
