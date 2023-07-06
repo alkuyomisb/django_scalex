@@ -19,6 +19,7 @@ import views.views as views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('login', views.login, name='login'),
     path('result', views.result, name='result'),
     path('plans', views.plans, name='plans'),
     path('statistics', views.statistics, name='statistics'),

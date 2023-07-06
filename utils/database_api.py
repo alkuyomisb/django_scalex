@@ -1,5 +1,26 @@
 import mysql.connector
 
+
+def get_users ():
+    users = []
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="scalex"
+    )
+
+    cursor = db.cursor()
+    cursor.execute("SELECT email , password FROM users")
+    usersresult = cursor.fetchall()
+
+    for user in usersresult:
+        u = user
+        users.append(u)
+    
+    db.close()
+    return users
+
 def get_all_plans ():
     plans = []
     mydb = mysql.connector.connect(
@@ -18,7 +39,6 @@ def get_all_plans ():
         plans.append(p)
     
 
-   
     mydb.close()
     return plans
 

@@ -7,7 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRA</title>
+    <style>
+        .btn-edit {
+            text-align: left;
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 600;
+            background-color: var(--color-100);
+            padding: 0.65rem 1.5rem;
+            border-radius: 0.25rem;
+            margin: 5;
+        }
 
+        .btn-edit:hover {
+            background-color: var(--color-300);
+        }
+    </style>
 
     <link rel="icon" href="{% static 'images/favicon.ico' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
@@ -19,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/statistics.css' %}" />
     <!-- multiSelectDiv -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/multiSelectStyle.css' %}" />
@@ -37,6 +52,7 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/statistics.js' %}"></script>
     <!-- multiSelectDiv -->
 
     <!-- limit select library -->
@@ -127,14 +143,54 @@
         </dialog>
     </div>
 
+    <p class='display-inline-block'>
+        <button class="btn btn-edit" id="editButton" onclick="addChart();" style="margin-left:50px">
+            <span class="fa fa-edit mr-3"></span>
+            EDIT
+        </button>
+
+        <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
+            <div class="add-icon" style="margin-top:10px ;"></div>
+            <div class="btn-txt">Add Chart</div>
+        </button>
+        <!-- <button  class="btn-outline-primary editButtons" ><i class="fa fa-edit"></i> Edit 
+        </button> -->
+
+    <div class="row">
+
+
+    </div>
+
+    <!-- <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
+            <div class="add-icon"></div>
+            <div class="btn-txt">Add Chart</div>
+        </button> -->
+    </p>
+
+
+
+
+    <!-- <div class="top-row row">
+        <div class="top-chart segment">
+          <div class="chart-title title">Calls Received</div>
+          <div class="chart-icon">
+            <i class="fa-solid fa-hashtag"></i>
+          </div>
+          <div class="chart-main">3,695</div>
+          <div class="chart-subtitle">-5% vs Dec-21</div>
+          <canvas id="callVolumes"></canvas>
+        </div> -->
+
     <div class="row" id="row">
 
         <div>
             <button class="delete" id="removeChartShow3" style="display:none;">
                 <span class="svg fa fa-minus" width="25" height="25" fill="none" viewBox="0 0 24 24"></span>
             </button>
-            <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas>
+            <!-- <canvas id="pieChart" style="width: 350px; padding: 15px"></canvas> -->
         </div>
+
+
 
         <div id="chartsContainer">
 
@@ -143,18 +199,7 @@
 
         </div>
 
-        <div>
-            <button class="icon-btn add-btn" id="addChartShow" style="display:none;">
-                <div class="add-icon"></div>
-                <div class="btn-txt">Add Chart</div>
-            </button>
-        </div>
 
-
-        <div>
-            <button id="editButton" onclick="addChart();" class="btn-outline-primary" style="margin-left:50px">Edit
-            </button>
-        </div>
     </div>
 </body>
 
@@ -229,6 +274,7 @@
 
         const chartDiv = document.createElement('div'); //create div for chart
         chartDiv.id = 'chart';
+        chartDiv.style = 'display:inline-block';
         chartsContainer.append(chartDiv); // append div in charts container
         const deletebutton = document.createElement('button'); //create delete button for each chart
 
@@ -238,7 +284,7 @@
         deletebutton.className = 'btn btn-chart';
         deletebutton.textContent = 'delete';
         const canvas = document.createElement('canvas'); // create canvas
-        canvas.width = 500;
+        canvas.width = 450;
         canvas.height = 400;
         chartDiv.appendChild(canvas);
 
@@ -485,11 +531,11 @@
     // Add Chart Dialog
     function addChart() {
         var elm = document.getElementById("addChartShow");
-        if (elm.style.display == "block") {
+        if (elm.style.display == "inline") {
             elm.style.display = "none";
         }
         else {
-            elm.style.display = "block";
+            elm.style.display = "inline";
         }
     }
 

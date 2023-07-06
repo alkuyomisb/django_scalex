@@ -1,0 +1,91 @@
+.login-div {
+    height: 500px;
+    /* background: linear-gradient(150deg,#ffff 33%,#ffff 34%,#ffff 66%,#ffff 67%); */
+    background-size: cover;
+    position: relative;
+}
+
+.login-div-form {
+    margin-top: 150px;
+    max-width: 420px;
+    width: 90%;
+    background-color: white;
+    padding: 40px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    color: black;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.1);
+    /* border-top: 10px solid #fea019; */
+    /* border-bottom: 10px solid #fea019; */
+}
+
+.login-haeder {
+    display: block;
+    text-align: center;
+    /* color:#6f7a85; */
+    color: black;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.login-div .illustration {
+    text-align: center;
+    padding: 15px 0 20px;
+    font-size: 100px;
+    color: #009cb8;
+}
+
+.login-div form .form-control {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #434a52;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+}
+
+.login-div form .btn-primary-login {
+    background:#009cb8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 26px;
+    text-shadow: none;
+    outline: none;
+}
+
+.login-div form .btn-primary-login:hover {
+    color: var(--white) !important;
+    background-color: var(--color-300) !important;
+}
+
+.login-div form .btn-primary-login:hover,
+.login-div form .btn-primary-login:active {
+    background: #009cb8;
+    outline: none;
+}
+
+.login-div form .forgot {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: black;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.login-div form .forgot:hover,
+.login-div form .forgot:active {
+    opacity: 1;
+    text-decoration: none;
+}
+
+.login-div form .btn-primary-login:active {
+    transform: translateY(1px);
+}

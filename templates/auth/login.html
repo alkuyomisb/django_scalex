@@ -1,0 +1,115 @@
+{% load static %}
+{% load bootstrap_icons %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRA</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/hover.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ionicons.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-main">
+        <div class="container-xl container-nav">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="{% static 'images/tra-logo.png' %}" alt="TRA" />
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav tool-nav">
+                    <li class="nav-item">
+                        <a class="nav-link nav-lng" href="javaScript:;"><span class="nav-label">Arabic</span>
+                            <span class="nav-icon">
+                                <img src="{% static 'images/top-nav-01.png' %}" alt="My image" /> </span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="login-div">
+        <form class="login-div-form" method="POST" id="login-form">
+            <h2 class="login-haeder">LOGIN</h2>
+            <div class="illustration">
+                <i class="fa fa-light fa-lock"></i>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email" id="email" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password" id="password"
+                    required>
+            </div>
+            <div class="alert alert-danger" role="alert" id="error-message" style="display: none;">
+                Invalid Email or Password!
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary-login btn-block" type="submit">
+                    Log In
+                </button>
+            </div>
+            <a href="#" class="forgot">Forgot your email or password?</a>
+        </form>
+    </div>
+</body>
+
+<script>
+    var user_result = "{{ users | escapejs }}";
+    var usersList = JSON.parse(user_result);
+    console.log("usersList", usersList)
+
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var userEmail = document.getElementById("email").value;
+        var userPassword = document.getElementById("password").value;
+
+        var emailExists = false;
+
+        usersList.forEach(element => {
+            // check the email and passwor if exit
+            if (element[0] == userEmail && element[1] == userPassword) {
+                emailExists = true;
+            }
+        });
+
+        if (emailExists) {
+            // route to tab page 
+            console.log("Email exists");
+            window.location.href = "tab";
+        }
+        else {
+            console.log("Email does not exist");
+            // display error message 
+            var errorMessage = document.getElementById("error-message");
+            errorMessage.style.display = "block";
+        }
+    });
+</script>
+
+</html>
