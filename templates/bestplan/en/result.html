@@ -207,7 +207,7 @@
                 never been easier. Use TRA's mobile plan finder to get started.
               </p>
               {% if 'lang' in request.get_full_path %}
-              <a class="btn btn-start" href="/?lang={{request.GET.lang}}">Get Started</a>
+              <a class="btn btn-start" href="/?lang={{request.POST.lang}}">Get Started</a>
               {% else %}
               <a class="btn btn-start" href="/?lang=en">Get Started</a>
               {% endif %}

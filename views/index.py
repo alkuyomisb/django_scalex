@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 def index(request):
     data = {}
-    lang = request.GET.get("lang", "en")
+    lang = request.POST.get("lang", "en")
 
     return render(
         request,

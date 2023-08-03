@@ -15,13 +15,13 @@ def get_merged_value_unit(value, unit):
 
 
 def export_filter_data(request):
-    price = request.GET.get("price", "all")
-    data_allowance = request.GET.get("data_allowance", "all")
-    service_type = request.GET.get("service_type", "all")
-    plan_type = request.GET.get("plan_type", "all")
-    total_local_minutes = request.GET.get("minutes", "all")
-    rank = request.GET.get("rank", "all")
-    term_length = request.GET.get("term_length", 1)
+    price = request.POST.get("price", "all")
+    data_allowance = request.POST.get("data_allowance", "all")
+    service_type = request.POST.get("service_type", "all")
+    plan_type = request.POST.get("plan_type", "all")
+    total_local_minutes = request.POST.get("minutes", "all")
+    rank = request.POST.get("rank", "all")
+    term_length = request.POST.get("term_length", 1)
 
     if price == '':
         price = '0'
@@ -31,12 +31,12 @@ def export_filter_data(request):
         term_length = '0'
 
     isp_list = []
-    omantel = request.GET.get("omantel", "off")
-    ooredeoo = request.GET.get("ooredeoo", "off")
-    vodafone = request.GET.get("vodafone", "off")
-    renna = request.GET.get("renna", "off")
-    redbull = request.GET.get("redbull", "off")
-    awasr = request.GET.get("awasr", "off")
+    omantel = request.POST.get("omantel", "off")
+    ooredeoo = request.POST.get("ooredeoo", "off")
+    vodafone = request.POST.get("vodafone", "off")
+    renna = request.POST.get("renna", "off")
+    redbull = request.POST.get("redbull", "off")
+    awasr = request.POST.get("awasr", "off")
 
     if "on" in omantel:
         isp_list.append("omantel")
@@ -53,8 +53,8 @@ def export_filter_data(request):
 
      # Minutes
     not_filter_dict = {}
-    international_minutes = request.GET.get("international_minutes", "off")
-    local_minutes = request.GET.get("local_minutes", "off")
+    international_minutes = request.POST.get("international_minutes", "off")
+    local_minutes = request.POST.get("local_minutes", "off")
 
     if "on" in international_minutes:
         not_filter_dict["international_minutes"] = "0"
@@ -63,7 +63,7 @@ def export_filter_data(request):
         not_filter_dict["local_minutes"] = "0"
 
     # Roaming
-    with_roaming = request.GET.get("with_roaming", "off")
+    with_roaming = request.POST.get("with_roaming", "off")
 
     if "on" in with_roaming:
         not_filter_dict["world_roaming_value"] = "0"

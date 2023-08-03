@@ -169,7 +169,7 @@
                 Finding the mobile plan that meets your needs and budget has
                 never been easier. Use TRA's mobile plan finder to get started.
               </p>
-              <a class="btn btn-start" href="/?lang={{request.GET.lang}}">Get Started</a>
+              <a class="btn btn-start" href="/?lang={{request.POST.lang}}">Get Started</a>
             </div>
           </div>
         </div>
@@ -240,7 +240,7 @@
                   </div>
 
                   <!--  Mobile Form -->
-                  <form action="result" method="GET">
+                  <form action="result" method="POST">
                     <!-- Mobile -->
                     <div class="mobile box" style="display: none">
                       <!-- Hidden Service Type -->
@@ -366,7 +366,7 @@
                   </form>
 
                   <!-- Fixed -->
-                  <form action="result" method="GET">
+                  <form action="result" method="POST">
                     <!-- Fixedbroadband -->
                     <div class="fixed box" style="display: none">
                       <!-- Hidden Service Type -->
@@ -454,7 +454,7 @@
                   </form>
 
                   <!-- Fixed and Mobile Form -->
-                  <form action="result" method="GET">
+                  <form action="result" method="POST">
                     <!-- Hidden Service Type -->
                     <input
                       class="form-control input-sm"

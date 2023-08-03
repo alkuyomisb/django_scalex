@@ -2,7 +2,7 @@
     
     
 <!--  Mobile Form -->
-<form action="result" method="GET" class="mobile box" style="display: none;">
+<form action="result" method="POST" class="mobile box" style="display: none;">
  
   <!-- Mobile -->
 
@@ -41,7 +41,7 @@
     
     
     <!-- Fixed -->
-<form action="result" method="GET" class="fixed box" style="display: none;">
+<form action="result" method="POST" class="fixed box" style="display: none;">
       
       <!-- Fixedbroadband -->
         <!-- Hidden Service Type -->
@@ -72,7 +72,7 @@
 </form>
     
 <!-- Fixed and Mobile Form -->
-<form action="result" method="GET" class="both box" style="display: none;" >
+<form action="result" method="POST" class="both box" style="display: none;" >
       
        {% comment %} <!-- Hidden Service Type -->
        <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required />
@@ -107,7 +107,7 @@
 
 
 <!-- Fixed and Mobile Form -->
-<form action="result" method="GET" class="empty box" style="display: none;" >
+<form action="result" method="POST" class="empty box" style="display: none;" >
       
   {% comment %} <!-- Hidden Service Type -->
   <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required />

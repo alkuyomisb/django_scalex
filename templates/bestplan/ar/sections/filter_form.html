@@ -2,7 +2,7 @@
     
     
 <!--  Mobile Form -->
-<form action="result" method="GET">
+<form action="result" method="POST">
  
 
   <!-- Mobile -->
@@ -47,7 +47,7 @@
 
 
   <!-- Fixed -->
-<form action="result" method="GET">
+<form action="result" method="POST">
 
   <!-- Fixedbroadband -->
   <div class="fixed box" style="display: none;">
@@ -81,7 +81,7 @@
 </form>
 
 <!-- Fixed and Mobile Form -->
-<form action="result" method="GET">
+<form action="result" method="POST">
   <input class="form-control input-sm" name="lang" value="ar" type="text" Hidden required /> 
 
   <!-- Hidden Service Type -->
@@ -119,7 +119,7 @@
 
 
 
-<form action="result" method="GET" class="hhh box" style="display: none;" >
+<form action="result" method="POST" class="hhh box" style="display: none;" >
   <!-- Data GB Per Month -->
   {% include 'bestplan/ar/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
 
