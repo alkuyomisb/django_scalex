@@ -125,7 +125,7 @@
 
                 <!--  Mobile Form -->
                 <form action="result" method="POST">
-                 
+                  {% csrf_token %}
 
                   <!-- Mobile -->
                   <div class="mobile box" style="display: none;">
@@ -213,6 +213,7 @@
                 
                   <!-- Fixed -->
                 <form action="result" method="POST">
+                  {% csrf_token %}
               
                   <!-- Fixedbroadband -->
                   <div class="fixed box" style="display: none;">
@@ -269,6 +270,7 @@
 
                 <!-- Fixed and Mobile Form -->
                 <form action="result" method="POST">
+                  {% csrf_token %}
 
                   <!-- Hidden Service Type -->
                   <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required>

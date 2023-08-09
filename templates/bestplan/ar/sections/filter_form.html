@@ -3,7 +3,7 @@
     
 <!--  Mobile Form -->
 <form action="result" method="POST">
- 
+  {% csrf_token %}
 
   <!-- Mobile -->
   <div class="mobile box" style="display: none;">
@@ -48,7 +48,7 @@
 
   <!-- Fixed -->
 <form action="result" method="POST">
-
+  {% csrf_token %}
   <!-- Fixedbroadband -->
   <div class="fixed box" style="display: none;">
     <input class="form-control input-sm" name="lang" value="ar" type="text" Hidden required /> 
@@ -82,6 +82,7 @@
 
 <!-- Fixed and Mobile Form -->
 <form action="result" method="POST">
+  {% csrf_token %}
   <input class="form-control input-sm" name="lang" value="ar" type="text" Hidden required /> 
 
   <!-- Hidden Service Type -->
@@ -120,6 +121,7 @@
 
 
 <form action="result" method="POST" class="hhh box" style="display: none;" >
+  {% csrf_token %}
   <!-- Data GB Per Month -->
   {% include 'bestplan/ar/form_controllers/data_allowance.html' with result_page=result_page  width=width%}
 

@@ -136,9 +136,9 @@
           <ul class="navbar-nav tool-nav">
             <li class="nav-item">
               {% if 'lang' in request.get_full_path %}
-              <a class="nav-link nav-lng" href="{{ request.get_full_path | cut:"&lang=en" |add:"&lang=ar"}}">
+              <a class="nav-link nav-lng" href="{{ request.get_full_path | cut:"?lang=en" |add:"?lang=ar"}}">
               {% else %}
-              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"&lang=ar" }}">
+              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"?lang=ar" }}">
               {% endif %}<span class="nav-label">Arabic</span>
                 <span class="nav-icon">
                   <img
@@ -236,6 +236,7 @@
 
                   <!--  Mobile Form -->
                   <form action="result" method="POST">
+                    {% csrf_token %}
                     <!-- Mobile -->
                     <div class="mobile box" style="display: none">
                       <!-- Hidden Service Type -->
@@ -362,6 +363,7 @@
 
                   <!-- Fixed -->
                   <form action="result" method="POST">
+                    {% csrf_token %}
                     <!-- Fixedbroadband -->
                     <div class="fixed box" style="display: none">
                       <!-- Hidden Service Type -->
@@ -450,6 +452,7 @@
 
                   <!-- Fixed and Mobile Form -->
                   <form action="result" method="POST">
+                    {% csrf_token %}
                     <!-- Hidden Service Type -->
                     <input
                       class="form-control input-sm"

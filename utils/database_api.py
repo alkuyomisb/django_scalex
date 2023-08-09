@@ -158,6 +158,8 @@ def get_one_closest(filter_dict, not_filter_dict, orders_by_dict, limit):
             LIMIT 0,{}
             """.format(query_distances, query_conditions, query_orders_by, limit)
 
+    # print("QUERRY")
+    # print(query)
     cursor = db.cursor()
     cursor.execute(query)
     if limit == 1:

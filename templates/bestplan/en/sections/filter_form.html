@@ -2,7 +2,8 @@
     
     
 <!--  Mobile Form -->
-<form action="result" method="POST" class="mobile box" style="display: none;">
+<form action="result?lang=en" method="POST" class="mobile box" style="display: none;">
+  {% csrf_token %}
  
   <!-- Mobile -->
 
@@ -42,6 +43,7 @@
     
     <!-- Fixed -->
 <form action="result" method="POST" class="fixed box" style="display: none;">
+  {% csrf_token %}
       
       <!-- Fixedbroadband -->
         <!-- Hidden Service Type -->
@@ -73,6 +75,7 @@
     
 <!-- Fixed and Mobile Form -->
 <form action="result" method="POST" class="both box" style="display: none;" >
+  {% csrf_token %}
       
        {% comment %} <!-- Hidden Service Type -->
        <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required />
@@ -108,6 +111,7 @@
 
 <!-- Fixed and Mobile Form -->
 <form action="result" method="POST" class="empty box" style="display: none;" >
+  {% csrf_token %}
       
   {% comment %} <!-- Hidden Service Type -->
   <input class="form-control input-sm" name="service_type" value="all" type="text" Hidden required />

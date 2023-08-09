@@ -4,6 +4,12 @@ from utils.database_api import get_one_closest
 
 
 def result(request):
+
+    if request.method == "POST":
+        request.session["POST"] = request.POST
+    else:
+        request.POST = request.session["POST"]
+
     price = request.POST.get("price", "all")
     data_allowance = request.POST.get("data_allowance", "all")
     service_type = request.POST.get("service_type", "all")
@@ -11,7 +17,7 @@ def result(request):
     total_local_minutes = request.POST.get("minutes", "all")
     rank = request.POST.get("rank", "all")
     term_length = request.POST.get("term_length", 30)
-    lang = request.POST.get("lang", 'en')
+    lang = request.GET.get("lang", 'en')
 
     if price == '':
         price = '0'
@@ -61,6 +67,12 @@ def result(request):
 
     link = ""
     res = {}
+    print("THE GET")
+    print(request.GET)
+    print("THE POST")
+    print(request.POST)
+    print("THE METHOD")
+    print(request.method)
 
     if len(isp_list) == 0:
         plans = {

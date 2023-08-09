@@ -15,6 +15,11 @@ def get_merged_value_unit(value, unit):
 
 
 def export_filter_data(request):
+    if request.method == "POST":
+        request.session["POST"] = request.POST
+    else:
+        request.POST = request.session["POST"]
+
     price = request.POST.get("price", "all")
     data_allowance = request.POST.get("data_allowance", "all")
     service_type = request.POST.get("service_type", "all")

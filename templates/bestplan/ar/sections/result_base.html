@@ -172,9 +172,9 @@
           <ul class="navbar-nav tool-nav">
             <li class="nav-item">
               {% if 'lang' in request.get_full_path %}
-              <a class="nav-link nav-lng" href="{{ request.get_full_path | cut:"&lang=ar" |add:"&lang=en"}}">
+              <a class="nav-link nav-lng" href="{{ request.get_full_path | cut:"?lang=ar" |add:"?lang=en"}}">
               {% else %}
-              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"&lang=en" }}">
+              <a class="nav-link nav-lng" href="{{ request.get_full_path|add:"?lang=en" }}">
               {% endif %}
               <span class="nav-label">English</span>
                 <span class="nav-icon">
