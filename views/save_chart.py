@@ -9,4 +9,4 @@ def save_chart(request):
     add_chart(chartType, plan_fields)
 
 
-    return redirect('statistics')
+    return redirect('tab')
