@@ -96,14 +96,14 @@
             DOWNLOAD
           </button>
 
-          <select class="btn btn-filters">
-            <option>Operator</option>
-            <option value="Omantel">Omantel</option>
-            <option value="Ooredoo">Ooredoo</option>
-            <option value="Vodafone">Vodafone</option>
-            <option value="RedBull">RedBull</option>
-            <option value="Renna">Renna</option>
-          </select>
+          <select id="operator-filter" class="btn btn-filters">
+            <option value="">Operator</option>
+            <option value="omantel">Omantel</option>
+            <option value="ooredoo">Ooredoo</option>
+            <option value="vodafone">Vodafone</option>
+            <option value="redbull">RedBull</option>
+            <option value="renna">Renna</option>
+        </select>
 
           <select class="btn btn-filters">
             <option>Single or Bundle</option>
@@ -130,7 +130,7 @@
 
         <div class="search-plan-table">
           <div class="table-responsive">
-            <table class="table" cellspacing="0">
+            <table  id="plan" class="table" cellspacing="0">
               <thead>
                 <tr>
                   <th>
@@ -356,11 +356,11 @@
 
           <select class="btn btn-filters">
             <option>Operator</option>
-            <option value="Omantel">Omantel</option>
-            <option value="Ooredoo">Ooredoo</option>
-            <option value="Vodafone">Vodafone</option>
-            <option value="RedBull">RedBull</option>
-            <option value="Renna">Renna</option>
+            <option value="omantel">omantel</option>
+            <option value="ooredoo">ooredoo</option>
+            <option value="redbull">redbull</option>
+            <option value="redbull">redbull</option>
+            <option value="renna">renna</option>
           </select>
 
           <select class="btn btn-filters">
@@ -639,6 +639,29 @@
         link.click();
         // Clean
         document.body.removeChild(link);
+    });
+
+    // operator filter
+    function filterTableByOperator(operator) {
+      var rows = document.querySelectorAll("#plan .table tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+        var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
+        console.log("Row Operator:", rowOperator);
+        console.log("Selected Operator:", operator);
+        if (operator == "" || rowOperator == operator) {
+          console.log("inside if ")
+            rows[i].style.display = "";
+        } else {
+          console.log("inside else")
+            rows[i].style.display = "none";
+        }
+    }
+}
+    var operatorFilter = document.getElementById("operator-filter");
+    operatorFilter.addEventListener("change", function() {
+        var selectedOperator = operatorFilter.value;
+        console.log("Selected Operator111:", selectedOperator);
+        filterTableByOperator(selectedOperator);
     });
 </script>
 
