@@ -36,7 +36,7 @@
       <!-- plan and Promotions tabs -->
       <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'plan')" id="defaultOpen">plans</button>
-        <button class="tablinks active" onclick="openTab(event, 'promotions')" >Promotions</button>
+        <button class="tablinks active" onclick="openTab(event, 'promotions')">Promotions</button>
       </div>
 
 
@@ -103,7 +103,7 @@
             <option value="vodafone">Vodafone</option>
             <option value="redbull">RedBull</option>
             <option value="renna">Renna</option>
-        </select>
+          </select>
 
           <select class="btn btn-filters">
             <option>Single or Bundle</option>
@@ -111,10 +111,10 @@
             <option value="bundle">Bundle</option>
           </select>
 
-          <select class="btn btn-filters">
-            <option>Service Type</option>
-            <option value="Mobile">Mobile</option>
-            <option value="Broadband">Fixed Broadband</option>
+          <select id="service-filter" class="btn btn-filters">
+            <option value="">Service Type</option>
+            <option value="MOBILE">Mobile</option>
+            <option value="FIXED">Fixed Broadband</option>
           </select>
 
 
@@ -130,7 +130,7 @@
 
         <div class="search-plan-table">
           <div class="table-responsive">
-            <table  id="plan" class="table" cellspacing="0">
+            <table id="plan" class="table" cellspacing="0">
               <thead>
                 <tr>
                   <th>
@@ -308,7 +308,7 @@
             <div class="modal-header">
               <h2 class="modal-title" id="exampleModalLabel">Choose Price Range</h2>
             </div>
-          
+
             <p>
               <input type="text" id="PromotionsPriceAmount" readonly style="border:0; color:#000000; font-weight:bold;">
             </p>
@@ -609,55 +609,74 @@
 
 
   // download plans table
-  document.getElementById("download-plan-button").addEventListener("click", function() {
-        // Get the table element
-        var table = document.querySelector("#plan .table");
+  document.getElementById("download-plan-button").addEventListener("click", function () {
+    // Get the table element
+    var table = document.querySelector("#plan .table");
 
-       
-        var csv = [];
-        var rows = table.querySelectorAll("tbody tr");
-        for (var i = 0; i < rows.length; i++) {
-            var row = [], cols = rows[i].querySelectorAll("td");
-            for (var j = 0; j < cols.length; j++) {
-                row.push(cols[j].innerText);
-            }
-            csv.push(row.join(","));
-        }
-        var csvContent = csv.join("\n");
 
-        // Create a Blob containing the CSV data
-        var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-
-        // Create a link element for download
-        var link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "plans_table.csv";
-        link.style.display = "none";
-
-        // Add the link to the document and click it
-        document.body.appendChild(link);
-        link.click();
-        // Clean
-        document.body.removeChild(link);
-    });
-
-    // operator filter
-    function filterTableByOperator(operator) {
-      var rows = document.querySelectorAll("#plan .table tbody tr");
+    var csv = [];
+    var rows = table.querySelectorAll("tbody tr");
     for (var i = 0; i < rows.length; i++) {
-        var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
-        if (operator == "" || rowOperator == operator) {
-            rows[i].style.display = "";
-        } else {
-            rows[i].style.display = "none";
-        }
+      var row = [], cols = rows[i].querySelectorAll("td");
+      for (var j = 0; j < cols.length; j++) {
+        row.push(cols[j].innerText);
+      }
+      csv.push(row.join(","));
     }
-}
-    var operatorFilter = document.getElementById("operator-filter");
-    operatorFilter.addEventListener("change", function() {
-        var selectedOperator = operatorFilter.value;
-        filterTableByOperator(selectedOperator);
-    });
+    var csvContent = csv.join("\n");
+
+    // Create a Blob containing the CSV data
+    var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+    // Create a link element for download
+    var link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "plans_table.csv";
+    link.style.display = "none";
+
+    // Add the link to the document and click it
+    document.body.appendChild(link);
+    link.click();
+    // Clean
+    document.body.removeChild(link);
+  });
+
+  // operator filter
+  function filterTableByOperator(operator) {
+    var rows = document.querySelectorAll("#plan .table tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+      var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
+      if (operator == "" || rowOperator == operator) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
+  var operatorFilter = document.getElementById("operator-filter");
+  operatorFilter.addEventListener("change", function () {
+    var selectedOperator = operatorFilter.value;
+    filterTableByOperator(selectedOperator);
+  });
+
+
+  // service filter
+  function filterTableByService(service) {
+    var rows = document.querySelectorAll("#plan .table tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+      var rowService = rows[i].querySelector("td:nth-child(3)").textContent.trim();
+      if (service === "" || rowService === service) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
+  var serviceFilter = document.getElementById("service-filter");
+  serviceFilter.addEventListener("change", function () {
+    var selectedService = serviceFilter.value;
+    filterTableByService(selectedService);
+  });
 </script>
 
 </html>
