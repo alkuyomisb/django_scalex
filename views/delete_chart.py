@@ -9,4 +9,4 @@ def delete_chart(request):
     delete_chart_and_parameters(chart_id)
 
 
-    return redirect('statistics')
+    return redirect('tab')

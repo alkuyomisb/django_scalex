@@ -52,6 +52,14 @@
             <p>
               <input type="text" id="amount" readonly style="border:0; color:#000000; font-weight:bold;">
             </p>
+            <!-- <div >
+            <p> Minimum Price:   </p>
+              <input  name="party" min="0" max="50" width="50" />
+          
+
+            <p>Maximum Price: </p>
+            <input  min="0" max="50" width="50" />
+          </div> -->
             <div id="slider-range"></div>
             <div class="modal-footer">
               <button id="hide" class="btn btn-filters">Close</button>
@@ -83,7 +91,7 @@
 
         <!-- filter -->
         <p class='display-inline-block'>
-          <button class="btn btn-filters">
+          <button id="download-plan-button" class="btn btn-filters">
             <span class="fa fa-download mr-3"></span>
             DOWNLOAD
           </button>
@@ -300,9 +308,18 @@
             <div class="modal-header">
               <h2 class="modal-title" id="exampleModalLabel">Choose Price Range</h2>
             </div>
+          
             <p>
               <input type="text" id="PromotionsPriceAmount" readonly style="border:0; color:#000000; font-weight:bold;">
             </p>
+            <!-- <div >
+              <p>Minimum Price:   </p>
+                <input  name="party" min="0" max="50" width="50" />
+            
+  
+              <p>Maximum Price: </p>
+              <input  min="0" max="50" width="50" />
+            </div> -->
             <div id="Promotions-slider-range"></div>
             <div class="modal-footer">
               <button id="PromotionsHide" class="btn btn-filters">Close</button>
@@ -589,6 +606,40 @@
       console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     });
   });
+
+
+  // download plans table
+  document.getElementById("download-plan-button").addEventListener("click", function() {
+        // Get the table element
+        var table = document.querySelector("#plan .table");
+
+       
+        var csv = [];
+        var rows = table.querySelectorAll("tbody tr");
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll("td");
+            for (var j = 0; j < cols.length; j++) {
+                row.push(cols[j].innerText);
+            }
+            csv.push(row.join(","));
+        }
+        var csvContent = csv.join("\n");
+
+        // Create a Blob containing the CSV data
+        var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+        // Create a link element for download
+        var link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "plans_table.csv";
+        link.style.display = "none";
+
+        // Add the link to the document and click it
+        document.body.appendChild(link);
+        link.click();
+        // Clean
+        document.body.removeChild(link);
+    });
 </script>
 
 </html>

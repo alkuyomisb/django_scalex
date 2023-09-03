@@ -131,8 +131,9 @@
                 <h2 class="modal-title" id="exampleModalLabel">Are You Sure?</h2>
             </div>
             <div class="modal-footer">
-                <button id="closeDialog" class="btn btn-chart">Close</button>
+                
                 <form action="/delete-chart" method="POST">
+                    <button id="closeDialog" class="btn btn-chart">Close</button>
                     <input type="hidden" name="chart_id" id="deleteChartId" value="">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-chart">
