@@ -646,13 +646,9 @@
       var rows = document.querySelectorAll("#plan .table tbody tr");
     for (var i = 0; i < rows.length; i++) {
         var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
-        console.log("Row Operator:", rowOperator);
-        console.log("Selected Operator:", operator);
         if (operator == "" || rowOperator == operator) {
-          console.log("inside if ")
             rows[i].style.display = "";
         } else {
-          console.log("inside else")
             rows[i].style.display = "none";
         }
     }
@@ -660,7 +656,6 @@
     var operatorFilter = document.getElementById("operator-filter");
     operatorFilter.addEventListener("change", function() {
         var selectedOperator = operatorFilter.value;
-        console.log("Selected Operator111:", selectedOperator);
         filterTableByOperator(selectedOperator);
     });
 </script>
