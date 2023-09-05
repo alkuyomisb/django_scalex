@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="{% static 'js/xlsx.full.min.js' %}"></script>
 </head>
 
 <body>
@@ -52,18 +53,10 @@
             <p>
               <input type="text" id="amount" readonly style="border:0; color:#000000; font-weight:bold;">
             </p>
-            <!-- <div >
-            <p> Minimum Price:   </p>
-              <input  name="party" min="0" max="50" width="50" />
-          
-
-            <p>Maximum Price: </p>
-            <input  min="0" max="50" width="50" />
-          </div> -->
             <div id="slider-range"></div>
             <div class="modal-footer">
               <button id="hide" class="btn btn-filters">Close</button>
-              <button type="button" class="btn btn-filters">Apply</button>
+              <button id="applyPriceFilter" type="button" class="btn btn-filters">Apply</button>
             </div>
           </dialog>
         </div>
@@ -582,6 +575,7 @@
     $("#amount").val("OMR " + $("#slider-range").slider("values", 0) +
       " - OMR " + $("#slider-range").slider("values", 1));
   });
+  
 
   // Promotions price range function
   $(function () {
@@ -610,36 +604,40 @@
 
   // download plans table
   document.getElementById("download-plan-button").addEventListener("click", function () {
-    // Get the table element
+    
     var table = document.querySelector("#plan .table");
 
-
     var csv = [];
+    
+    // Get column names from the table header
+    var columnHeaderCells = table.querySelectorAll("thead th");
+    var columnNames = Array.from(columnHeaderCells).map(function (cell) {
+        return cell.textContent.trim();
+    });
+    csv.push(columnNames.join(",")); // Add column names to the CSV
+
     var rows = table.querySelectorAll("tbody tr");
     for (var i = 0; i < rows.length; i++) {
-      var row = [], cols = rows[i].querySelectorAll("td");
-      for (var j = 0; j < cols.length; j++) {
-        row.push(cols[j].innerText);
-      }
-      csv.push(row.join(","));
+        var row = [], cols = rows[i].querySelectorAll("td");
+        for (var j = 0; j < cols.length; j++) {
+            row.push(cols[j].innerText);
+        }
+        csv.push(row.join(","));
     }
     var csvContent = csv.join("\n");
 
-    // Create a Blob containing the CSV data
     var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
 
-    // Create a link element for download
     var link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
     link.download = "plans_table.csv";
     link.style.display = "none";
 
-    // Add the link to the document and click it
     document.body.appendChild(link);
     link.click();
-    // Clean
+
     document.body.removeChild(link);
-  });
+});
 
   // operator filter
   function filterTableByOperator(operator) {
@@ -677,6 +675,30 @@
     var selectedService = serviceFilter.value;
     filterTableByService(selectedService);
   });
+
+  // filter price range
+  document.getElementById("applyPriceFilter").addEventListener("click", function () {
+    var minPrice = $("#slider-range").slider("values", 0);
+    var maxPrice = $("#slider-range").slider("values", 1);
+
+    var table = document.querySelector("#plan .table");
+
+    var rows = table.querySelectorAll("tbody tr");
+
+    for (var i = 0; i < rows.length; i++) {
+        var priceCell = rows[i].querySelector("td:nth-child(5)"); 
+        var price = parseFloat(priceCell.innerText.replace("OMR ", "").replace(",", ""));
+        
+        if (price >= minPrice && price <= maxPrice) {
+            rows[i].style.display = ""; 
+        } else {
+            rows[i].style.display = "none"; 
+        }
+    }
+
+    var priceRangeDialog = document.getElementById('DialogExample');
+    priceRangeDialog.close();
+});
 </script>
 
 </html>
