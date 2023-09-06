@@ -123,7 +123,7 @@
 
         <div class="search-plan-table">
           <div class="table-responsive">
-            <table id="plan" class="table" cellspacing="0">
+            <table id="plan-table" class="table" cellspacing="0">
               <thead>
                 <tr>
                   <th>
@@ -530,6 +530,11 @@
 </body>
 
 <script>
+  var selectedOperator = "";
+  var selectedService = "";
+  var selectedPriceRange = [];
+
+
 
   // tab function start
   function openTab(evt, tabName) {
@@ -575,7 +580,7 @@
     $("#amount").val("OMR " + $("#slider-range").slider("values", 0) +
       " - OMR " + $("#slider-range").slider("values", 1));
   });
-  
+
 
   // Promotions price range function
   $(function () {
@@ -601,28 +606,74 @@
     });
   });
 
+  var selectedOperator = "";
+  var selectedService = "";
+
+  var operatorFilter = document.getElementById("operator-filter");
+  operatorFilter.addEventListener("change", function () {
+    selectedOperator = operatorFilter.value;
+    filterPlanTable(); // Call the filter function
+  });
+
+  // Event listener for the "Service Type" dropdown
+  var serviceFilter = document.getElementById("service-filter");
+  serviceFilter.addEventListener("change", function () {
+    selectedService = serviceFilter.value;
+    filterPlanTable(); // Call the filter function
+  });
+
+  function filterPlanTable() {
+    var rows = document.querySelectorAll("#plan-table tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+      var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
+      var rowService = rows[i].querySelector("td:nth-child(3)").textContent.trim();
+
+      // Check if the row matches the selected values or if no value is selected
+      if ((selectedOperator === "" || rowOperator === selectedOperator) &&
+        (selectedService === "" || rowService === selectedService)) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
 
   // download plans table
   document.getElementById("download-plan-button").addEventListener("click", function () {
-    
     var table = document.querySelector("#plan .table");
 
     var csv = [];
-    
+
     // Get column names from the table header
     var columnHeaderCells = table.querySelectorAll("thead th");
     var columnNames = Array.from(columnHeaderCells).map(function (cell) {
-        return cell.textContent.trim();
+      return cell.textContent.trim();
     });
     csv.push(columnNames.join(",")); // Add column names to the CSV
 
     var rows = table.querySelectorAll("tbody tr");
+
+    // Filtered rows
+    var visibleRows = [];
     for (var i = 0; i < rows.length; i++) {
-        var row = [], cols = rows[i].querySelectorAll("td");
-        for (var j = 0; j < cols.length; j++) {
-            row.push(cols[j].innerText);
-        }
-        csv.push(row.join(","));
+      if (rows[i].style.display !== "none") {
+        visibleRows.push(rows[i]);
+      }
+    }
+
+    // Check if there are visible rows to download
+    if (visibleRows.length === 0) {
+      alert("No data to download. Please adjust your filters.");
+      return;
+    }
+
+    for (var i = 0; i < visibleRows.length; i++) {
+      var row = [],
+        cols = visibleRows[i].querySelectorAll("td");
+      for (var j = 0; j < cols.length; j++) {
+        row.push(cols[j].innerText);
+      }
+      csv.push(row.join(","));
     }
     var csvContent = csv.join("\n");
 
@@ -630,18 +681,19 @@
 
     var link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "plans_table.csv";
+    link.download = "filtered_plans_table.csv";
     link.style.display = "none";
 
     document.body.appendChild(link);
     link.click();
 
     document.body.removeChild(link);
-});
+  });
+
 
   // operator filter
   function filterTableByOperator(operator) {
-    var rows = document.querySelectorAll("#plan .table tbody tr");
+    var rows = document.querySelectorAll("#plan-table tbody tr");
     for (var i = 0; i < rows.length; i++) {
       var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
       if (operator == "" || rowOperator == operator) {
@@ -660,7 +712,7 @@
 
   // service filter
   function filterTableByService(service) {
-    var rows = document.querySelectorAll("#plan .table tbody tr");
+    var rows = document.querySelectorAll("#plan-table tbody tr");
     for (var i = 0; i < rows.length; i++) {
       var rowService = rows[i].querySelector("td:nth-child(3)").textContent.trim();
       if (service === "" || rowService === service) {
@@ -681,24 +733,66 @@
     var minPrice = $("#slider-range").slider("values", 0);
     var maxPrice = $("#slider-range").slider("values", 1);
 
-    var table = document.querySelector("#plan .table");
+    var table = document.querySelector("#plan-table");
 
     var rows = table.querySelectorAll("tbody tr");
 
     for (var i = 0; i < rows.length; i++) {
-        var priceCell = rows[i].querySelector("td:nth-child(5)"); 
-        var price = parseFloat(priceCell.innerText.replace("OMR ", "").replace(",", ""));
-        
-        if (price >= minPrice && price <= maxPrice) {
-            rows[i].style.display = ""; 
-        } else {
-            rows[i].style.display = "none"; 
-        }
+      var priceCell = rows[i].querySelector("td:nth-child(5)");
+      var price = parseFloat(priceCell.innerText.replace("OMR ", "").replace(",", ""));
+
+      if (price >= minPrice && price <= maxPrice) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
     }
 
     var priceRangeDialog = document.getElementById('DialogExample');
     priceRangeDialog.close();
+  });
+
+
+// Event listener for the (operator-filter ,service-filter, price range , applyPriceFilter)
+  var operatorFilter = document.getElementById("operator-filter");
+  operatorFilter.addEventListener("change", function () {
+    selectedOperator = operatorFilter.value;
+    filterPlanTable();
+  });
+
+  var serviceFilter = document.getElementById("service-filter");
+  serviceFilter.addEventListener("change", function () {
+    selectedService = serviceFilter.value;
+    filterPlanTable(); 
+  });
+
+$("#slider-range").on("slide", function (event, ui) {
+  selectedPriceRange = ui.values;
+  filterPlanTable();
 });
+
+document.getElementById("applyPriceFilter").addEventListener("click", function () {
+  filterPlanTable();
+});
+
+
+// to filter multiple values
+function filterPlanTable() {
+  var rows = document.querySelectorAll("#plan-table tbody tr");
+  for (var i = 0; i < rows.length; i++) {
+    var rowOperator = rows[i].querySelector("td:nth-child(1)").textContent.trim();
+    var rowService = rows[i].querySelector("td:nth-child(3)").textContent.trim();
+    var rowPrice = parseFloat(rows[i].querySelector("td:nth-child(5)").textContent.replace("OMR ", "").replace(",", ""));
+
+    if ((selectedOperator === "" || rowOperator === selectedOperator) &&
+        (selectedService === "" || rowService === selectedService) &&
+        (selectedPriceRange.length === 0 || (rowPrice >= selectedPriceRange[0] && rowPrice <= selectedPriceRange[1]))) {
+      rows[i].style.display = "";
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+}
 </script>
 
 </html>
