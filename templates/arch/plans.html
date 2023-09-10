@@ -19,6 +19,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/plansStyle.css' %}" />
 
   <!-- range side -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -50,11 +51,11 @@
             <div class="modal-header">
               <h2 class="modal-title" id="exampleModalLabel">Choose Price Range</h2>
             </div>
-            <p>
-              <input type="text" id="amount" readonly style="border:0; color:#000000; font-weight:bold;">
+            <p style="margin-top: 15px; text-align: center;">
+              <input type="text" id="amount" readonly style="border:0; color:#000000; font-weight:bold;text-align: center;">
             </p>
             <div id="slider-range"></div>
-            <div class="modal-footer">
+            <div style="margin-top:20px ; text-align: center;">
               <button id="hide" class="btn btn-filters">Close</button>
               <button id="applyPriceFilter" type="button" class="btn btn-filters">Apply</button>
             </div>
@@ -681,7 +682,7 @@
 
     var link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "filtered_plans_table.csv";
+    link.download = "plans_table.csv";
     link.style.display = "none";
 
     document.body.appendChild(link);

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRA</title>
     <style>
-        .btn-edit {
+        .btn-statistic {
             text-align: left;
             color: var(--white);
             font-size: 0.875rem;
@@ -17,10 +17,11 @@
             padding: 0.65rem 1.5rem;
             border-radius: 0.25rem;
             margin: 5;
+            border: 0;
         }
 
-        .btn-edit:hover {
-            background-color: var(--color-300);
+        .btn-statistic:hover {
+            background-color: var(--color-200);
         }
     </style>
 
@@ -145,7 +146,7 @@
     </div>
 
     <p class='display-inline-block'>
-        <button class="btn btn-edit" id="editButton" onclick="addChart();" style="margin-left:50px">
+        <button class="btn-statistic" id="editButton" onclick="addChart();" style="margin-left:50px">
             <span class="fa fa-edit mr-3"></span>
             EDIT
         </button>
@@ -282,8 +283,8 @@
         chartDiv.appendChild(deletebutton);
         deletebutton.id = 'removeChart';
         deletebutton.style = 'display:none';
-        deletebutton.className = 'btn btn-chart';
-        deletebutton.textContent = 'delete';
+        deletebutton.className = 'btn-statistic';
+        deletebutton.textContent = 'DELETE';
         const canvas = document.createElement('canvas'); // create canvas
         canvas.width = 450;
         canvas.height = 400;
